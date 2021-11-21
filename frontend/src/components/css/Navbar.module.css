@@ -1,0 +1,55 @@
+.navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    height: 3em;
+    background-color: #3aa859;
+}
+
+.logoStyles {
+    height: 100%;
+}
+
+.buttonsContainer {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    width: 40%;
+    justify-content: space-around;
+    align-items: center;
+    top: 0%;
+}
+
+.navButton {
+    height: 100%;
+    padding: 0 20px;
+    background-color: #3aa859;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 0.75em;
+    transition: 0.2s linear;
+}
+
+
+.navButton:hover {
+    background-color: white;
+    color: #3aa859;
+    border-bottom: 2px solid #3aa859;
+    border-top: 2px solid #3aa859;
+}
+
+a {
+    text-decoration: none;
+    height: 100%;
+    font-size: 2em;
+}
+
+.currentPage {
+    background-color: white;
+    color: #3aa859;
+    border-bottom: 2px solid #3aa859;
+    border-top: 2px solid #3aa859;
+}

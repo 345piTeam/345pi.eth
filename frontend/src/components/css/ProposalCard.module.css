@@ -1,0 +1,63 @@
+div {
+    color: white;
+}
+
+
+.proposalContainer {
+    min-height: 12em;
+    width: 80%;
+    background-color: #3e466c;
+    margin: 2em;
+    border-radius: 5px;
+}
+
+.gridContainer {
+    display: grid;
+    grid-template-areas:
+      'title title creator'
+      'description description creator'
+      'empty empty inspect';
+    grid-gap: 0em;
+    padding: 2em;
+    align-items: center;
+  }
+
+.title {
+    grid-area: title;
+    font-size: 3em;
+}
+
+.creator {
+    display: flex;
+    justify-content: right;
+
+}
+
+.description {
+    grid-area: description;
+}
+
+.inspect {
+    grid-area: inspect;
+    display: flex;
+    justify-content: right;
+    align-items: baseline;
+}
+
+.empty {
+    grid-area: empty;
+    height: 1em;
+}
+
+.inspectButton {
+    padding: .5em 1em;
+    border-radius: 0.2em;
+    border: 3px solid white;
+    background-color: rgba(62, 70, 108,1);
+    color: white;
+    font-size: 2em;
+}
+
+.inspectButton:hover {
+    background-color: rgba(255,255,255,.2);
+}
