@@ -1,3 +1,4 @@
+import DrizzleDataDebug from "../components/DrizzleDataDebug";
 import styles from "./css/Homepage.module.css";
 
 const Homepage = () => (
@@ -6,6 +7,7 @@ const Homepage = () => (
 			<h1>
 				Learn <b>Calculus.</b> Make A <b>Friend.</b>
 			</h1>
+			<DrizzleDataDebug />
 		</div>
 	</div>
 );

@@ -8,8 +8,8 @@ import navbarReducer from "./features/navbar.js";
 import electionReducer from "./features/election.js";
 import { configureStore } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";
-
-//TODO: create reducer to store the current navbar in redux
+import { DrizzleProvider } from "drizzle-react";
+import drizzleOptions from "./drizzleOptions";
 
 const store = configureStore({
 	reducer: {
@@ -19,20 +19,22 @@ const store = configureStore({
 });
 
 const App = () => (
-	<div className={styles.appContainer}>
-		<Provider store={store}>
-			<BrowserRouter>
-				<Navbar />
-				<Routes>
-					<Route path={"/"} element={<Homepage />}></Route>
-					<Route path={"/home"} element={<Homepage />}></Route>
-					<Route path={"/marketplace"} element={<Marketplace />}></Route>
-					<Route path={"/governance"} element={<Governance />}></Route>
-					<Route path={"*"} element={<PageNotFound />}></Route>
-				</Routes>
-			</BrowserRouter>
-		</Provider>
-	</div>
+	<DrizzleProvider options={drizzleOptions}>
+		<div className={styles.appContainer}>
+			<Provider store={store}>
+				<BrowserRouter>
+					<Navbar />
+					<Routes>
+						<Route path={"/"} element={<Homepage />}></Route>
+						<Route path={"/home"} element={<Homepage />}></Route>
+						<Route path={"/marketplace"} element={<Marketplace />}></Route>
+						<Route path={"/governance"} element={<Governance />}></Route>
+						<Route path={"*"} element={<PageNotFound />}></Route>
+					</Routes>
+				</BrowserRouter>
+			</Provider>
+		</div>
+	</DrizzleProvider>
 );
 
 const PageNotFound = () => (
