@@ -11,6 +11,17 @@ contract Election {
         string summary;
     }
 
+    string greeting = "Hello World";
+
+    function setGreeting(string memory s) public {
+        greeting = s;
+    }
+
+    function getGreeting() public view returns(string memory) {
+        return greeting;
+    }
+
+
     constructor() {
         address currentState = msg.sender;
         addCandidate("Click Based Games",currentState, "Clicking");
