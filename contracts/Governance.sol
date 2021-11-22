@@ -1,7 +1,7 @@
 pragma solidity ^0.8.0;
 // SPDX-License-Identifier: UNLICENSED
 
-contract Election {
+contract Governance {
     // Model a Candidate
     struct Candidate {
         uint id;
@@ -28,7 +28,6 @@ contract Election {
         addCandidate("Keyboard Based Games",currentState, "Keyboard");
     }
 
-
     // Store accounts that have voted
     mapping(address => bool) public voters;
     // Read/write candidates
@@ -44,8 +43,6 @@ contract Election {
         uint indexed _candidateId
     );
 
-    
-
     function addCandidate (string memory _name, address _creator, string memory _summary) private {
         candidatesCount ++;
         candidates[candidatesCount] = Candidate(candidatesCount, _name, 0, _creator, _summary);
@@ -53,10 +50,10 @@ contract Election {
 
     function vote (uint _candidateId) public {
         // require that they haven't voted before
-        require(!voters[msg.sender]);
+        require(!voters[msg.sender], "Unable to vote twice");
 
         // require a valid candidate
-        require(_candidateId > 0 && _candidateId <= candidatesCount);
+        require(_candidateId > 0 && _candidateId <= candidatesCount, "Candidate INVALID");
 
         // record that voter has voted
         voters[msg.sender] = true;

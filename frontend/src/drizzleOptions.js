@@ -1,13 +1,7 @@
-import Election from "./contracts/Election.json";
+import Governance from "./contracts/Governance.json";
 
 const options = {
-	contracts: [Election],
-	web3: {
-		fallback: {
-			type: "ws",
-			url: "ws://127.0.0.1:7545",
-		},
-	},
+	contracts: [Governance],
 };
 
 export default options;
