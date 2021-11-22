@@ -1,4 +1,5 @@
 pragma solidity ^0.8.0;
+// SPDX-License-Identifier: UNLICENSED
 
 contract Election {
     // Model a Candidate
@@ -25,7 +26,7 @@ contract Election {
         uint indexed _candidateId
     );
 
-    constructor () public {
+    constructor () {
         address currentState = msg.sender;
         addCandidate("Click Based Games",currentState, "Clicking");
         addCandidate("Keyboard Based Games",currentState, "Keyboard");
@@ -51,6 +52,4 @@ contract Election {
         // trigger voted event
         emit votedEvent(_candidateId);
     }
-
-    function getData
 }
