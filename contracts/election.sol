@@ -11,6 +11,13 @@ contract Election {
         string summary;
     }
 
+    constructor() {
+        address currentState = msg.sender;
+        addCandidate("Click Based Games",currentState, "Clicking");
+        addCandidate("Keyboard Based Games",currentState, "Keyboard");
+    }
+
+
     // Store accounts that have voted
     mapping(address => bool) public voters;
     // Read/write candidates
@@ -26,11 +33,7 @@ contract Election {
         uint indexed _candidateId
     );
 
-    constructor () {
-        address currentState = msg.sender;
-        addCandidate("Click Based Games",currentState, "Clicking");
-        addCandidate("Keyboard Based Games",currentState, "Keyboard");
-    }
+    
 
     function addCandidate (string memory _name, address _creator, string memory _summary) private {
         candidatesCount ++;
