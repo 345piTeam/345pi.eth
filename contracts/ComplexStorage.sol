@@ -5,7 +5,6 @@ contract ComplexStorage {
     uint public storeduint1 = 15;
     uint public constant constuint = 16;
     uint128 public investmentsLimit = 17055;
-    uint32 public investmentsDeadlineTimeStamp = uint32(now);
 
     bytes16 public string1 = "test1";
     bytes32 public string2 = "test1236";
