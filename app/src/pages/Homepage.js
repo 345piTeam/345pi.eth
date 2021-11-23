@@ -1,5 +1,5 @@
-import DrizzleDataDebug from "../components/DrizzleDataDebug";
 import styles from "./css/Homepage.module.css";
+import React from "react";
 
 const Homepage = () => (
 	<div className={styles.mainContainer}>
@@ -7,7 +7,6 @@ const Homepage = () => (
 			<h1>
 				Learn <b>Calculus.</b> Make A <b>Friend.</b>
 			</h1>
-			<DrizzleDataDebug />
 		</div>
 	</div>
 );

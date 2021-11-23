@@ -1,5 +1,6 @@
 import styles from "./css/ProposalCard.module.css";
 import { Button } from "antd";
+import React from "react";
 
 const ProposalCard = (props) => (
 	<div className={styles.proposalContainer + " " + styles.gridContainer}>

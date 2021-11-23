@@ -1,3 +1,5 @@
+import React from "react";
+
 const Marketplace = () => (
 	<div>
 		<h1>Marketplace</h1>

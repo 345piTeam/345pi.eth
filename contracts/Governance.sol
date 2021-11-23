@@ -1,9 +1,9 @@
-pragma solidity ^0.8.0;
-// SPDX-License-Identifier: UNLICENSED
+// SPDX-License-Identifier: MIT
+pragma solidity >=0.4.21 <0.7.0;
 
 contract Governance {
-    // Model a Candidate
-    struct Candidate {
+    uint public proposalCount;
+    struct ElectionData {
         uint id;
         string name;
         uint voteCount;
@@ -11,56 +11,17 @@ contract Governance {
         string summary;
     }
 
-    string greeting = "Hello World";
+    mapping (uint => ElectionData) structs1;
 
-    function setGreeting(string memory s) public {
-        greeting = s;
-    }
+    ElectionData[] public electionDataArray;
 
-    function getGreeting() public view returns(string memory) {
-        return greeting;
-    }
-
-
-    constructor() {
+    constructor() public {
         address currentState = msg.sender;
-        addCandidate("Click Based Games",currentState, "Clicking");
-        addCandidate("Keyboard Based Games",currentState, "Keyboard");
-    }
+        structs1[0] = ElectionData(0, "Click-based Game", 0, currentState, "It's a click-based game");
+        structs1[1] = ElectionData(1, "Keyboard-based game", 0,  currentState, "wearLevel2");
 
-    // Store accounts that have voted
-    mapping(address => bool) public voters;
-    // Read/write candidates
-    mapping(uint => Candidate) public candidates;
-    // Store Candidates Count
-    uint public candidatesCount;
-    //Store Creators
-    mapping(uint => address) public creators;
-    //Store summary
-    mapping(uint => string) public summary;
-
-    event votedEvent (
-        uint indexed _candidateId
-    );
-
-    function addCandidate (string memory _name, address _creator, string memory _summary) private {
-        candidatesCount ++;
-        candidates[candidatesCount] = Candidate(candidatesCount, _name, 0, _creator, _summary);
-    }
-
-    function vote (uint _candidateId) public {
-        // require that they haven't voted before
-        require(!voters[msg.sender], "Unable to vote twice");
-
-        // require a valid candidate
-        require(_candidateId > 0 && _candidateId <= candidatesCount, "Candidate INVALID");
-
-        // record that voter has voted
-        voters[msg.sender] = true;
-
-        // update candidate vote Count
-        candidates[_candidateId].voteCount ++;
-        // trigger voted event
-        emit votedEvent(_candidateId);
+        electionDataArray.push(structs1[0]);
+        electionDataArray.push(structs1[1]);
+        proposalCount = 2;
     }
 }
