@@ -1,8 +1,11 @@
+import styles from "./css/Marketplace.module.css";
 import React from "react";
 
 const Marketplace = () => (
-	<div>
-		<h1>Marketplace</h1>
+	<div className={styles.mainContainer}>
+		<div className={styles.titleContainer}>
+			<h1>Marketplace</h1>
+		</div>
 	</div>
 );
 
