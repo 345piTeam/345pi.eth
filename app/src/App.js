@@ -23,11 +23,33 @@ const App = () => {
 						return "Loading...";
 					}
 
-					return <Governance drizzle={drizzle} drizzleState={drizzleState} />;
+					return (
+						<BrowserRouter>
+							<Navbar />
+							<Routes>
+								<Route path={"/"} element={<Homepage />}></Route>
+								<Route path={"/home"} element={<Homepage />}></Route>
+								<Route path={"/marketplace"} element={<Marketplace />}></Route>
+								<Route
+									path={"/governance"}
+									element={
+										<Governance drizzle={drizzle} drizzleState={drizzleState} />
+									}
+								></Route>
+								<Route path={"*"} element={<PageNotFound />}></Route>
+							</Routes>
+						</BrowserRouter>
+					);
 				}}
 			</DrizzleContext.Consumer>
 		</DrizzleContext.Provider>
 	);
 };
+
+const PageNotFound = () => (
+	<div>
+		<h1>Page Not Found!</h1>
+	</div>
+);
 
 export default App;
