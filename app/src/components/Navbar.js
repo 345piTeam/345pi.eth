@@ -15,13 +15,9 @@ const Navbar = () => {
 
 	const NavbarButton = ({ name }) => (
 		<Link to={"/" + name}>
-			<Button
-				className={classNameGenerator(name)}
-				ghost={true}
-				onClick={() => {}}
-			>
+			<div className={classNameGenerator(name)}>
 				{name.charAt(0).toUpperCase() + name.slice(1)}
-			</Button>
+			</div>
 		</Link>
 	);
 

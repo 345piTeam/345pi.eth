@@ -23,13 +23,13 @@
 
 .navButton {
     height: 100%;
-    padding: 0 20px;
+    padding: 0 1em;
     background-color: #3aa859;
     border: none;
     color: white;
     cursor: pointer;
     font-weight: bold;
-    font-size: 0.75em;
+    font-size: 1em;
     transition: 0.2s linear;
 }
 
@@ -37,8 +37,6 @@
 .navButton:hover {
     background-color: white;
     color: #3aa859;
-    border-bottom: 2px solid #3aa859;
-    border-top: 2px solid #3aa859;
 }
 
 a {
