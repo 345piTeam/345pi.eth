@@ -16,27 +16,29 @@ mapping (uint => address) proposalCreators;
 constructor() public{
     addProposal(0,"Game Types", msg.sender, "What type of game");
 
-    propList.push(struct2[0]);
 }
 
 function addProposal (uint _id, string memory _name, address _creator, string memory _summary) public {
     propCount ++;
-    struct2[propCount] = new Governance(_id, _name, 0, _creator, _summary);
+    struct2[propCount] = new Governance(_id, _name, _creator, _summary);
+    propList.push(struct2[propCount]);
 }
 
-function getName(uint index) public view returns(string memory) {
-    return propCount[index].name;
+function getName(uint place, uint index) public view returns(string memory) {
+    return propList[place].getName(index);
 }
 
-function getVoteCount(uint index) public view returns(uint) {
-    return propCount[index].voteCount;
+function getVoteCount(uint place, uint index) public view returns(uint) {
+    return propList[place].getVoteCount(index);
 }
 
-function getCreator(uint index) public view returns(address) {
-    return propCount[index].creator;
+
+function getCreator(uint place, uint index) public view returns(address) {
+   return propList[place].getCreator(index);
 }
 
-function getSummary(uint index) public view returns(string memory) {
-    return propCount[index].summary;
+function getSummary(uint place, uint index) public view returns(string memory) {
+   return propList[place].getSummary(index);
 }
+
 }
