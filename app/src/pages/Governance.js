@@ -5,6 +5,10 @@ import React from "react";
 const Governance = ({ drizzle, drizzleState }) => (
 	<div className={styles.mainContainer}>
 		<ProposalCard drizzle={drizzle} drizzleState={drizzleState} />
+		<ProposalCard drizzle={drizzle} drizzleState={drizzleState} />
+		<ProposalCard drizzle={drizzle} drizzleState={drizzleState} />
+		<ProposalCard drizzle={drizzle} drizzleState={drizzleState} />
+		<ProposalCard drizzle={drizzle} drizzleState={drizzleState} />
 	</div>
 );
 
