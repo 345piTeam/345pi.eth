@@ -2,7 +2,6 @@ import React from "react";
 import styles from "./css/Navbar.module.css";
 import logoImg from "../images/345piUsLogo_H.png";
 import { Link } from "react-router-dom";
-import { Button } from "antd";
 
 const Navbar = () => {
 	const classNameGenerator = (e) => {
@@ -15,13 +14,9 @@ const Navbar = () => {
 
 	const NavbarButton = ({ name }) => (
 		<Link to={"/" + name}>
-			<Button
-				className={classNameGenerator(name)}
-				ghost={true}
-				onClick={() => {}}
-			>
+			<div className={classNameGenerator(name)}>
 				{name.charAt(0).toUpperCase() + name.slice(1)}
-			</Button>
+			</div>
 		</Link>
 	);
 
