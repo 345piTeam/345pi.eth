@@ -6,11 +6,12 @@
     border-radius: 5px;
     display: grid;
     grid-template-areas:
-      'title creator'
-      'optionsContainer creator'
-      'empty inspect';
-    grid-gap: 0.5em;
-    padding: 1.5em;
+      'title .'
+      'optionsContainer optionsContainer'
+      'creator inspect';
+    grid-gap: 1em;
+    padding: 2em;
+    padding-bottom: 0.2em;
     align-items: center;
     color: white;
 }
@@ -18,42 +19,55 @@
 .optionsContainer {
     display: flex;
     flex-direction: column;
-    width: 100%;
+    width: 85%;
     border: white solid 1px;
     border-radius: 4px;
     border-spacing: 0;
+    grid-area: optionsContainer;
 }
 
 .optionsRow {
     display: grid;
-    grid-template-columns: 35% 50% 15%;
+    grid-template-columns: 20% 60% 20%;
 }
 
 .optionsRowHeader {
     background-color: white;
     color: black;
-    border-top-left-radius: 2px;
-    border-top-right-radius: 2px;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
     font-weight: bold;
     border-spacing: 0;
 }
 
 .optionsCell {
-    border-left: white solid 2px;
-    border-right: white solid 2px;
-    border-top: white solid 2px;
+    border-left: white solid 1px;
+    border-right: white solid 1px;
+    border-top: white solid 1px;
     padding: 0.4em;
+    border-spacing: 0;
+}
+
+.optionsCell:first-child {
+    border-left: none;
+}
+
+.optionsCell:last-child {
+    border-right: none;
 }
 
 .title {
     grid-area: title;
     font-size: 3em;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: bold;
 }
 
 .creator {
+    grid-area: creator;
     display: flex;
-    justify-content: right;
-
+    justify-content: flex-end;
+    flex-direction: column;
 }
 
 .description {
@@ -65,11 +79,7 @@
     display: flex;
     justify-content: right;
     align-items: baseline;
-}
 
-.empty {
-    grid-area: empty;
-    height: 1em;
 }
 
 .inspectButton {

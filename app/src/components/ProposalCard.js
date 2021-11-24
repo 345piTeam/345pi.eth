@@ -17,17 +17,6 @@ const ProposalCard = ({ drizzle, drizzleState }) => {
 					method="proposalTitle"
 				/>
 			</div>
-			<div className={styles.creator}>
-				<p>
-					CREATOR:{" "}
-					<ContractData
-						drizzle={drizzle}
-						drizzleState={drizzleState}
-						contract="Governance"
-						method="getCreator"
-					/>
-				</p>
-			</div>
 			<div className={styles.optionsContainer}>
 				<div className={styles.optionsRow + " " + styles.optionsRowHeader}>
 					<div className={styles.optionsCell}>OPTION NAME</div>
@@ -54,7 +43,17 @@ const ProposalCard = ({ drizzle, drizzleState }) => {
 					}}
 				/>
 			</div>
-			<div className={styles.empty}></div>
+			<div className={styles.creator}>
+				<p>
+					CREATOR:{" "}
+					<ContractData
+						drizzle={drizzle}
+						drizzleState={drizzleState}
+						contract="Governance"
+						method="getCreator"
+					/>
+				</p>
+			</div>
 			<div className={styles.inspect}>
 				<Button className={styles.inspectButton} ghost={true}>
 					Inspect
