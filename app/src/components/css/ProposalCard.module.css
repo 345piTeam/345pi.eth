@@ -4,19 +4,41 @@
     background-color: #3e466c;
     margin: 2em;
     border-radius: 5px;
-}
-
-.gridContainer {
     display: grid;
     grid-template-areas:
-      'title title creator'
-      'description description creator'
-      'empty empty inspect';
-    grid-gap: 0em;
-    padding: 2em;
+      'title creator'
+      'optionsContainer creator'
+      'empty inspect';
+    grid-gap: 0.5em;
+    padding: 1.5em;
     align-items: center;
     color: white;
-  }
+}
+
+.optionsContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: black;
+}
+
+.optionsRow {
+    display: flex;
+    flex-direction: row;
+    padding: 0.5em;
+}
+
+.optionsName {
+    flex-grow: 2;
+}
+
+.optionsSummary {
+    flex-grow: 6;
+}
+
+.optionsVoteCount {
+    flex-grow: 1;
+}
 
 .title {
     grid-area: title;

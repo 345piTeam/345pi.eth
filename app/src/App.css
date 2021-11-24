@@ -10,3 +10,8 @@
   z-index: 5;
   color: black
 }
+
+div {
+  margin: 0;
+  padding: 0;
+}

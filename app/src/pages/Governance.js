@@ -4,8 +4,7 @@ import React from "react";
 
 const Governance = ({ drizzle, drizzleState }) => (
 	<div className={styles.mainContainer}>
-		<ProposalCard drizzle={drizzle} drizzleState={drizzleState} index={0} />
-		<ProposalCard drizzle={drizzle} drizzleState={drizzleState} index={1} />
+		<ProposalCard drizzle={drizzle} drizzleState={drizzleState} />
 	</div>
 );
 

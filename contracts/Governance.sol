@@ -2,8 +2,9 @@
 pragma solidity >=0.5.11 <0.9.0;
 
 contract Governance {
-    uint public proposalCount;
-    struct ElectionData {
+    uint public optionCount;
+    string public proposalTitle;
+    struct OptionData {
         uint id;
         string name;
         uint voteCount;
@@ -11,33 +12,36 @@ contract Governance {
         string summary;
     }
 
-    mapping (uint => ElectionData) struct1;
+    mapping (uint => OptionData) options;
 
-    ElectionData[] public electionDataArray;
+    OptionData[] public optionDataArray;
 
     constructor() public {
         address currentState = msg.sender;
-        struct1[0] = ElectionData(0, "Click-based Game", 0, currentState, "It's a click-based game");
-        struct1[1] = ElectionData(1, "Keyboard-based game", 0,  currentState, "wearLevel2");
+        options[0] = OptionData(0, "Click-based Game", 0, currentState, "Basically cookie clicker...");
+        options[1] = OptionData(1, "Keyboard-based game", 0,  currentState, "Typeracer FTW");
+        options[2] = OptionData(2, "HOTAS-based game", 0,  currentState, "Elite: Dangerous or something like that");
 
-        electionDataArray.push(struct1[0]);
-        electionDataArray.push(struct1[1]);
-        proposalCount = 2;
+        optionDataArray.push(options[0]);
+        optionDataArray.push(options[1]);
+        optionDataArray.push(options[2]);
+        optionCount = 3;
+        proposalTitle = "Type of game to create";
     }
 
-    function getName(uint index) public view returns(string memory) {
-        return electionDataArray[index].name;
+    function getOptionName(uint index) public view returns(string memory) {
+        return optionDataArray[index].name;
     }
 
-    function getVoteCount(uint index) public view returns(uint) {
-        return electionDataArray[index].voteCount;
+    function getOptionVoteCount(uint index) public view returns(uint) {
+        return optionDataArray[index].voteCount;
     }
 
-    function getCreator(uint index) public view returns(address) {
-        return electionDataArray[index].creator;
+    function getCreator() public view returns(address) {
+        return optionDataArray[0].creator;
     }
 
-    function getSummary(uint index) public view returns(string memory) {
-        return electionDataArray[index].summary;
+    function getOptionSummary(uint index) public view returns(string memory) {
+        return optionDataArray[index].summary;
     }
 }
