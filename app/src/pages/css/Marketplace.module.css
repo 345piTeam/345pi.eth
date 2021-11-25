@@ -1,7 +1,7 @@
 .mainContainer {
     background-color: lightblue;
-    height: 80vh;
-    padding: 3em;
+    height: 100%;
+    padding: 1em;
 }
 
 .titleContainer {
@@ -15,4 +15,5 @@ h1 {
     font-size: 3em;
     font-weight: normal;
     color: #3e466c;
+    margin: 0;
 }
