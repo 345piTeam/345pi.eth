@@ -26,7 +26,7 @@ contract ProposalList {
     }
 
     function addProposal (uint _id, string memory _name, address _creator, string memory _summary) public {
-        Governance[] memory temp;
+        Option[] memory temp;
         proposals[propCount] = Proposal(_id, _name , _creator, _summary,temp);
         propCount ++;
     }
