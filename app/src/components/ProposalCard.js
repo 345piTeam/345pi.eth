@@ -4,6 +4,8 @@ import React from "react";
 import { newContextComponents } from "@drizzle/react-components";
 
 const { ContractData } = newContextComponents;
+let drizzle = null;
+let drizzleState = null;
 
 let globalDrizzle, globalDrizzleState;
 
