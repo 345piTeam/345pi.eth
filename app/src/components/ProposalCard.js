@@ -11,7 +11,7 @@ const ProposalCard = ({ drizzle, drizzleState, index }) => (
 			<ContractData
 				drizzle={drizzle}
 				drizzleState={drizzleState}
-				contract="Governance"
+				contract="ProposalList"
 				method="getName"
 				methodArgs={[index]}
 			/>
@@ -22,7 +22,7 @@ const ProposalCard = ({ drizzle, drizzleState, index }) => (
 				<ContractData
 					drizzle={drizzle}
 					drizzleState={drizzleState}
-					contract="Governance"
+					contract="ProposalList"
 					method="getCreator"
 					methodArgs={[index]}
 				/>
@@ -32,7 +32,7 @@ const ProposalCard = ({ drizzle, drizzleState, index }) => (
 			<ContractData
 				drizzle={drizzle}
 				drizzleState={drizzleState}
-				contract="Governance"
+				contract="ProposalList"
 				method="getSummary"
 				methodArgs={[index]}
 			/>
