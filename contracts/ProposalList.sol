@@ -14,7 +14,6 @@ contract ProposalList {
     Proposal[] public propList;
     mapping (uint => address) proposalCreators;
 
-
     constructor() public{
         addProposal(0,"Game Types", msg.sender, "What type of game");
         propCount = 0;
