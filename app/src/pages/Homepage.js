@@ -9,6 +9,7 @@ const Homepage = () => (
 				Learn <b>Calculus.</b> Make A <b>Friend.</b>
 			</h1>
 		</div>
+		<div className={styles.gameDescription}></div>
 		<div className={styles.characterDescriptionContainer}>
 			<div className={styles.characterDescription}>
 				<div className={styles.characterImageContainer}>

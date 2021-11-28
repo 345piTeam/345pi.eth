@@ -1,7 +1,7 @@
 .mainContainer {
     background-color: lightblue;
     min-height: 80vh;
-    padding: 3em;
+    padding-top: 5em;
 }
 
 .titleContainer {
@@ -50,4 +50,11 @@ h1 {
     background-color: #3aa859;
     max-width: 8em;
     max-height: 8em;
+}
+
+.gameDescription {
+    margin-top: 25em;
+    width: 100%;
+    background-color: #3aa859;
+    min-height: 20em;
 }
