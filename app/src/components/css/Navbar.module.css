@@ -3,12 +3,13 @@
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
-    height: 3em;
+    height: 5em;
     background-color: #3aa859;
 }
 
 .logoStyles {
     height: 100%;
+    user-select: none;
 }
 
 .buttonsContainer {
@@ -22,6 +23,9 @@
 }
 
 .navButton {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     height: 100%;
     padding: 0 1em;
     background-color: #3aa859;

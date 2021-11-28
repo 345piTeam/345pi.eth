@@ -1,7 +1,7 @@
 .mainContainer {
     background-color: lightblue;
-    height: 80vh;
-    padding: 3em;
+    min-height: 80vh;
+    padding-top: 5em;
 }
 
 .titleContainer {
@@ -15,4 +15,46 @@ h1 {
     font-size: 3em;
     font-weight: normal;
     color: #3e466c;
+}
+
+.characterDescriptionContainer {
+    min-height: 10em;
+    background-color: white;
+    margin-top: 15em;
+    padding: 2em;
+    display: grid;
+    grid-template-areas: 
+    'characterDescription characterDescription'
+    'characterDescription characterDescription'
+    'characterDescription characterDescription';
+    border-radius: 5px;
+}
+
+.characterDescription {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+#darkLord {
+    height: 100%;
+    border-radius: 50%;
+}
+
+.description {
+    padding-left: 1em;
+}
+
+.characterImageContainer {
+    border-radius: 100%;
+    background-color: #3aa859;
+    max-width: 8em;
+    max-height: 8em;
+}
+
+.gameDescription {
+    margin-top: 25em;
+    width: 100%;
+    background-color: #3aa859;
+    min-height: 20em;
 }
