@@ -3,12 +3,13 @@ import { DrizzleContext } from "@drizzle/react-plugin";
 import { Drizzle } from "@drizzle/store";
 import drizzleOptions from "./drizzleOptions";
 import Governance from "./pages/Governance";
+import LoadingSpinner from "./components/LoadingSpinner";
 import "./App.css";
-
 import Homepage from "./pages/Homepage.js";
 import Marketplace from "./pages/Marketplace";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar";
+import "antd/dist/antd.css";
 
 const drizzle = new Drizzle(drizzleOptions);
 
@@ -20,7 +21,7 @@ const App = () => {
 					const { drizzle, drizzleState, initialized } = drizzleContext;
 
 					if (!initialized) {
-						return "Loading...";
+						return <LoadingSpinner />;
 					}
 
 					return (
