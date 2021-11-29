@@ -25,7 +25,7 @@ const Homepage = () => (
 			<Row className={styles.gameDescriptionRow}>
 				<Col span={8}>
 					<div className={styles.gameDescriptionCell}>
-						<h2>Connect your eth wallet</h2>
+						<h2>Connect Your Digital Wallet</h2>
 						<WalletOutlined style={{ fontSize: "8em", color: "white" }} />
 					</div>
 				</Col>
@@ -37,7 +37,7 @@ const Homepage = () => (
 				</Col>
 				<Col span={8}>
 					<div className={styles.gameDescriptionCell}>
-						<h2>Become a creator</h2>
+						<h2>Monetize Your Content</h2>
 						<ExperimentOutlined style={{ fontSize: "8em", color: "white" }} />
 					</div>
 				</Col>
