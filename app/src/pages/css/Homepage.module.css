@@ -1,11 +1,15 @@
+:root {
+    --secondary-color: #3e466c;
+    --secondary-hover-color: #2a3359;
+  }
+
+
 .mainContainer {
     background-color: lightblue;
     min-height: 80vh;
 }
 
-.titleContainer {
-    display: flex;
-    flex-direction: column;
+.backgroundContainer {
     width: 100%;
     align-items: center;
     background-image: url(../../images/backgrounds/homepage.png);
@@ -13,24 +17,36 @@
     min-height: 785px;
 }
 
-.titleContainer > div {
-    width: 100%;
+.sloganContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 500px;
+    line-height: 90px;
 }
 
-.titleContainer > div > h1 {
-    z-index: 10;
-}
-
-h1 {
-    font-size: 3em;
+.sloganContainer > h1 {
+    font-size: 5em;
     font-weight: normal;
     color: #3e466c;
+    margin: 0;
+    text-align: center;
+}
+
+.sloganContainer > h1:last-child {
+    width: 450px;
 }
 
 .characterDescriptionContainer {
     background-color: lightblue;
-    padding: 2em;
+    padding: 30px 40px;
 }
+
+.characterDescriptionContainer > div > div > div > div {
+    justify-content: center;
+}
+
 
 .characterCell {
     width: 100%;
@@ -50,17 +66,23 @@ h1 {
     padding-left: 1em;
 }
 
-.characterImageContainer {
+.description > h3 {
+    font-size: 2em;
+}
 
+.description > p {
+    font-size: 1em;
+}
+
+.characterImageContainer {
     border-radius: 100%;
-    background-color: #3aa859;
     max-width: 8em;
     max-height: 8em;
 }
 
 .gameDescriptionContainer {
     width: 100%;
-    background-color: #3aa859;
+    background-color: #002c0c;
 }
 
 .gameDescriptionCell {
@@ -75,4 +97,28 @@ h1 {
     font-weight: bold;
     color: white;
     text-align: center;
+}
+
+.titleButtonContainer {
+    margin-left: 20px;
+    margin-top: 30px;
+    width: 120px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+
+.titleButtonMain > h3 {
+    color: white;
+    margin: 0;
+}
+
+:global(.ant-btn-primary) {
+    background-color: var(--secondary-color);
+}
+
+:global(.ant-btn-primary):hover {
+    background-color: var(--secondary-hover-color) !important;
+      border-color: var(--secondary-hover-color) !important;
 }

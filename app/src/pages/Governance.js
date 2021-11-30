@@ -20,6 +20,7 @@ const Governance = ({ drizzle, drizzleState }) => (
 							drizzle={drizzle}
 							drizzleState={drizzleState}
 							propsalIndex={i}
+							key={i}
 						/>
 					);
 				}

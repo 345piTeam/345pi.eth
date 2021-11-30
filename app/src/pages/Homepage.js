@@ -4,23 +4,92 @@ import darkLord from "../images/characters/Darklord.png";
 import wizard from "../images/characters/Wizard.png";
 import pawn from "../images/characters/Pawn.png";
 import dukeOG from "../images/characters/Duke OG.png";
-import princess from "../images/characters/Princess.png";
-import { Avatar, Col, Row } from "antd";
+import royalty from "../images/characters/Princess.png";
+import { Col, Row, Card, List, Button } from "antd";
+import { Link } from "react-router-dom";
 import {
 	WalletOutlined,
 	LineChartOutlined,
 	ExperimentOutlined,
 } from "@ant-design/icons";
 
-const characterDescriptionSpanSize = 7;
+const { Meta } = Card;
+const data = [
+	{
+		title: "Member",
+		description:
+			"Receieve 100 345pi tokens when you become a member. Playing a module costs 0.75 tokens. Earn 100 tokens for reaching top 5 on a leaderboard. Every few games you may tip the module creator.",
+		image: pawn,
+	},
+	{
+		title: "Duke OG",
+		description:
+			"It costs 200 345pi tokens to upgrade to a Duke OG. Modules cost only 0.5 tokens, and you now have the able to tip the top 5 Members on the leaderboard.",
+		image: dukeOG,
+	},
+	{
+		title: "Royalty",
+		image: royalty,
+	},
+	{
+		title: "Wizard",
+		image: wizard,
+	},
+	{
+		title: "Dark Lord",
+		image: darkLord,
+	},
+];
 
 const Homepage = () => (
 	<div className={styles.mainContainer}>
-		<div className={styles.titleContainer}>
-			<h1>
-				Learn <b>Calculus.</b> Make A <b>Friend.</b>
-			</h1>
+		<div className={styles.backgroundContainer}>
+			<div className={styles.sloganContainer}>
+				<h1>
+					Learn <b>Calculus.</b>
+				</h1>
+				<h1>
+					Make A <b>Friend.</b>
+				</h1>
+			</div>
+			<div className={styles.titleButtonContainer}>
+				<Link to="/marketplace">
+					<Button
+						size="large"
+						type="primary"
+						style={{
+							backgroundColor: "#3e466c",
+							border: "none",
+							height: "90px",
+							fontSize: "40px",
+							fontWeight: "bold",
+						}}
+					>
+						Marketplace
+					</Button>
+				</Link>
+				<a
+					href={"https://discord.gg/3UwWPeqE3F"}
+					target="_blank"
+					rel="noreferrer"
+				>
+					<Button
+						size="large"
+						type="primary"
+						style={{
+							backgroundColor: "#3e466c",
+							border: "none",
+							height: "90px",
+							fontSize: "40px",
+							fontWeight: "bold",
+						}}
+					>
+						Discord
+					</Button>
+				</a>
+			</div>
 		</div>
+
 		<div className={styles.gameDescriptionContainer}>
 			<Row className={styles.gameDescriptionRow}>
 				<Col span={8}>
@@ -44,46 +113,35 @@ const Homepage = () => (
 			</Row>
 		</div>
 		<div className={styles.characterDescriptionContainer}>
-			<Row justify="space-around">
-				<Col span={characterDescriptionSpanSize}>
-					<CharacterCell image={pawn} name={"Pawn"} description={"desc"} />
-				</Col>
-				<Col span={characterDescriptionSpanSize}>
-					<CharacterCell image={dukeOG} name={"Duke OG"} description={"desc"} />
-				</Col>
-				<Col span={characterDescriptionSpanSize}>
-					<CharacterCell
-						image={princess}
-						name={"Royalty"}
-						description={"desc"}
-					/>
-				</Col>
-			</Row>
-			<Row justify="center" gutter={36}>
-				<Col span={characterDescriptionSpanSize + 1}>
-					<CharacterCell
-						image={darkLord}
-						name={"Dark Lord"}
-						description={"desc"}
-					/>
-				</Col>
-				<Col span={characterDescriptionSpanSize + 1}>
-					<CharacterCell image={wizard} name={"Wizard"} description={"desc"} />
-				</Col>
-			</Row>
+			<List
+				grid={{
+					gutter: [40, 40],
+					xs: 1,
+					sm: 2,
+					md: 3,
+					lg: 3,
+					xl: 5,
+					xxl: 5,
+				}}
+				dataSource={data}
+				renderItem={(item) => (
+					<List.Item>
+						<Card cover={<img alt="example" src={item.image} />}>
+							<Meta title={item.title} description={item.description} />
+						</Card>
+					</List.Item>
+				)}
+			/>
 		</div>
 	</div>
 );
 
-const CharacterCell = ({ image, name, description }) => (
-	<div className={styles.characterCell}>
-		<Avatar src={image} id={styles.darkLord} shape="circle" size={256} />
-		<div className={styles.description}>
-			<p>
-				<b>{name}: </b>
-				{description}
-			</p>
+const TitleButton = ({ title }) => (
+	<div className={styles.singleButtonContainer}>
+		<div className={styles.titleButtonMain}>
+			<h3>{title}</h3>
 		</div>
+		<div className={styles.titleButtonEdge}></div>
 	</div>
 );
 
