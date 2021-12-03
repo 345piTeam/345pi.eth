@@ -21,7 +21,7 @@ const App = () => {
 					const { drizzle, drizzleState, initialized } = drizzleContext;
 
 					if (!initialized) {
-						return <LoadingSpinner />;
+						//return
 					}
 
 					return (
@@ -34,7 +34,14 @@ const App = () => {
 								<Route
 									path={"/governance"}
 									element={
-										<Governance drizzle={drizzle} drizzleState={drizzleState} />
+										initialized ? (
+											<Governance
+												drizzle={drizzle}
+												drizzleState={drizzleState}
+											/>
+										) : (
+											<LoadingSpinner />
+										)
 									}
 								></Route>
 								<Route path={"*"} element={<PageNotFound />}></Route>

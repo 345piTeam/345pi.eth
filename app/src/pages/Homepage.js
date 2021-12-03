@@ -18,13 +18,13 @@ const data = [
 	{
 		title: "Member",
 		description:
-			"Receieve 100 345pi tokens when you become a member. Playing a module costs 0.75 tokens. Earn 100 tokens for reaching top 5 on a leaderboard. Every few games you may tip the module creator.",
+			"Receieve 100 345pi tokens when you become a Member. Playing a module costs 0.75 tokens. Earn 100 tokens for reaching top 5 on a leaderboard. Every few games you may tip the module creator.",
 		image: pawn,
 	},
 	{
 		title: "Duke OG",
 		description:
-			"It costs 200 345pi tokens to upgrade to a Duke OG. Modules cost only 0.5 tokens, and you now have the able to tip the top 5 Members on the leaderboard.",
+			"It costs 200 345pi tokens to upgrade to a Duke OG. Modules cost only 0.5 tokens and you now have the ability to tip the top 5 Members on the leaderboard.",
 		image: dukeOG,
 	},
 	{
@@ -133,15 +133,6 @@ const Homepage = () => (
 				)}
 			/>
 		</div>
-	</div>
-);
-
-const TitleButton = ({ title }) => (
-	<div className={styles.singleButtonContainer}>
-		<div className={styles.titleButtonMain}>
-			<h3>{title}</h3>
-		</div>
-		<div className={styles.titleButtonEdge}></div>
 	</div>
 );
 
