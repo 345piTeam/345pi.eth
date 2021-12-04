@@ -7,6 +7,7 @@ import LoadingSpinner from "./components/LoadingSpinner";
 import "./App.css";
 import Homepage from "./pages/Homepage.js";
 import Marketplace from "./pages/Marketplace";
+import TinyCardPage from "./pages/TinyCardPage";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import "antd/dist/antd.css";
@@ -30,7 +31,7 @@ const App = () => {
 							<Routes>
 								<Route path={"/"} element={<Homepage />}></Route>
 								<Route path={"/home"} element={<Homepage />}></Route>
-								<Route path={"/marketplace"} element={<Marketplace />}></Route>
+								<Route path={"/marketplace"} element={<TinyCardPage />}></Route>
 								<Route
 									path={"/governance"}
 									element={

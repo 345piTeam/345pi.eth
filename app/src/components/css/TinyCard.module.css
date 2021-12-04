@@ -1,5 +1,50 @@
-.singleCardContainer {
-    background-color: lightblue;
-    min-height: 10em;
+.tinyCardContainer {
+    height: 100%;
     width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.singleCardContainer {
+    background-color: white;
+    width: 80%;
+    padding: 1.5em;
+    min-height: 400px;
+    border-radius: 5px;
+    border: 2px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+
+}
+
+.title > * {
+    text-align: center;
+    font-size: 36px;
+}
+
+.content {
+    display: flex;
+    flex-direction: row;
+}
+
+.rightSide {
+    width: 100%;
+    padding: 1em;
+}
+
+.question > p {
+    font-size: 22px;
+}
+
+body{ 
+    overflow-y: visible;
 }
