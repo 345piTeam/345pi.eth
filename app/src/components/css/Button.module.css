@@ -1,0 +1,15 @@
+.buttonContainer {
+    max-width: 20em;
+    min-height: 3em;
+    border-radius: 50px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
+    padding: 0.5em 0;
+}
+
+.buttonContainer:hover {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2)
+}
+
+.buttonContainer:active {
+    background-color: rgba(0, 0, 0, 0.1)
+}

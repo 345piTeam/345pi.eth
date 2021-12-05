@@ -1,19 +1,22 @@
 import React, { useState } from "react";
 import styles from "./css/TinyCard.module.css";
-import { Col, Row, Card, List, Button, Tabs, Image, Pagination } from "antd";
+import { Col, Row, List, Button, Image, Pagination } from "antd";
 import { Link } from "react-router-dom";
 import q1Image from "../images/tiny-card-data/tc1/question1Image.png";
+import AnswerButton from "./Button";
 
-const { TabPane } = Tabs;
-
-const { Meta } = Card;
 const tinyCardData = [
 	{
 		title: "Volume of a Cone",
 		image: q1Image,
 		question:
 			"A container has the shape of an open right circular cone, as shown in the figure. The height of the container is 10cm and the diameter of the opening is 10cm. If the water is filled up to height h where h equals 5cm, which integral represents the total volume of water?",
-		options: ["Option 1", "Option 2", "Option 3", "Option 4"],
+		answers: [
+			String.raw`\int_{0}^{5}\pi\left(\frac{x}{2}\right)^{2}dx`,
+			String.raw`\int_{0}^{10}\pi\left(\frac{x}{2}\right)^{2}dx`,
+			String.raw`\int_{0}^{5}\pi\left(\frac{x}{3}\right)^{2}dx`,
+			String.raw`\int_{0}^{10}\pi\left(x\right)^{2}dx`,
+		],
 	},
 	{
 		title: "TEST CARD 2",
@@ -33,7 +36,7 @@ const correctMCAnswers = [1, 0, 2, 4];
 const TinyCard = () => {
 	const [currentQuestion, setCurrentQuestion] = useState(1);
 
-	const SingleCard = ({ title, question, image }) => {
+	const SingleCard = ({ title, question, image, answers }) => {
 		return (
 			<div className={styles.singleCardContainer}>
 				<div className={styles.title}>
@@ -47,9 +50,27 @@ const TinyCard = () => {
 					<Image src={image} width={400} />
 					<div className={styles.rightSide}>
 						<div className={styles.question}>
-							<p>{question}</p>
+							<div>{question}</div>
 						</div>
-						<div className={styles.answers}></div>
+						<div className={styles.answerBank}>
+							<List
+								grid={{
+									gutter: 16,
+									xs: 1,
+									sm: 2,
+									md: 2,
+									lg: 3,
+									xl: 4,
+									xxl: 3,
+								}}
+								dataSource={answers}
+								renderItem={(item) => (
+									<List.Item>
+										<AnswerButton content={item} />
+									</List.Item>
+								)}
+							/>
+						</div>
 					</div>
 				</div>
 				<footer className={styles.footer}>
@@ -70,6 +91,7 @@ const TinyCard = () => {
 				title={tinyCardData[currentQuestion - 1].title}
 				question={tinyCardData[currentQuestion - 1].question}
 				image={tinyCardData[currentQuestion - 1].image}
+				answers={tinyCardData[currentQuestion - 1].answers}
 			/>
 		</div>
 	);

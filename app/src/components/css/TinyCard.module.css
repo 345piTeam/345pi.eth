@@ -41,10 +41,14 @@ footer {
     padding: 1em;
 }
 
-.question > p {
+.question > div {
     font-size: 22px;
 }
 
-body{ 
+body { 
     overflow-y: visible;
+}
+
+.answerBank {
+    padding: 2em;
 }
