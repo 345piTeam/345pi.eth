@@ -6,7 +6,7 @@
     "@drizzle/react-components": "^1.5.1",
     "@drizzle/react-plugin": "^1.5.1",
     "@drizzle/store": "^1.5.1",
-    "@openzeppelin/contracts": "^4.3.3",
+    "@openzeppelin/contracts": "^4.4.1",
     "antd": "^4.17.1",
     "glob-parent": "^5.1.2",
     "immer": "^9.0.6",
