@@ -20,3 +20,8 @@ body {
   overflow-x: hidden;
   overflow-y: scroll;
 }
+
+.active > div {
+  background-color: white;
+  color: #3aa859;
+}

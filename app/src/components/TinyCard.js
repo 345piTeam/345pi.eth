@@ -22,7 +22,7 @@ const tinyCardData = [
 		answered: false,
 	},
 	{
-		title: "TEST CARD 2",
+		title: "First and Second Derivatives",
 		image: q2Image,
 		question:
 			"If y is a function of x such that y' > 0 for all x and y'' < 0 for all x, which of the following could be part of the graph of y = f(x)?",

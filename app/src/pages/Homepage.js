@@ -18,7 +18,7 @@ const data = [
 	{
 		title: "Member",
 		description:
-			"Receieve 100 345pi tokens when you become a Member. Playing a module costs 0.75 tokens. Earn 100 tokens for reaching top 5 on a leaderboard. Every few games you may tip the module creator.",
+			"Receive 100 345pi tokens when you become a Member. Playing a module costs 0.75 tokens. Earn 100 tokens for reaching top 5 on a leaderboard. Every few games you may tip the module creator.",
 		image: pawn,
 	},
 	{
@@ -28,7 +28,7 @@ const data = [
 		image: dukeOG,
 	},
 	{
-		title: "Royalty",
+		title: "Ambassador",
 		image: royalty,
 	},
 	{
