@@ -2,18 +2,18 @@ import React, { useState } from "react";
 import styles from "./css/AnswerButton.module.css";
 import { MathComponent } from "mathjax-react";
 
-const AnswerButton = ({ content, onAnswer }) => {
-	const [clicked, setClicked] = useState(false);
-
-	const clickHandler = () => {
-		if (!clicked) {
-			onAnswer();
+const AnswerButton = ({ content, onAnswer, disabled }) => {
+	const classGenerator = (disabled) => {
+		let ret = [];
+		ret.push(styles.buttonContainer);
+		if (disabled) {
+			ret.push(styles.disabled);
 		}
-		setClicked(true);
+		return ret.join(" ");
 	};
 
 	return (
-		<div className={styles.buttonContainer} onClick={clickHandler}>
+		<div className={classGenerator(disabled)} onClick={onAnswer}>
 			<MathComponent tex={content} />
 		</div>
 	);

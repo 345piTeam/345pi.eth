@@ -32,6 +32,12 @@ footer {
     font-weight: bold;
 }
 
+.title {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
 .content {
     display: flex;
     flex-direction: row;
