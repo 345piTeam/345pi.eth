@@ -5,7 +5,7 @@ import Navbar from "./components/Navbar";
 import Governance from "./pages/Governance";
 import LoadingSpinner from "./components/LoadingSpinner";
 import Homepage from "./pages/Homepage.js";
-import Marketplace from "./pages/Marketplace";
+//import Marketplace from "./pages/Marketplace";
 import TinyCardPage from "./pages/TinyCardPage";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "antd/dist/antd.css";
@@ -13,11 +13,7 @@ import "antd/dist/antd.css";
 const App = () => (
 	<DrizzleContext.Consumer>
 		{(drizzleContext) => {
-			const { drizzle, drizzleState, initialized } = drizzleContext;
-
-			if (!initialized) {
-				//return
-			}
+			const { initialized } = drizzleContext;
 
 			return (
 				<BrowserRouter>
@@ -27,13 +23,7 @@ const App = () => (
 						<Route path={"/marketplace"} element={<TinyCardPage />}></Route>
 						<Route
 							path={"/governance"}
-							element={
-								initialized ? (
-									<Governance drizzle={drizzle} drizzleState={drizzleState} />
-								) : (
-									<LoadingSpinner />
-								)
-							}
+							element={initialized ? <Governance /> : <LoadingSpinner />}
 						></Route>
 						<Route path={"*"} element={<PageNotFound />}></Route>
 					</Routes>

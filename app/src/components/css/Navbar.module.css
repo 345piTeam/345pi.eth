@@ -6,6 +6,7 @@
     height: 5em;
     background-color: #3aa859;
     z-index: 100;
+    position: relative;
 }
 
 .logoStyles {
@@ -15,12 +16,13 @@
 
 .buttonsContainer {
     display: flex;
-    flex-direction: row;
-    height: 100%;
-    width: 40%;
+    height: 5em;
     justify-content: center;
-    align-items: center;
-    top: 0%;
+    position: absolute;
+    left: 0; 
+    right: 0; 
+    margin-left: auto; 
+    margin-right: auto; 
 }
 
 .navButton {
@@ -55,4 +57,35 @@ a {
     color: #3aa859;
     border-bottom: 2px solid #3aa859;
     border-top: 2px solid #3aa859;
+}
+
+.walletStatus {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    height: 100%;
+    padding: 0 1em;
+    border: none;
+    color: white;
+    font-weight: bold;
+    font-size: 1.5em;
+    transition: 0.2s linear;
+    background-color: #3e466c;
+    align-items: center;
+}
+
+.walletStatus > p {
+    margin: 0;
+}
+
+.walletStatus > span {
+    margin-right: 10px;
+}
+
+#walletDisconnected {
+    color: #c43636;
+}
+
+#walletConnected {
+    color: #3aa859;
 }
