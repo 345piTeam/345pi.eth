@@ -1,59 +1,47 @@
+import "./App.css";
 import React from "react";
 import { DrizzleContext } from "@drizzle/react-plugin";
-import { Drizzle } from "@drizzle/store";
-import drizzleOptions from "./drizzleOptions";
+import Navbar from "./components/Navbar";
 import Governance from "./pages/Governance";
 import LoadingSpinner from "./components/LoadingSpinner";
-import "./App.css";
 import Homepage from "./pages/Homepage.js";
 import Marketplace from "./pages/Marketplace";
 import TinyCardPage from "./pages/TinyCardPage";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Navbar from "./components/Navbar";
 import "antd/dist/antd.css";
 
-const drizzle = new Drizzle(drizzleOptions);
+const App = () => (
+	<DrizzleContext.Consumer>
+		{(drizzleContext) => {
+			const { drizzle, drizzleState, initialized } = drizzleContext;
 
-const App = () => {
-	return (
-		<DrizzleContext.Provider drizzle={drizzle}>
-			<DrizzleContext.Consumer>
-				{(drizzleContext) => {
-					const { drizzle, drizzleState, initialized } = drizzleContext;
+			if (!initialized) {
+				//return
+			}
 
-					if (!initialized) {
-						//return
-					}
-
-					return (
-						<BrowserRouter>
-							<Navbar />
-							<Routes>
-								<Route path={"/"} element={<Homepage />}></Route>
-								<Route path={"/home"} element={<Homepage />}></Route>
-								<Route path={"/marketplace"} element={<TinyCardPage />}></Route>
-								<Route
-									path={"/governance"}
-									element={
-										initialized ? (
-											<Governance
-												drizzle={drizzle}
-												drizzleState={drizzleState}
-											/>
-										) : (
-											<LoadingSpinner />
-										)
-									}
-								></Route>
-								<Route path={"*"} element={<PageNotFound />}></Route>
-							</Routes>
-						</BrowserRouter>
-					);
-				}}
-			</DrizzleContext.Consumer>
-		</DrizzleContext.Provider>
-	);
-};
+			return (
+				<BrowserRouter>
+					<Navbar />
+					<Routes>
+						<Route exact path={"/"} element={<Homepage />}></Route>
+						<Route path={"/marketplace"} element={<TinyCardPage />}></Route>
+						<Route
+							path={"/governance"}
+							element={
+								initialized ? (
+									<Governance drizzle={drizzle} drizzleState={drizzleState} />
+								) : (
+									<LoadingSpinner />
+								)
+							}
+						></Route>
+						<Route path={"*"} element={<PageNotFound />}></Route>
+					</Routes>
+				</BrowserRouter>
+			);
+		}}
+	</DrizzleContext.Consumer>
+);
 
 const PageNotFound = () => (
 	<div>

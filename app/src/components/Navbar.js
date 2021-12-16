@@ -12,8 +12,8 @@ const Navbar = () => {
 		return ret;
 	};
 
-	const NavbarButton = ({ name }) => (
-		<Link to={"/" + name}>
+	const NavbarButton = ({ name, link }) => (
+		<Link to={link}>
 			<div className={classNameGenerator(name)}>
 				{name.charAt(0).toUpperCase() + name.slice(1)}
 			</div>
@@ -22,13 +22,13 @@ const Navbar = () => {
 
 	return (
 		<div className={styles.navbar}>
-			<Link to={"/home"}>
+			<Link to={"/"}>
 				<img className={styles.logoStyles} src={logoImg} alt={"345pi"} />
 			</Link>
 			<div className={styles.buttonsContainer}>
-				<NavbarButton name="home" />
-				<NavbarButton name="marketplace" />
-				<NavbarButton name="governance" />
+				<NavbarButton name="home" link="/" />
+				<NavbarButton name="marketplace" link="/marketplace" />
+				<NavbarButton name="governance" link="/governance" />
 			</div>
 			<img
 				className={styles.logoStyles}
