@@ -19,7 +19,7 @@ const App = () => (
 				<BrowserRouter>
 					<Navbar />
 					<Routes>
-						<Route exact path={"/"} element={<Homepage />}></Route>
+						<Route strict path={"/"} element={<Homepage />}></Route>
 						<Route path={"/marketplace"} element={<TinyCardPage />}></Route>
 						<Route
 							path={"/governance"}
