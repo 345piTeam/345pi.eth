@@ -48,14 +48,14 @@ const tinyCardData = [
 ];
 
 const TinyCard = () => {
-	const [currentQuestion, setCurrentQuestion] = useState(1);
+	const [currentQuestion, setCurrentQuestion] = useState(0);
 	const [score, setScore] = useState(0);
 	const clickAnswerHandler = (e) => {
-		if (tinyCardData[currentQuestion - 1].answered) return;
-		if (e === tinyCardData[currentQuestion - 1].answer) {
+		if (tinyCardData[currentQuestion].answered) return;
+		if (e === tinyCardData[currentQuestion].answer) {
 			setScore(score + 1);
 		}
-		tinyCardData[currentQuestion - 1].answered = true;
+		tinyCardData[currentQuestion].answered = true;
 		setCurrentQuestion(currentQuestion + 1);
 	};
 
@@ -63,7 +63,7 @@ const TinyCard = () => {
 		<div className={styles.singleCardContainer}>
 			<div className={styles.title}>
 				<h2>
-					Question {currentQuestion}: {title}
+					Question {currentQuestion + 1}: {title}
 				</h2>
 				<h2>Score: {score}</h2>
 			</div>
@@ -112,11 +112,11 @@ const TinyCard = () => {
 	return (
 		<div className={styles.tinyCardContainer}>
 			<SingleCard
-				title={tinyCardData[currentQuestion - 1].title}
-				question={tinyCardData[currentQuestion - 1].question}
-				image={tinyCardData[currentQuestion - 1].image}
-				options={tinyCardData[currentQuestion - 1].options}
-				answered={tinyCardData[currentQuestion - 1].answered}
+				title={tinyCardData[currentQuestion].title}
+				question={tinyCardData[currentQuestion].question}
+				image={tinyCardData[currentQuestion].image}
+				options={tinyCardData[currentQuestion].options}
+				answered={tinyCardData[currentQuestion].answered}
 			/>
 		</div>
 	);
