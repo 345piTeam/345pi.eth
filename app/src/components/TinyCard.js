@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import styles from "./css/TinyCard.module.css";
 import { List, Image, Pagination } from "antd";
-import { Link } from "react-router-dom";
 import q1Image from "../images/tiny-card-data/tc1/question1Image.png";
 import q2Image from "../images/tiny-card-data/tc1/question2Image.png";
+import q3Image from "../images/tiny-card-data/tc1/question3Image.png";
 import AnswerButton from "./AnswerButton";
 
 const tinyCardData = [
@@ -31,11 +31,18 @@ const tinyCardData = [
 		answered: false,
 	},
 	{
-		title: "TEST CARD 3",
-		answered: false,
-	},
-	{
-		title: "TEST CARD 4",
+		title: "Polar Integration",
+		image: q3Image,
+		question:
+			"Express the area enclosed by r = 5 - 5sin(theta) as an integral.",
+		options: [
+			String.raw`\frac{1}{2}\int_{0}^{2\pi}[5-5\sin\theta]^{2}d\theta`,
+			String.raw`\int_{0}^{2\pi}[5-5\sin\theta]^{2}d\theta`,
+			String.raw`\frac{1}{2}\int_{0}^{2\pi}[5-5\sin\theta]d\theta`,
+			String.raw`\frac{1}{2}\int_{0}^{2\pi}[5^{2}-5^{2}\sin^{2}\theta]d\theta`,
+			String.raw`\text{None of the above}`,
+		],
+		answer: String.raw`\frac{1}{2}\int_{0}^{2\pi}[5-5\sin\theta]^{2}d\theta`,
 		answered: false,
 	},
 ];
