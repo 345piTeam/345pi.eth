@@ -4,7 +4,7 @@ import darkLord from "../images/characters/Darklord.png";
 import wizard from "../images/characters/Wizard.png";
 import pawn from "../images/characters/Pawn.png";
 import dukeOG from "../images/characters/Duke OG.png";
-import royalty from "../images/characters/Princess.png";
+import ambassador from "../images/characters/Ambassador.png";
 import { Col, Row, Card, List, Button } from "antd";
 import { Link } from "react-router-dom";
 import {
@@ -18,25 +18,31 @@ const data = [
 	{
 		title: "Member",
 		description:
-			"Receive 100 345pi tokens when you become a Member. Playing a module costs 0.75 tokens. Earn 100 tokens for reaching top 5 on a leaderboard. Every few games you may tip the module creator.",
+			"When you decide to join the 345pi community, you will receive a customizable member NFT which will be used to identify you, as well as 100 345P tokens. This NFT will save your player statistics and is not tradable. You will not be allowed to convert 345P tokens back to eth for 1 year to help build our community.",
 		image: pawn,
 	},
 	{
 		title: "Duke OG",
 		description:
-			"It costs 200 345pi tokens to upgrade to a Duke OG. Modules cost only 0.5 tokens and you now have the ability to tip the top 5 Members on the leaderboard.",
+			"You can purchase a Duke OG NFT for 300 345P tokens or by bringing in 3 friends to the 345pi community. These NFTs are tradable, can be customized, and allow you to play calculus modules for less tokens per game.",
 		image: dukeOG,
 	},
 	{
 		title: "Ambassador",
-		image: royalty,
+		description:
+			"Earn a customizable Ambassador NFT by bringing in 10 friends to the game. This NFT is tradable and allows you to play modules for even less tokens per game than with a Duke OG NFT (does not stack).",
+		image: ambassador,
 	},
 	{
 		title: "Wizard",
+		description:
+			"This is the highest level NFT a user can earn. Wizards are the content creators for our community, and they also can choose which new modules will be added to the game. To earn a wizard NFT, you must create a module that gets at least 500 likes. When you received the Wizard NFT, you will also receive 100 345G tokens, which allow you to vote on changes to the games core mechanics.",
 		image: wizard,
 	},
 	{
 		title: "Dark Lord",
+		description:
+			"The Dark Lords are the initial owners and creators of the 345pi website and community. We manage the codebase, security, and treasury of the platform to ensure that everything runs smoothly for our members. As time progresses, the Dark Lords will give out 70% of the minted 345G tokens through token drops, which will slowly but surely hand control of our game over to our community.",
 		image: darkLord,
 	},
 ];
