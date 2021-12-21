@@ -50,6 +50,7 @@ const tinyCardData = [
 const TinyCard = () => {
 	const [currentQuestion, setCurrentQuestion] = useState(0);
 	const [score, setScore] = useState(0);
+
 	const clickAnswerHandler = (e) => {
 		if (tinyCardData[currentQuestion].answered) return;
 		if (e === tinyCardData[currentQuestion].answer) {
@@ -100,9 +101,8 @@ const TinyCard = () => {
 			</div>
 			<footer className={styles.footer}>
 				<Pagination
-					current={currentQuestion}
-					onChange={setCurrentQuestion}
-					responsive={true}
+					current={currentQuestion + 1}
+					onChange={(page) => setCurrentQuestion(page - 1)}
 					total={10 * tinyCardData.length}
 				/>
 			</footer>
