@@ -57,7 +57,16 @@ const TinyCard = () => {
 			setScore(score + 1);
 		}
 		tinyCardData[currentQuestion].answered = true;
-		setCurrentQuestion(currentQuestion + 1);
+		if (currentQuestion + 1 !== tinyCardData.length) {
+			setCurrentQuestion(currentQuestion + 1);
+		}
+	};
+
+	const isGameComplete = () => {
+		for (let i = 0; i < tinyCardData.length; i++) {
+			if (!tinyCardData[i].answered) return false;
+		}
+		return true;
 	};
 
 	const SingleCard = ({ title, question, image, options, answered }) => (
