@@ -1,6 +1,6 @@
 {
   "name": "345pi",
-  "version": "0.1.5",
+  "version": "0.1.0",
   "private": true,
   "dependencies": {
     "@ant-design/icons": "^4.0.0",
@@ -13,9 +13,9 @@
     "glob-parent": "^6.0.0",
     "immer": "^9.0.0",
     "json-schema": "^0.4.0",
-    "mathjax-react": "^1.0.0",
-    "react": "^16.0.0",
-    "react-dom": "^16.0.0",
+    "mathjax3-react": "^1.0.12",
+    "react": "^17.0.0",
+    "react-dom": "^17.0.0",
     "react-router-dom": "^6.0.0",
     "react-scripts": "^4.0.0",
     "underscore": "^1.0.0"

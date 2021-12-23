@@ -70,6 +70,7 @@ const ProposalCard = ({ drizzle, drizzleState, propsalIndex }) => {
 	);
 };
 
+// eslint-disable-next-line
 const Options = ({ propIndex, optionIndex }) => (
 	<div className={styles.optionsRow}>
 		<div className={styles.optionsCell}>

@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./css/AnswerButton.module.css";
-import { MathComponent } from "mathjax-react";
+import MathJax from "mathjax3-react";
 
 const AnswerButton = ({ content, onAnswer, disabled }) => {
 	const classGenerator = (disabled) => {
@@ -14,7 +14,19 @@ const AnswerButton = ({ content, onAnswer, disabled }) => {
 
 	return (
 		<div className={classGenerator(disabled)} onClick={onAnswer}>
-			<MathComponent tex={content} />
+			<MathJax.Provider
+				url="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"
+				options={{
+					tex: {
+						inlineMath: [
+							["$", "$"],
+							["\\(", "\\)"],
+						],
+					},
+				}}
+			>
+				<MathJax.Formula formula={"$" + content + "$"} />
+			</MathJax.Provider>
 		</div>
 	);
 };

@@ -16,28 +16,30 @@ const drizzleStore = generateStore(drizzleOptions);
 const drizzle = new Drizzle(drizzleOptions, drizzleStore);
 
 const App = () => (
-	<DrizzleContext.Provider drizzle={drizzle}>
-		<DrizzleContext.Consumer>
-			{(drizzleContext) => {
-				const { initialized } = drizzleContext;
+	<React.StrictMode>
+		<DrizzleContext.Provider drizzle={drizzle}>
+			<DrizzleContext.Consumer>
+				{(drizzleContext) => {
+					const { initialized } = drizzleContext;
 
-				return (
-					<BrowserRouter>
-						<Navbar />
-						<Routes>
-							<Route strict path={"/"} element={<Homepage />}></Route>
-							<Route path={"/marketplace"} element={<TinyCardPage />}></Route>
-							<Route
-								path={"/governance"}
-								element={initialized ? <Governance /> : <LoadingSpinner />}
-							></Route>
-							<Route path={"*"} element={<PageNotFound />}></Route>
-						</Routes>
-					</BrowserRouter>
-				);
-			}}
-		</DrizzleContext.Consumer>
-	</DrizzleContext.Provider>
+					return (
+						<BrowserRouter>
+							<Navbar />
+							<Routes>
+								<Route strict path={"/"} element={<Homepage />}></Route>
+								<Route path={"/marketplace"} element={<TinyCardPage />}></Route>
+								<Route
+									path={"/governance"}
+									element={initialized ? <Governance /> : <LoadingSpinner />}
+								></Route>
+								<Route path={"*"} element={<PageNotFound />}></Route>
+							</Routes>
+						</BrowserRouter>
+					);
+				}}
+			</DrizzleContext.Consumer>
+		</DrizzleContext.Provider>
+	</React.StrictMode>
 );
 
 const PageNotFound = () => (
