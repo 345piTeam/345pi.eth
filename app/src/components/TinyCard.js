@@ -62,6 +62,7 @@ const TinyCard = () => {
 		}
 	};
 
+	// eslint-disable-next-line
 	const isGameComplete = () => {
 		for (let i = 0; i < tinyCardData.length; i++) {
 			if (!tinyCardData[i].answered) return false;
