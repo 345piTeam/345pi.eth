@@ -33,15 +33,15 @@ const Navbar = () => {
 
 				return (
 					<div className={styles.navbar}>
-						<div className={styles.logoContainer}>
-							<Link to={"/"}>
+						<Link to={"/"}>
+							<div className={styles.logoContainer}>
 								<img
 									className={styles.logoStyles}
 									src={logoImg}
 									alt={"345pi"}
 								/>
-							</Link>
-						</div>
+							</div>
+						</Link>
 						<div className={styles.buttonsContainer}>
 							<NavbarButton name="Home" link="/" />
 							<NavbarButton name="Marketplace" link="/marketplace" />

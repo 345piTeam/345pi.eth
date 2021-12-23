@@ -23,20 +23,16 @@
     justify-content: center;
     align-items: center;
     max-width: 540px;
-    line-height: 90px;
-    padding-top: 15px;
+    line-height: 70px;
+    padding-top: 20px;
+    margin-bottom: 50px;
 }
 
 .sloganContainer > h1 {
-    font-size: 5em;
+    font-size: 3.5rem;
     font-weight: normal;
     color: #3e466c;
     margin: 0;
-    text-align: center;
-}
-
-.sloganContainer > h1:last-child {
-    width: 450px;
 }
 
 .characterDescriptionContainer {
@@ -56,11 +52,6 @@
     border: 10px solid #3e466c;
     border-radius: 5px;
     margin: 1em;
-}
-
-#darkLord {
-    height: 100%;
-    border-radius: 50%;
 }
 
 .description {
