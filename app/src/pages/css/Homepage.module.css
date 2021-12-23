@@ -100,10 +100,12 @@
     gap: 40px;
 }
 
+.titleButtonContainer > a > button {
+    border-radius: 50px;
+}
 
-.titleButtonMain > h3 {
-    color: white;
-    margin: 0;
+.titleButtonContainer > a > button > span {
+    margin: 5px 15px;
 }
 
 :global(.ant-btn-primary) {
