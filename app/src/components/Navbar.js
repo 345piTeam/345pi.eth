@@ -1,13 +1,13 @@
 import React from "react";
 import styles from "./css/Navbar.module.css";
 import logoImg from "../images/345piUsLogo_H.png";
-import { Link, NavLink, useLocation } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { DrizzleContext } from "@drizzle/react-plugin";
 import { CheckCircleOutlined, CloseCircleOutlined } from "@ant-design/icons";
 
 const Navbar = () => {
 	const NavbarButton = ({ name, link }) => (
-		<NavLink exact to={link} activeClassName={"active"}>
+		<NavLink to={link} activeClassName="active">
 			<div className={styles.navButton}>{name}</div>
 		</NavLink>
 	);
@@ -29,20 +29,19 @@ const Navbar = () => {
 	return (
 		<DrizzleContext.Consumer>
 			{(drizzleContext) => {
-				const { drizzle, drizzleState, initialized } = drizzleContext;
-				console.log(drizzleContext);
+				const { initialized } = drizzleContext;
 
 				return (
 					<div className={styles.navbar}>
-						<div className={styles.logoContainer}>
-							<Link to={"/"}>
+						<Link to={"/"}>
+							<div className={styles.logoContainer}>
 								<img
 									className={styles.logoStyles}
 									src={logoImg}
 									alt={"345pi"}
 								/>
-							</Link>
-						</div>
+							</div>
+						</Link>
 						<div className={styles.buttonsContainer}>
 							<NavbarButton name="Home" link="/" />
 							<NavbarButton name="Marketplace" link="/marketplace" />

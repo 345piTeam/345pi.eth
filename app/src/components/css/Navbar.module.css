@@ -4,14 +4,19 @@
     justify-content: space-between;
     width: 100%;
     height: 5em;
-    background-color: #3aa859;
+    background-color: white;
     z-index: 100;
     position: relative;
 }
 
 .logoStyles {
     height: 100%;
-    user-select: none;
+    margin: 5px;
+}
+
+.logoContainer {
+    cursor: pointer;
+    height: 60px;
 }
 
 .buttonsContainer {
@@ -31,9 +36,9 @@
     justify-content: center;
     height: 100%;
     padding: 0 1em;
-    background-color: #3aa859;
+    background-color: white;
     border: none;
-    color: white;
+    color: #3aa859;
     cursor: pointer;
     font-weight: bold;
     font-size: 1em;
@@ -42,21 +47,14 @@
 
 
 .navButton:hover {
-    background-color: white;
-    color: #3aa859;
+    background-color: #3aa859;
+    color: white;
 }
 
 a {
     text-decoration: none;
     height: 100%;
     font-size: 2em;
-}
-
-.currentPage {
-    background-color: white;
-    color: #3aa859;
-    border-bottom: 2px solid #3aa859;
-    border-top: 2px solid #3aa859;
 }
 
 .walletStatus {

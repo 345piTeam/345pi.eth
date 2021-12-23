@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import styles from "./css/TinyCard.module.css";
 import { List, Image, Pagination } from "antd";
-import { Link } from "react-router-dom";
 import q1Image from "../images/tiny-card-data/tc1/question1Image.png";
 import q2Image from "../images/tiny-card-data/tc1/question2Image.png";
+import q3Image from "../images/tiny-card-data/tc1/question3Image.png";
 import AnswerButton from "./AnswerButton";
 
 const tinyCardData = [
@@ -31,32 +31,50 @@ const tinyCardData = [
 		answered: false,
 	},
 	{
-		title: "TEST CARD 3",
-		answered: false,
-	},
-	{
-		title: "TEST CARD 4",
+		title: "Polar Integration",
+		image: q3Image,
+		question:
+			"Express the area enclosed by r = 5 - 5sin(theta) as an integral.",
+		options: [
+			String.raw`\frac{1}{2}\int_{0}^{2\pi}[5-5\sin\theta]^{2}d\theta`,
+			String.raw`\int_{0}^{2\pi}[5-5\sin\theta]^{2}d\theta`,
+			String.raw`\frac{1}{2}\int_{0}^{2\pi}[5-5\sin\theta]d\theta`,
+			String.raw`\frac{1}{2}\int_{0}^{2\pi}[5^{2}-5^{2}\sin^{2}\theta]d\theta`,
+			String.raw`\text{None of the above}`,
+		],
+		answer: String.raw`\frac{1}{2}\int_{0}^{2\pi}[5-5\sin\theta]^{2}d\theta`,
 		answered: false,
 	},
 ];
 
 const TinyCard = () => {
-	const [currentQuestion, setCurrentQuestion] = useState(1);
+	const [currentQuestion, setCurrentQuestion] = useState(0);
 	const [score, setScore] = useState(0);
+
 	const clickAnswerHandler = (e) => {
-		if (tinyCardData[currentQuestion - 1].answered) return;
-		if (e === tinyCardData[currentQuestion - 1].answer) {
+		if (tinyCardData[currentQuestion].answered) return;
+		if (e === tinyCardData[currentQuestion].answer) {
 			setScore(score + 1);
 		}
-		tinyCardData[currentQuestion - 1].answered = true;
-		setCurrentQuestion(currentQuestion + 1);
+		tinyCardData[currentQuestion].answered = true;
+		if (currentQuestion + 1 !== tinyCardData.length) {
+			setCurrentQuestion(currentQuestion + 1);
+		}
+	};
+
+	// eslint-disable-next-line
+	const isGameComplete = () => {
+		for (let i = 0; i < tinyCardData.length; i++) {
+			if (!tinyCardData[i].answered) return false;
+		}
+		return true;
 	};
 
 	const SingleCard = ({ title, question, image, options, answered }) => (
 		<div className={styles.singleCardContainer}>
 			<div className={styles.title}>
 				<h2>
-					Question {currentQuestion}: {title}
+					Question {currentQuestion + 1}: {title}
 				</h2>
 				<h2>Score: {score}</h2>
 			</div>
@@ -93,9 +111,8 @@ const TinyCard = () => {
 			</div>
 			<footer className={styles.footer}>
 				<Pagination
-					current={currentQuestion}
-					onChange={setCurrentQuestion}
-					responsive={true}
+					current={currentQuestion + 1}
+					onChange={(page) => setCurrentQuestion(page - 1)}
 					total={10 * tinyCardData.length}
 				/>
 			</footer>
@@ -105,11 +122,11 @@ const TinyCard = () => {
 	return (
 		<div className={styles.tinyCardContainer}>
 			<SingleCard
-				title={tinyCardData[currentQuestion - 1].title}
-				question={tinyCardData[currentQuestion - 1].question}
-				image={tinyCardData[currentQuestion - 1].image}
-				options={tinyCardData[currentQuestion - 1].options}
-				answered={tinyCardData[currentQuestion - 1].answered}
+				title={tinyCardData[currentQuestion].title}
+				question={tinyCardData[currentQuestion].question}
+				image={tinyCardData[currentQuestion].image}
+				options={tinyCardData[currentQuestion].options}
+				answered={tinyCardData[currentQuestion].answered}
 			/>
 		</div>
 	);

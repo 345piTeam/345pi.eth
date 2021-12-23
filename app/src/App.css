@@ -22,6 +22,10 @@ body {
 }
 
 .active > div {
-  background-color: white;
-  color: #3aa859;
+  background-color: #3aa859;
+  color: white;
+}
+
+* {
+  font-family: Poppins;
 }
