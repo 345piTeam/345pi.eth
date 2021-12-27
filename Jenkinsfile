@@ -6,9 +6,18 @@ pipeline {
 
   }
   stages {
+    stage('Install Ganache') {
+      steps {
+          sh 'npm i -g ganache-cli'
+          sh 'nohup ganache-cli -p 7545 -i 5777 -m broccoli proof roof ozone help sustain turtle daughter vault picture potato reduce &'
+      }
+    }
+
+
     stage('Build') {
       steps {
         sh 'npm i'
+        sh 'truffle migrate'
         echo 'Changing directory to ./app'
         dir(path: './app') {
           sh 'npm i'
