@@ -2,18 +2,17 @@ pipeline {
   agent {
     docker {
       image 'node'
-      args '--name jenkins-npm-build'
+      args '--name jenkins-npm-build -u 0'
     }
 
   }
   stages {
     stage('Install Ganache') {
       steps {
-          // Fix npm perm issues
-          sh 'whoami'
-          sh 'wget -O- https://raw.githubusercontent.com/glenpike/npm-g_nosudo/master/npm-g-nosudo.sh | sh'
-          sh 'npm i --global --unsafe-perm ganache-cli'
-          sh 'nohup ganache-cli -p 7545 -i 5777 -m broccoli proof roof ozone help sustain turtle daughter vault picture potato reduce &'
+        sh 'whoami'
+        sh 'wget -O- https://raw.githubusercontent.com/glenpike/npm-g_nosudo/master/npm-g-nosudo.sh | sh'
+        sh 'npm i --global --unsafe-perm ganache-cli'
+        sh 'nohup ganache-cli -p 7545 -i 5777 -m broccoli proof roof ozone help sustain turtle daughter vault picture potato reduce &'
       }
     }
 
