@@ -19,6 +19,7 @@ contract ProposalList {
         propCount = 0;
         addProposal(0, "Game Types", msg.sender, "What type of game");
         addProposal(1, "Other Proposal", msg.sender, "What kind of game do you prefer");
+        addOption(0,0, "Click-Based", "Do you like click games?");
     }
 
     function addProposal (uint _id, string memory _name, address _creator, string memory _summary) public {
@@ -55,6 +56,10 @@ contract ProposalList {
 
     function getOptionSummary(uint propIndex, uint index) public view returns(string memory) {
         return propList[propIndex].optionList[index].getSummary();
+    }
+    function addOption(uint propIndex, uint _id, string memory _name, string memory _summary)  public{
+        Option temp = new Option(_id, _name,_summary);
+        propList[propIndex].optionList.push(temp);
     }
 }
 
