@@ -7,24 +7,28 @@ pipeline {
 
   }
   stages {
-    stage('Install Ganache') {
+    stage('Start Ganache-cli') {
       steps {
-          // Fix npm perm issues
-          sh 'npm i -g ganache-cli'
-          sh 'nohup ganache-cli -p 7545 -i 5777 -m broccoli proof roof ozone help sustain turtle daughter vault picture potato reduce &'
+        sh 'npm i -g ganache-cli'
+        sh 'nohup ganache-cli -p 7545 -i 5777 -m broccoli proof roof ozone help sustain turtle daughter vault picture potato reduce &'
       }
     }
 
-    stage('Build') {
+    stage('Compile Contracts') {
       steps {
         sh 'npm i'
+        sh 'npm i -g truffle'
         sh 'truffle migrate'
+      }
+    }
+
+    stage('Build App') {
+      steps {
         echo 'Changing directory to ./app'
         dir(path: './app') {
           sh 'npm i'
           sh 'npm run build'
         }
-
       }
     }
 
