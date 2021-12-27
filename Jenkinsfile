@@ -10,9 +10,7 @@ pipeline {
     stage('Install Ganache') {
       steps {
           // Fix npm perm issues
-          sh 'whoami'
-          sh 'wget -O- https://raw.githubusercontent.com/glenpike/npm-g_nosudo/master/npm-g-nosudo.sh | sh'
-          sh 'npm i --global --unsafe-perm ganache-cli'
+          sh 'npm i -g ganache-cli'
           sh 'nohup ganache-cli -p 7545 -i 5777 -m broccoli proof roof ozone help sustain turtle daughter vault picture potato reduce &'
       }
     }
