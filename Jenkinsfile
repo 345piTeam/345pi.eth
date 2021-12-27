@@ -8,7 +8,7 @@ pipeline {
   stages {
     stage('Install Ganache') {
       steps {
-          sh 'npm i ganache-cli'
+          sh 'npm i --global --unsafe-perm ganache-cli'
           sh 'nohup ganache-cli -p 7545 -i 5777 -m broccoli proof roof ozone help sustain turtle daughter vault picture potato reduce &'
       }
     }
