@@ -24,7 +24,7 @@ pipeline {
 
     stage('Build App') {
       steps {
-        echo 'Changing directory to ./app'
+        echo 'cd ./app'
         dir(path: './app') {
           sh 'npm i'
           sh 'npm run build'
