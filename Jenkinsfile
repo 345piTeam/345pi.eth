@@ -2,19 +2,19 @@ pipeline {
   agent {
     docker {
       image 'node'
+      args '--name jenkins-npm-build'
     }
 
   }
   stages {
     stage('Install Ganache') {
       steps {
-          // Fix npm perm issues
-          sh 'chown -R 99:100 "/.npm"'
-          sh 'npm i --global --unsafe-perm ganache-cli'
-          sh 'nohup ganache-cli -p 7545 -i 5777 -m broccoli proof roof ozone help sustain turtle daughter vault picture potato reduce &'
+        sleep(unit: 'MINUTES', time: 100)
+        sh 'chown -R 99:100 "/.npm"'
+        sh 'npm i --global --unsafe-perm ganache-cli'
+        sh 'nohup ganache-cli -p 7545 -i 5777 -m broccoli proof roof ozone help sustain turtle daughter vault picture potato reduce &'
       }
     }
-
 
     stage('Build') {
       steps {
