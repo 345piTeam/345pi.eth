@@ -2,7 +2,7 @@ pipeline {
   agent {
     docker {
       image 'node'
-      args '--name jenkins-npm-build'
+      args '--name jenkins-npm-build -u 0'
     }
 
   }
