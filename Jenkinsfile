@@ -2,7 +2,7 @@ pipeline {
   agent {
     docker {
       image 'node'
-      args '--user "$(id -u):$(id -g)" -v /etc/passwd:/etc/passwd:ro'
+      args '--user "99:100" -v /etc/passwd:/etc/passwd:ro'
     }
   }
 
@@ -50,7 +50,7 @@ pipeline {
       }
     }
   }
-  
+
   environment {
     NODE_OPTIONS = '--openssl-legacy-provider'
     CI = 'false'
