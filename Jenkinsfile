@@ -4,8 +4,8 @@ pipeline {
       image 'node'
       args '--user "$(id -u):$(id -g)" -v /etc/passwd:/etc/passwd:ro'
     }
-
   }
+
   stages {
     stage('Start Ganache') {
       steps {
@@ -29,7 +29,6 @@ pipeline {
           sh 'npm i'
           sh 'npm run build'
         }
-
       }
     }
 
@@ -38,7 +37,6 @@ pipeline {
         dir(path: './app') {
           sh 'npm run test'
         }
-
       }
     }
 
@@ -49,10 +47,10 @@ pipeline {
           sh 'octojs pack'
           sh 'octojs push --package /artifacts/* --apiKey API-1ZLIMTBKCYZTV47UW319IE4FLPEZFFR --server https://octopus.nrgserver.me '
         }
-
       }
     }
   }
+  
   environment {
     NODE_OPTIONS = '--openssl-legacy-provider'
     CI = 'false'
