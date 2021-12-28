@@ -2,7 +2,7 @@ pipeline {
   agent {
     docker {
       image 'node'
-      args '--user "99:100" -v /etc/passwd:/etc/passwd:ro'
+      args '-u 0'
     }
   }
 
