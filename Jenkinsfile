@@ -2,12 +2,12 @@ pipeline {
   agent {
     docker {
       image 'node'
-      args '--name jenkins-npm-build -u 0'
+      args '-u 0'
     }
 
   }
   stages {
-    stage('Start Ganache-cli') {
+    stage('Start Ganache') {
       steps {
         sh 'npm i -g ganache-cli'
         sh 'nohup ganache-cli -p 7545 -i 5777 -m broccoli proof roof ozone help sustain turtle daughter vault picture potato reduce &'
@@ -29,6 +29,7 @@ pipeline {
           sh 'npm i'
           sh 'npm run build'
         }
+
       }
     }
 
@@ -41,6 +42,16 @@ pipeline {
       }
     }
 
+    stage('Deploy') {
+      steps {
+        sh 'npm i -g @octopusdeploy/octojs'
+        dir(path: './app') {
+          sh 'octojs pack -O /artifacts --dependencies prod --gitignore'
+          sh 'octojs push --package /artifacts/* --apiKey API-1ZLIMTBKCYZTV47UW319IE4FLPEZFFR --server https://octopus.nrgserver.me '
+        }
+
+      }
+    }
   }
   environment {
     NODE_OPTIONS = '--openssl-legacy-provider'
