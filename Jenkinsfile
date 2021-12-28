@@ -45,8 +45,8 @@ pipeline {
     stage('Deploy') {
       steps {
         sh 'npm i -g @octopusdeploy/octojs'
-        dir(path: './app/build/') {
-          sh 'octojs pack -O /artifacts --dependencies prod'
+        dir(path: './app/') {
+          sh 'octojs pack'
           sh 'octojs push --package /artifacts/* --apiKey API-1ZLIMTBKCYZTV47UW319IE4FLPEZFFR --server https://octopus.nrgserver.me '
         }
 
