@@ -2,7 +2,7 @@ pipeline {
   agent {
     docker {
       image 'node'
-      args '-u 0'
+      args '--user "$(id -u):$(id -g)" -v /etc/passwd:/etc/passwd:ro'
     }
 
   }
@@ -45,7 +45,7 @@ pipeline {
     stage('Deploy') {
       steps {
         sh 'npm i -g @octopusdeploy/octojs'
-        dir(path: './app/') {
+        dir(path: './app') {
           sh 'octojs pack'
           sh 'octojs push --package /artifacts/* --apiKey API-1ZLIMTBKCYZTV47UW319IE4FLPEZFFR --server https://octopus.nrgserver.me '
         }
