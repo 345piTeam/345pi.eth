@@ -2,6 +2,5 @@
     "format": "zip",
     "outFolder": "/artifacts",
     "verbose": false,
-    "include": ["build/*"],
-    "overwriteMode": "IgnoreIfExists"
+    "include": ["build/*"]
 }
