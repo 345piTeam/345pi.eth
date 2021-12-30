@@ -69,6 +69,7 @@ const Homepage = () => (
 							height: "90px",
 							fontSize: "40px",
 							fontWeight: "bold",
+							borderRadius: "50px",
 						}}
 					>
 						Marketplace
@@ -88,6 +89,7 @@ const Homepage = () => (
 							height: "90px",
 							fontSize: "40px",
 							fontWeight: "bold",
+							borderRadius: "50px",
 						}}
 					>
 						Discord
@@ -119,6 +121,9 @@ const Homepage = () => (
 			</Row>
 		</div>
 		<div className={styles.characterDescriptionContainer}>
+			<div className={styles.characterDescriptionTitleContainer}>
+				<h1>CHARACTER NFTS</h1>
+			</div>
 			<List
 				grid={{
 					gutter: [40, 40],

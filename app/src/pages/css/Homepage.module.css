@@ -37,7 +37,7 @@
 
 .characterDescriptionContainer {
     background-color: lightblue;
-    padding: 30px 40px;
+    padding: 20px 40px;
 }
 
 .characterDescriptionContainer > div > div > div > div {
@@ -100,12 +100,16 @@
     gap: 40px;
 }
 
-.titleButtonContainer > a > button {
-    border-radius: 50px;
-}
-
 .titleButtonContainer > a > button > span {
     margin: 5px 15px;
+}
+
+.characterDescriptionTitleContainer {
+    width: 100%;
+    text-align: center;
+    font-size: 36px;
+    font-weight: bold;
+    font-variant: small-caps;
 }
 
 :global(.ant-btn-primary) {
