@@ -91,17 +91,58 @@
     text-align: center;
 }
 
-.titleButtonContainer {
-    margin-left: 20px;
-    margin-top: 30px;
-    width: 120px;
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
+#marketplaceButton {
+    top: 720px;
+    left: 560px;
+    min-height: 90px;
+    min-width: 240px;
+    background-image: url(../../images/backgrounds/button_1.png);
+    transform: rotate(15deg);
+    
 }
 
-.titleButtonContainer > a > button > span {
-    margin: 5px 15px;
+#marketplaceButton > h1 {
+    margin: 0 0 0 15px;
+}
+
+#marketplaceButton:hover {
+    transform: scale(1.1) rotate(15deg);
+}
+
+
+#discordButton {
+    top: 690px;
+    left: 800px;
+    min-height: 82px;
+    min-width: 195px;
+    background-image: url(../../images/backgrounds/button_2.png);
+    transform: rotate(-25deg);
+}
+
+#discordButton > h1 {
+    margin: 0 15px 0 0;
+}
+
+#discordButton:hover {
+    transform: scale(1.1) rotate(-25deg);
+}
+
+.titleButton {
+    position: absolute;
+    z-index: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.titleButton > h1 {
+    color: white;
+    text-align: center;
+    
+    top: 20px;
+    font-size: 30px;
+    font-weight: bold;
 }
 
 .characterDescriptionTitleContainer {
