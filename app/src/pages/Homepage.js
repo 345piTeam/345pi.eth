@@ -50,50 +50,20 @@ const data = [
 const Homepage = () => (
 	<div className={styles.mainContainer}>
 		<div className={styles.backgroundContainer}>
-			<div className={styles.sloganContainer}>
-				<h1>
-					Learn <b>Calculus.</b>
-				</h1>
-				<h1>
-					Make A <b>Friend.</b>
-				</h1>
-			</div>
 			<div className={styles.titleButtonContainer}>
 				<Link to="/marketplace">
-					<Button
-						size="large"
-						type="primary"
-						style={{
-							backgroundColor: "#3e466c",
-							border: "none",
-							height: "90px",
-							fontSize: "40px",
-							fontWeight: "bold",
-							borderRadius: "50px",
-						}}
-					>
-						Marketplace
-					</Button>
+					<div id={styles.marketplaceButton} className={styles.titleButton}>
+						<h1>Marketplace</h1>
+					</div>
 				</Link>
 				<a
 					href={"https://discord.gg/3UwWPeqE3F"}
 					target="_blank"
 					rel="noreferrer"
 				>
-					<Button
-						size="large"
-						type="primary"
-						style={{
-							backgroundColor: "#3e466c",
-							border: "none",
-							height: "90px",
-							fontSize: "40px",
-							fontWeight: "bold",
-							borderRadius: "50px",
-						}}
-					>
-						Discord
-					</Button>
+					<div id={styles.discordButton} className={styles.titleButton}>
+						<h1>Discord</h1>
+					</div>
 				</a>
 			</div>
 		</div>

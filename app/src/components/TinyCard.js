@@ -114,6 +114,7 @@ const TinyCard = () => {
 					current={currentQuestion + 1}
 					onChange={(page) => setCurrentQuestion(page - 1)}
 					total={10 * tinyCardData.length}
+					size="small"
 				/>
 			</footer>
 		</div>
