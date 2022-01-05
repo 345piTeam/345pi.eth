@@ -14,8 +14,9 @@
     max-width: 100vw;
     align-items: center;
     background-image: url(../../images/backgrounds/mainHomepage.png);
-    background-size: cover;
-    min-height: 850px;
+    background-size: auto;
+    background-repeat: no-repeat;
+    min-height: 750px;
 }
 
 .characterDescriptionContainer {
