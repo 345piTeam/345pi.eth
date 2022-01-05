@@ -51,20 +51,20 @@ const Homepage = () => (
 	<div className={styles.mainContainer}>
 		<div className={styles.backgroundContainer}>
 			<div className={styles.titleButtonContainer}>
-				<a
-					href={"https://discord.gg/3UwWPeqE3F"}
-					target="_blank"
-					rel="noreferrer"
-				>
-					<div className={styles.titleButton}>
+				<div className={styles.titleButton}>
+					<a
+						href={"https://discord.gg/3UwWPeqE3F"}
+						target="_blank"
+						rel="noreferrer"
+					>
 						<h1>Join Our Discord</h1>
-					</div>
-				</a>
-				<Link to="/modules">
-					<div className={styles.titleButton}>
+					</a>
+				</div>
+				<div className={styles.titleButton}>
+					<Link to="/modules">
 						<h1>Play Calculus Modules</h1>
-					</div>
-				</Link>
+					</Link>
+				</div>
 			</div>
 		</div>
 
