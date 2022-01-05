@@ -93,7 +93,7 @@
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2)
 }
 
-.titleButton > h1 {
+.titleButton a > h1 {
     color: white;
     text-align: center;
     font-size: 30px;
