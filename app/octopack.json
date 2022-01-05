@@ -2,5 +2,6 @@
     "format": "zip",
     "outFolder": "/artifacts",
     "verbose": false,
-    "include": ["build/*"]
+    "include": ["build/*"],
+    "id": "345pi-${env.JOB_NAME}"
 }
