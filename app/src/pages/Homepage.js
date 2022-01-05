@@ -5,7 +5,7 @@ import wizard from "../images/characters/Wizard.png";
 import pawn from "../images/characters/Pawn.png";
 import dukeOG from "../images/characters/Duke OG.png";
 import ambassador from "../images/characters/Ambassador.png";
-import { Col, Row, Card, List, Button } from "antd";
+import { Col, Row, Card, List } from "antd";
 import { Link } from "react-router-dom";
 import {
 	WalletOutlined,
@@ -50,48 +50,20 @@ const data = [
 const Homepage = () => (
 	<div className={styles.mainContainer}>
 		<div className={styles.backgroundContainer}>
-			<div className={styles.sloganContainer}>
-				<h1>
-					Learn <b>Calculus.</b>
-				</h1>
-				<h1>
-					Make A <b>Friend.</b>
-				</h1>
-			</div>
 			<div className={styles.titleButtonContainer}>
 				<Link to="/marketplace">
-					<Button
-						size="large"
-						type="primary"
-						style={{
-							backgroundColor: "#3e466c",
-							border: "none",
-							height: "90px",
-							fontSize: "40px",
-							fontWeight: "bold",
-						}}
-					>
-						Marketplace
-					</Button>
+					<div className={styles.titleButton}>
+						<h1>Play Calculus Modules</h1>
+					</div>
 				</Link>
 				<a
 					href={"https://discord.gg/3UwWPeqE3F"}
 					target="_blank"
 					rel="noreferrer"
 				>
-					<Button
-						size="large"
-						type="primary"
-						style={{
-							backgroundColor: "#3e466c",
-							border: "none",
-							height: "90px",
-							fontSize: "40px",
-							fontWeight: "bold",
-						}}
-					>
-						Discord
-					</Button>
+					<div className={styles.titleButton}>
+						<h1>Join Our Discord</h1>
+					</div>
 				</a>
 			</div>
 		</div>
@@ -119,6 +91,9 @@ const Homepage = () => (
 			</Row>
 		</div>
 		<div className={styles.characterDescriptionContainer}>
+			<div className={styles.characterDescriptionTitleContainer}>
+				<h1>CHARACTER NFTS</h1>
+			</div>
 			<List
 				grid={{
 					gutter: [40, 40],

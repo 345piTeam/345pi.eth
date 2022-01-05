@@ -5,6 +5,8 @@
     padding: 0.5em 0;
     cursor: pointer;
     text-align: center;
+    display: flex;
+    justify-content: center;
 }
 
 .buttonContainer:hover {
