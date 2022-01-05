@@ -5,7 +5,7 @@ import wizard from "../images/characters/Wizard.png";
 import pawn from "../images/characters/Pawn.png";
 import dukeOG from "../images/characters/Duke OG.png";
 import ambassador from "../images/characters/Ambassador.png";
-import { Col, Row, Card, List, Button } from "antd";
+import { Col, Row, Card, List } from "antd";
 import { Link } from "react-router-dom";
 import {
 	WalletOutlined,
@@ -52,8 +52,8 @@ const Homepage = () => (
 		<div className={styles.backgroundContainer}>
 			<div className={styles.titleButtonContainer}>
 				<Link to="/marketplace">
-					<div id={styles.marketplaceButton} className={styles.titleButton}>
-						<h1>Marketplace</h1>
+					<div className={styles.titleButton}>
+						<h1>Play Calculus Modules</h1>
 					</div>
 				</Link>
 				<a
@@ -61,8 +61,8 @@ const Homepage = () => (
 					target="_blank"
 					rel="noreferrer"
 				>
-					<div id={styles.discordButton} className={styles.titleButton}>
-						<h1>Discord</h1>
+					<div className={styles.titleButton}>
+						<h1>Join Our Discord</h1>
 					</div>
 				</a>
 			</div>

@@ -21,13 +21,9 @@
 
 .buttonsContainer {
     display: flex;
-    height: 5em;
     justify-content: center;
-    position: absolute;
-    left: 0; 
-    right: 0; 
-    margin-left: auto; 
-    margin-right: auto; 
+    flex-grow: 100;
+    transform: translateX(-60px);
 }
 
 .navButton {
@@ -62,11 +58,10 @@ a {
     flex-direction: row;
     justify-content: center;
     height: 100%;
-    padding: 0 1em;
     border: none;
     color: white;
     font-weight: bold;
-    font-size: 1.35rem;
+    font-size: 2.5rem;
     transition: 0.2s linear;
     background-color: #3e466c;
     align-items: center;
@@ -76,14 +71,18 @@ a {
     margin: 0;
 }
 
-.walletStatus > span {
-    margin-right: 10px;
-}
-
 #walletDisconnected {
     color: #c43636;
 }
 
 #walletConnected {
     color: #3aa859;
+}
+
+.walletStatusMessage {
+    display: none;
+}
+
+.walletStatusIcon {
+    margin: 20px;
 }
