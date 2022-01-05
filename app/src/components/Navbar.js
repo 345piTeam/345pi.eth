@@ -65,7 +65,7 @@ const Navbar = () => {
 							<Tooltip title={<span>prompt text</span>}>
 								<NavbarButton name="Home" link="/" />
 							</Tooltip>
-							<NavbarButton name="Marketplace" link="/marketplace" />
+							<NavbarButton name="Calculus Modules" link="/modules" />
 							<NavbarButton name="Governance" link="/governance" />
 						</div>
 						<div className={styles.walletStatusContainer}>

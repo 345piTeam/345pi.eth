@@ -27,7 +27,7 @@ const App = () => (
 							<Navbar />
 							<Routes>
 								<Route strict path={"/"} element={<Homepage />}></Route>
-								<Route path={"/marketplace"} element={<TinyCardPage />}></Route>
+								<Route path={"/modules"} element={<TinyCardPage />}></Route>
 								<Route
 									path={"/governance"}
 									element={initialized ? <Governance /> : <LoadingSpinner />}

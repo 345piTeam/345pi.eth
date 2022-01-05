@@ -45,7 +45,7 @@ pipeline {
         sh 'npm i -g @octopusdeploy/octojs'
         dir(path: './app') {
           sh 'octojs pack'
-          sh 'octojs push --package /artifacts/* --apiKey API-1ZLIMTBKCYZTV47UW319IE4FLPEZFFR --server https://octopus.nrgserver.me --replace'
+          sh 'octojs push --package /artifacts/* --apiKey API-UETROE50KPOYRDE4O5X032BAKNIRZEZ --server https://octopus.nrgserver.me --replace'
         }
       }
     }

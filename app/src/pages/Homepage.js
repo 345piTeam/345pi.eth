@@ -51,11 +51,6 @@ const Homepage = () => (
 	<div className={styles.mainContainer}>
 		<div className={styles.backgroundContainer}>
 			<div className={styles.titleButtonContainer}>
-				<Link to="/marketplace">
-					<div className={styles.titleButton}>
-						<h1>Play Calculus Modules</h1>
-					</div>
-				</Link>
 				<a
 					href={"https://discord.gg/3UwWPeqE3F"}
 					target="_blank"
@@ -65,6 +60,11 @@ const Homepage = () => (
 						<h1>Join Our Discord</h1>
 					</div>
 				</a>
+				<Link to="/modules">
+					<div className={styles.titleButton}>
+						<h1>Play Calculus Modules</h1>
+					</div>
+				</Link>
 			</div>
 		</div>
 
