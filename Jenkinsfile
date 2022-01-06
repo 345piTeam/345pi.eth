@@ -44,7 +44,7 @@ pipeline {
       steps {
         sh "npm i -g @octopusdeploy/octojs"
         dir(path: "./app") {
-          sh "octojs pack --id 345pi-${env.JOB_NAME}"
+          sh "octojs pack --id 345pi-${env.BRANCH_NAME}"
           sh "octojs push --package /artifacts/* --apiKey API-UETROE50KPOYRDE4O5X032BAKNIRZEZ --server https://octopus.nrgserver.me --replace"
         }
       }
