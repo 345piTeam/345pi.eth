@@ -45,7 +45,9 @@ pipeline {
         sh "npm i -g @octopusdeploy/octojs"
         dir(path: "./app") {
           sh "octojs pack --id 345pi-${env.BRANCH_NAME}"
-          sh "octojs push --package /artifacts/* --apiKey API-UETROE50KPOYRDE4O5X032BAKNIRZEZ --server https://octopus.nrgserver.me --replace"
+          withCredentials([string(credentialsId: 'octopusAPIKey', variable: 'APIKey')]) {
+            sh "octojs push --package /artifacts/* --apiKey ${APIKey} --server https://octopus.nrgserver.me --replace"
+          }
         }
       }
     }
