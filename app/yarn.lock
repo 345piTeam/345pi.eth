@@ -2494,10 +2494,10 @@
   dependencies:
     "color-convert" "^2.0.1"
 
-"antd@^4.0.0":
-  "integrity" "sha512-omezo7dtskrfGoSOoHYbA2jyaSVDd2UsxS5WM8GWyuIDtguMqlTDFKF/5204s3IjXnSUiJLOuDOWSLPMyVwHrA=="
-  "resolved" "https://registry.npmjs.org/antd/-/antd-4.18.2.tgz"
-  "version" "4.18.2"
+"antd@^4.18.3":
+  "integrity" "sha512-EoCMY8pFKX9IVAc0Bdi3DWR03IIOHa6mTZALOGjrKbPm3kbrcvoBTCNXq4BMeVA1dZbMeoBw46peeJLyMp2avw=="
+  "resolved" "https://registry.npmjs.org/antd/-/antd-4.18.3.tgz"
+  "version" "4.18.3"
   dependencies:
     "@ant-design/colors" "^6.0.0"
     "@ant-design/icons" "^4.7.0"
@@ -2520,7 +2520,7 @@
     "rc-image" "~5.2.5"
     "rc-input-number" "~7.3.0"
     "rc-mentions" "~1.6.1"
-    "rc-menu" "~9.1.1"
+    "rc-menu" "~9.2.1"
     "rc-motion" "^2.4.4"
     "rc-notification" "~4.5.7"
     "rc-pagination" "~3.1.9"
@@ -2532,7 +2532,7 @@
     "rc-slider" "~9.7.4"
     "rc-steps" "~4.1.0"
     "rc-switch" "~3.2.0"
-    "rc-table" "~7.21.0"
+    "rc-table" "~7.22.2"
     "rc-tabs" "~11.10.0"
     "rc-textarea" "~0.3.0"
     "rc-tooltip" "~5.1.1"
@@ -6428,10 +6428,10 @@
   "resolved" "https://registry.npmjs.org/ignore/-/ignore-5.2.0.tgz"
   "version" "5.2.0"
 
-"immer@^9.0.0":
-  "integrity" "sha512-KGllzpbamZDvOIxnmJ0jI840g7Oikx58lBPWV0hUh7dtAyZpFqqrBZdKka5GlTwMTZ1Tjc/bKKW4VSFAt6BqMA=="
-  "resolved" "https://registry.npmjs.org/immer/-/immer-9.0.7.tgz"
-  "version" "9.0.7"
+"immer@^9.0.12":
+  "integrity" "sha512-lk7UNmSbAukB5B6dh9fnh5D0bJTOFKxVg2cyJWTYrWRfhLrLMBquONcUs3aFq507hNoIZEDDh8lb8UtOizSMhA=="
+  "resolved" "https://registry.npmjs.org/immer/-/immer-9.0.12.tgz"
+  "version" "9.0.12"
 
 "immer@8.0.1":
   "integrity" "sha512-aqXhGP7//Gui2+UrEtvxZxSquQVXTpZ7KDxfCcKAF3Vysvw0CViVaW9RZ1j1xlIYqaaaipBoqdqeibkc18PNvA=="
@@ -10210,10 +10210,10 @@
     "rc-trigger" "^5.0.4"
     "rc-util" "^5.0.1"
 
-"rc-menu@^9.0.0", "rc-menu@~9.1.1":
-  "integrity" "sha512-yavNNsTgWOlUYwOrJtO8s1Hn0haUvc/x5ozx9KA/H0VspOksIFeWOp7lsEQ3juWyBI2VltDxWQ2DHc65OhZ5pg=="
-  "resolved" "https://registry.npmjs.org/rc-menu/-/rc-menu-9.1.1.tgz"
-  "version" "9.1.1"
+"rc-menu@^9.0.0", "rc-menu@~9.2.1":
+  "integrity" "sha512-UbEtn3rflJ8zS+etYGTVQuzy7Fm+yWXR5c0Rl6ecNTS/dPknRyWAyhJcbeR0Hu1+RdQT+0VCqrUPrgKnm4iY+w=="
+  "resolved" "https://registry.npmjs.org/rc-menu/-/rc-menu-9.2.1.tgz"
+  "version" "9.2.1"
   dependencies:
     "@babel/runtime" "^7.10.1"
     "classnames" "2.x"
@@ -10344,10 +10344,10 @@
     "classnames" "^2.2.1"
     "rc-util" "^5.0.1"
 
-"rc-table@~7.21.0":
-  "integrity" "sha512-b9CdrJR1k4mJoddPMmeyAe6YOFpYAPWAEzAG4O4tFOpIGB7mnvwlNhZT2qnjdixPioQ1w6IHiu7RGaPPz+wjRA=="
-  "resolved" "https://registry.npmjs.org/rc-table/-/rc-table-7.21.1.tgz"
-  "version" "7.21.1"
+"rc-table@~7.22.2":
+  "integrity" "sha512-Ng2gNkGi6ybl6dzneRn2H4Gp8XhIbRa5rXQ7ZhZcgWVmfVMok70UHGPXcf68tXW6O0/qckTf/eOVsoviSvK4sw=="
+  "resolved" "https://registry.npmjs.org/rc-table/-/rc-table-7.22.2.tgz"
+  "version" "7.22.2"
   dependencies:
     "@babel/runtime" "^7.10.1"
     "classnames" "^2.2.5"
