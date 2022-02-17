@@ -2,6 +2,7 @@ pipeline {
   agent {
     docker {
       image "node"
+      args "-u 0"
     }
   }
 
@@ -9,12 +10,12 @@ pipeline {
     stage("Install Dependencies") {
       steps {
         sh "npm i"
-        sh "whoami"
       }
     }
 
     stage("Test Contracts") {
       steps {
+        sh "whoami"
         sh "npx hardhat test"
       }
     }
