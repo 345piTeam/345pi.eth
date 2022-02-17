@@ -9,6 +9,7 @@ pipeline {
     stage("Install Dependencies") {
       steps {
         sh "npm i"
+        sh "whoami"
       }
     }
 
