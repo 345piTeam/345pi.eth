@@ -18,6 +18,8 @@ jobs:
       with:
         node-version: 16.x
         cache: 'npm'
-    - run: npm i
+    - run: npm i --save-dev hardhat
+    - run: pwd
+    - run: ls
     - name: Run hardhat tests
       run: npx hardhat test
