@@ -13,13 +13,6 @@ pipeline {
       }
     }
 
-    stage("Test Contracts") {
-      steps {
-        sh "whoami"
-        sh "npx hardhat test"
-      }
-    }
-
     stage("Compile Contracts") {
       steps {
         sh "npx hardhat compile"
