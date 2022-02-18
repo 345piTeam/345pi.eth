@@ -21,7 +21,7 @@ jobs:
     - name: Install Hardhat
     - run: npm i --save-dev hardhat
     - name: Run hardhat tests
-      run: npx hardhat test
+    - run: npx hardhat test
     - name: Install additional Dependencies
     - run: npm i
     - name: Test Frontend
