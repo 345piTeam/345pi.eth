@@ -19,6 +19,6 @@ jobs:
         node-version: 16.x
         cache: 'npm'
     - name: Install Hardhat
-    - run: npm i --save-dev hardhat
+      run: npm i --save-dev hardhat
     - name: Run hardhat tests
-    - run: npx hardhat test
+      run: npx hardhat test
