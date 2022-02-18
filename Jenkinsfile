@@ -13,12 +13,6 @@ pipeline {
       }
     }
 
-    stage("Compile Contracts") {
-      steps {
-        sh "npx hardhat compile"
-      }
-    }
-
     stage("Build Frontend") {
       steps {
         sh "npm run build"
