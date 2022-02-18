@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: MIT
 pragma solidity >=0.5.11 <0.9.0;
 
 contract ProposalList {
@@ -15,7 +16,7 @@ contract ProposalList {
         Option[] optionList;
     }
 
-    constructor() public{
+    constructor() {
         propCount = 0;
         addProposal(0, "Game Types", msg.sender, "What type of game");
         addProposal(1, "Other Proposal", msg.sender, "What kind of game do you prefer");
@@ -68,7 +69,7 @@ contract Option {
     mapping (uint => Option) options;
     Option[] public optionDataArray;
 
-    constructor(uint _id, string memory _name, string memory _summary) public {
+    constructor(uint _id, string memory _name, string memory _summary) {
         id = _id;
         name = _name;
         voteCount = 0;

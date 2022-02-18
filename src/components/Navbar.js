@@ -2,7 +2,6 @@ import React from "react";
 import styles from "./css/Navbar.module.css";
 import logoImg from "../images/345piUsLogo_H.png";
 import { Link, NavLink } from "react-router-dom";
-import { DrizzleContext } from "@drizzle/react-plugin";
 import { CheckCircleOutlined, CloseCircleOutlined } from "@ant-design/icons";
 import { Tooltip } from "antd";
 
@@ -46,35 +45,26 @@ const Navbar = () => {
 		</Tooltip>
 	);
 
+	let initialized = false;
+
 	return (
-		<DrizzleContext.Consumer>
-			{(drizzleContext) => {
-				const { initialized } = drizzleContext;
-				return (
-					<div className={styles.navbar}>
-						<Link to={"/"}>
-							<div className={styles.logoContainer}>
-								<img
-									className={styles.logoStyles}
-									src={logoImg}
-									alt={"345pi"}
-								/>
-							</div>
-						</Link>
-						<div className={styles.buttonsContainer}>
-							<Tooltip title={<span>prompt text</span>}>
-								<NavbarButton name="Home" link="/" />
-							</Tooltip>
-							<NavbarButton name="Calculus Modules" link="/modules" />
-							<NavbarButton name="Governance" link="/governance" />
-						</div>
-						<div className={styles.walletStatusContainer}>
-							{initialized ? <WalletConnected /> : <WalletDisconnected />}
-						</div>
-					</div>
-				);
-			}}
-		</DrizzleContext.Consumer>
+		<div className={styles.navbar}>
+			<Link to={"/"}>
+				<div className={styles.logoContainer}>
+					<img className={styles.logoStyles} src={logoImg} alt={"345pi"} />
+				</div>
+			</Link>
+			<div className={styles.buttonsContainer}>
+				<Tooltip title={<span>prompt text</span>}>
+					<NavbarButton name="Home" link="/" />
+				</Tooltip>
+				<NavbarButton name="Calculus Modules" link="/modules" />
+				<NavbarButton name="Governance" link="/governance" />
+			</div>
+			<div className={styles.walletStatusContainer}>
+				{initialized ? <WalletConnected /> : <WalletDisconnected />}
+			</div>
+		</div>
 	);
 };
 
