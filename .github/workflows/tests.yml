@@ -8,8 +8,8 @@ on:
     - "!main"
 
 jobs:
-  unit-tests:
-    name: Unit Tests
+  contract-tests:
+    name: Contract Tests
     runs-on: ubuntu-latest
 
     steps:
@@ -22,5 +22,17 @@ jobs:
       run: npm i --save-dev hardhat
     - name: Test Contracts
       run: npx hardhat test
+
+
+  frontend-tests:
+    name: Frontend Tests
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v2
+      with:
+        node-version: 16.x
+        cache: 'npm'
     - name: Test Frontend
       run: npm run test
