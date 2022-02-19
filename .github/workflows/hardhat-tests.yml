@@ -20,5 +20,7 @@ jobs:
         cache: 'npm'
     - name: Install Hardhat
       run: npm i --save-dev hardhat
-    - name: Run hardhat tests
+    - name: Test Contracts
       run: npx hardhat test
+    - name: Test Frontend
+      run: npm run test
