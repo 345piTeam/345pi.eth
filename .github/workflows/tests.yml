@@ -18,6 +18,8 @@ jobs:
       with:
         node-version: 16.x
         cache: 'npm'
+    - name: Update Packages
+      run: npm i
     - name: Install Hardhat
       run: npm i --save-dev hardhat
     - name: Test Contracts
