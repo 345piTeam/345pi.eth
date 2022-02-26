@@ -4,7 +4,7 @@ require("@nomiclabs/hardhat-waffle");
 require("dotenv").config();
 require("@nomiclabs/hardhat-etherscan");
 
-let PRIVATE_KEY = "0xabcdefabcdefabcdefabcdefabcdef";
+let PRIVATE_KEY = "0x00abcdefabcdefabcdefabcdefabcdef";
 
 try {
 	PRIVATE_KEY = process.env.PRIVATE_KEY;
