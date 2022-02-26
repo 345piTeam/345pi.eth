@@ -2,7 +2,13 @@
 require("@nomiclabs/hardhat-waffle");
 require("dotenv").config();
 
-const PRIVATE_KEY = process.env.PRIVATE_KEY;
+let PRIVATE_KEY = "abcdefabcdefabcdefabcdefabcdef";
+
+try {
+	PRIVATE_KEY = process.env.PRIVATE_KEY;
+} catch (e) {
+	// Unable to find environment wallet key
+}
 const URL = process.env.URL;
 const ETHERSCAN_API = process.env.ETHERSCAN_API;
 
