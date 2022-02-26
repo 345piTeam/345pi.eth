@@ -4,14 +4,20 @@ require("@nomiclabs/hardhat-waffle");
 require("dotenv").config();
 require("@nomiclabs/hardhat-etherscan");
 
-let PRIVATE_KEY = "0x00abcdefabcdefabcdefabcdefabcdef";
+let PRIVATE_KEY =
+	"00abcdefabcdefabcdefabcdefabcdef00abcdefabcdefabcdefabcdefabcdef";
+let URL = "";
 
 try {
-	PRIVATE_KEY = process.env.PRIVATE_KEY;
+	if (process.env.PRIVATE_KEY !== undefined) {
+		PRIVATE_KEY = process.env.PRIVATE_KEY;
+	}
+	if (process.env.URL !== undefined) {
+		URL = process.env.URL;
+	}
 } catch (e) {
 	// Unable to find environment wallet key
 }
-const URL = process.env.URL;
 const ETHERSCAN_API = process.env.ETHERSCAN_API;
 
 // This is a sample Hardhat task. To learn how to create your own go to
@@ -22,6 +28,10 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
 	for (const account of accounts) {
 		console.log(account.address);
 	}
+});
+
+task("wallet", "Prints the current wallet", async (taskArgs, hre) => {
+	console.log(PRIVATE_KEY);
 });
 
 // You need to export an object to set up your config
@@ -35,7 +45,7 @@ module.exports = {
 	networks: {
 		ropsten: {
 			url: URL,
-			accounts: [`${PRIVATE_KEY}`],
+			accounts: [`0x${PRIVATE_KEY}`],
 		},
 	},
 	etherscan: {

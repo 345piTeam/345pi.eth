@@ -17,7 +17,7 @@ describe("Token contract", function () {
 		// To deploy our contract, we just have to call Token.deploy() and await
 		// for it to be deployed(), which happens once its transaction has been
 		// mined.
-		G345 = await Token.deploy();
+		G345 = await Token.deploy(1000000);
 	});
 
 	// You can nest describe calls to create subsections.
