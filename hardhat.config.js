@@ -1,6 +1,8 @@
 /* eslint-disable no-undef */
+require("@nomiclabs/hardhat-ethers");
 require("@nomiclabs/hardhat-waffle");
 require("dotenv").config();
+require("@nomiclabs/hardhat-etherscan");
 
 let PRIVATE_KEY = "abcdefabcdefabcdefabcdefabcdef";
 
