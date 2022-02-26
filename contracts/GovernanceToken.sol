@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: MIT
+ // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.4;
 
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
@@ -8,11 +8,11 @@ import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Votes.sol";
 
 /// @custom:security-contact nolan@345pi.com
 contract GovernanceToken is ERC20, Ownable, ERC20Permit, ERC20Votes {
-    constructor()
+    constructor(uint initialSupply)
         ERC20("GovernanceToken", "345G")
         ERC20Permit("GovernanceToken")
     {
-        _mint(msg.sender, 1000000 * 10 ** decimals());
+        _mint(msg.sender, initialSupply * 10 ** decimals());
     }
 
     function mint(address to, uint256 amount) public onlyOwner {
