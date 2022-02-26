@@ -1,11 +1,9 @@
 /* eslint-disable no-undef */
 const main = async () => {
-	const initialSupply = ethers.utils.parseEther("1000000");
-
 	const [deployer] = await ethers.getSigners();
 	console.log(`Address deploying the contract --> ${deployer.address}`);
 	const tokenFactory = await ethers.getContractFactory("GovernanceToken");
-	const contract = await tokenFactory.deploy(initialSupply);
+	const contract = await tokenFactory.deploy();
 
 	console.log(`Token Contract Address --> ${contract.address}`);
 };
