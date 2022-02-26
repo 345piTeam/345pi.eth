@@ -1,6 +1,8 @@
 /* eslint-disable no-undef */
+require("@nomiclabs/hardhat-ethers");
 require("@nomiclabs/hardhat-waffle");
 require("dotenv").config();
+require("@nomiclabs/hardhat-etherscan");
 
 const PRIVATE_KEY = process.env.PRIVATE_KEY;
 const URL = process.env.URL;
