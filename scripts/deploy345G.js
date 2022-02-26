@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 const main = async () => {
 	const initialSupply = ethers.utils.parseEther("1000000");
 
