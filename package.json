@@ -10,6 +10,7 @@
     "ethereum-waffle": "^3.4.0",
     "ethers": "^5.5.4",
     "hardhat": "^2.8.4",
+    "magic-sdk": "^8.0.1",
     "react-scripts": "^4.0.0"
   },
   "dependencies": {
