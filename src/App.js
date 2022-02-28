@@ -14,7 +14,9 @@ import { MoralisProvider } from "react-moralis";
 const APP_ID = process.env.REACT_APP_MORALIS_APPLICATION_ID;
 const SERVER_URL = process.env.REACT_APP_MORALIS_SERVER_URL;
 
-export const App = () => {
+const App = () => {
+	console.log(APP_ID);
+	console.log(SERVER_URL);
 	const { isWeb3Enabled, enableWeb3, isAuthenticated, isWeb3EnableLoading } =
 		useMoralis();
 
