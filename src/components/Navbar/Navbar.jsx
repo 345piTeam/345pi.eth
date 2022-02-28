@@ -1,9 +1,9 @@
 import React from "react";
-import styles from "./css/Navbar.module.css";
-import logoImg from "../images/345piUsLogo_H.png";
+import styles from "./Navbar.module.css";
+import logoImg from "../../images/345piUsLogo_H.png";
 import { Link, NavLink } from "react-router-dom";
 import { Tooltip } from "antd";
-import Account from "./Account/Account.jsx";
+import Account from "../Account/Account.jsx";
 
 const Navbar = () => {
 	const NavbarButton = ({ name, link }) => (

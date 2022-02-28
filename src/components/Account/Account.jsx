@@ -1,6 +1,6 @@
 import { useMoralis } from "react-moralis";
 import { getEllipsisTxt } from "../../helpers/formatters";
-import Blockie from "../Blockie";
+import Blockie from "../utils/Blockie.jsx";
 import { Button, Card, Modal } from "antd";
 import { useState } from "react";
 import Address from "../Address/Address";
@@ -8,6 +8,7 @@ import { SelectOutlined } from "@ant-design/icons";
 import { getExplorer } from "../../helpers/networks";
 import Text from "antd/lib/typography/Text";
 import { connectors } from "./config";
+
 const styles = {
   account: {
     height: "42px",
@@ -194,5 +195,6 @@ function Account() {
     </>
   );
 }
+
 
 export default Account;
