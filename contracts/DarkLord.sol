@@ -41,6 +41,12 @@ contract DarkLord is ERC721, ERC721URIStorage, Ownable {
         return super.tokenURI(tokenId);
     }
 
+    function transferFrom(address from, address to, uint256 tokenId) public override(ERC721) {
+        super.transferFrom(from, to, tokenId);
+        owners[from] = false;
+        owners[to] = true;
+    }
+
     function isOwner(address a) public view returns (bool) {
         return owners[a];
     }
