@@ -10,7 +10,7 @@ describe("DarkLord", function () {
 		const DarkLord = await ethers.getContractFactory("DarkLord");
 		darkLord = await DarkLord.deploy();
 		await darkLord.deployed();
-		darkLord.safeMint(owner.address, "0");
+		await darkLord.safeMint(owner.address, "0");
 	});
 
 	describe("Deployment", function () {
