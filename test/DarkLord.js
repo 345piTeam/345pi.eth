@@ -2,6 +2,7 @@ const { expect } = require("chai");
 const { ethers } = require("hardhat");
 
 describe("DarkLord", function () {
+	// eslint-disable-next-line no-unused-vars
 	let owner, addr1, addr2, addr3, darkLord;
 
 	beforeEach(async () => {
@@ -9,7 +10,7 @@ describe("DarkLord", function () {
 		const DarkLord = await ethers.getContractFactory("DarkLord");
 		darkLord = await DarkLord.deploy();
 		await darkLord.deployed();
-		darkLord.safeMint(owner.address, "1");
+		darkLord.safeMint(owner.address, "0");
 	});
 
 	describe("Deployment", function () {
@@ -27,7 +28,7 @@ describe("DarkLord", function () {
 				.transferFrom(owner.address, addr1.address, 0);
 			expect(await darkLord.ownerOf(0)).to.equal(addr1.address);
 
-			// Test isOwner feature
+			// Test isOwner feature after transferring NFT
 			expect(await darkLord.isOwner(owner.address)).to.equal(false);
 			expect(await darkLord.isOwner(addr1.address)).to.equal(true);
 		});

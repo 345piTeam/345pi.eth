@@ -17,11 +17,12 @@ const styles = {
     alignItems: "center",
     width: "fit-content",
     borderRadius: "12px",
-    backgroundColor: "rgb(244, 244, 244)",
+    backgroundColor: "rgb(50, 50, 50)",
     cursor: "pointer",
   },
   text: {
-    color: "#21BF96",
+    color: "#ffffff",
+    fontSize: "18px",
   },
   connector: {
     alignItems: "center",
@@ -41,6 +42,13 @@ const styles = {
     marginBottom: "8px",
     height: "30px",
   },
+  connectWallet: {
+    cursor: "pointer",
+    backgroundColor: "#53a3ff",
+    padding: "10px",
+    margin: "10px",
+    borderRadius: "25px"
+  }
 };
 
 function Account() {
@@ -52,8 +60,8 @@ function Account() {
   if (!isAuthenticated || !account) {
     return (
       <>
-        <div onClick={() => setIsAuthModalVisible(true)}>
-          <p style={styles.text}>Authenticate</p>
+        <div style={styles.connectWallet} onClick={() => setIsAuthModalVisible(true)}>
+          <p style={styles.text}>Connect Wallet</p>
         </div>
         <Modal
           visible={isAuthModalVisible}

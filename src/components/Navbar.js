@@ -26,7 +26,9 @@ const Navbar = () => {
 				<NavbarButton name="Calculus Modules" link="/modules" />
 				<NavbarButton name="Governance" link="/governance" />
 			</div>
-			<Account />
+			<div id={styles.walletConnectButton}>
+				<Account />
+			</div>
 		</div>
 	);
 };
