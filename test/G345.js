@@ -7,6 +7,7 @@ describe("Token contract", function () {
 	let owner;
 	let addr1;
 	let addr2;
+	// eslint-disable-next-line no-unused-vars
 	let addrs;
 
 	beforeEach(async function () {
