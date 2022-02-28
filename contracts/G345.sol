@@ -7,10 +7,10 @@ import "@openzeppelin/contracts/token/ERC20/extensions/draft-ERC20Permit.sol";
 import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Votes.sol";
 
 /// @custom:security-contact nolan@345pi.com
-contract GovernanceToken is ERC20, Ownable, ERC20Permit, ERC20Votes {
+contract G345 is ERC20, Ownable, ERC20Permit, ERC20Votes {
     constructor()
-        ERC20("GovernanceToken", "345G")
-        ERC20Permit("GovernanceToken")
+        ERC20("G345", "G")
+        ERC20Permit("G345")
     {
         _mint(msg.sender, 1000000 * 10 ** decimals());
     }
