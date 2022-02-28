@@ -1,10 +1,10 @@
-import styles from "./css/Homepage.module.css";
+import styles from "./Homepage.module.css";
 import React from "react";
-import darkLord from "../images/characters/Darklord.png";
-import wizard from "../images/characters/Wizard.png";
-import pawn from "../images/characters/Pawn.png";
-import dukeOG from "../images/characters/Duke OG.png";
-import ambassador from "../images/characters/Ambassador.png";
+import darkLord from "../../images/characters/Darklord.png";
+import wizard from "../../images/characters/Wizard.png";
+import pawn from "../../images/characters/Pawn.png";
+import dukeOG from "../../images/characters/Duke OG.png";
+import ambassador from "../../images/characters/Ambassador.png";
 import { Col, Row, Card, List } from "antd";
 import { Link } from "react-router-dom";
 import {

@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./css/AnswerButton.module.css";
+import styles from "./AnswerButton.module.css";
 import MathJax from "mathjax3-react";
 
 const AnswerButton = ({ content, onAnswer, disabled }) => {

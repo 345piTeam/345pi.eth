@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import styles from "./css/TinyCard.module.css";
+import styles from "./TinyCard.module.css";
 import { List, Image, Pagination } from "antd";
-import q1Image from "../images/tiny-card-data/tc1/question1Image.png";
-import q2Image from "../images/tiny-card-data/tc1/question2Image.png";
-import q3Image from "../images/tiny-card-data/tc1/question3Image.png";
-import AnswerButton from "./AnswerButton";
+import q1Image from "../../images/tiny-card-data/tc1/question1Image.png";
+import q2Image from "../../images/tiny-card-data/tc1/question2Image.png";
+import q3Image from "../../images/tiny-card-data/tc1/question3Image.png";
+import AnswerButton from "../AnswerButton/AnswerButton.jsx";
 
 const tinyCardData = [
 	{

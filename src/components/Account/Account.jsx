@@ -1,13 +1,14 @@
 import { useMoralis } from "react-moralis";
-import { getEllipsisTxt } from "../../helpers/formatters";
-import Blockie from "../Blockie";
+import { getEllipsisTxt } from "../utils/formatters";
+import Blockie from "../utils/Blockie.jsx";
 import { Button, Card, Modal } from "antd";
 import { useState } from "react";
 import Address from "../Address/Address";
 import { SelectOutlined } from "@ant-design/icons";
-import { getExplorer } from "../../helpers/networks";
+import { getExplorer } from "../utils/networks";
 import Text from "antd/lib/typography/Text";
 import { connectors } from "./config";
+
 const styles = {
   account: {
     height: "42px",
@@ -17,11 +18,12 @@ const styles = {
     alignItems: "center",
     width: "fit-content",
     borderRadius: "12px",
-    backgroundColor: "rgb(244, 244, 244)",
+    backgroundColor: "rgb(50, 50, 50)",
     cursor: "pointer",
   },
   text: {
-    color: "#21BF96",
+    color: "#ffffff",
+    fontSize: "18px",
   },
   connector: {
     alignItems: "center",
@@ -41,6 +43,13 @@ const styles = {
     marginBottom: "8px",
     height: "30px",
   },
+  connectWallet: {
+    cursor: "pointer",
+    backgroundColor: "#53a3ff",
+    padding: "10px",
+    margin: "10px",
+    borderRadius: "25px"
+  }
 };
 
 function Account() {
@@ -52,8 +61,8 @@ function Account() {
   if (!isAuthenticated || !account) {
     return (
       <>
-        <div onClick={() => setIsAuthModalVisible(true)}>
-          <p style={styles.text}>Authenticate</p>
+        <div style={styles.connectWallet} onClick={() => setIsAuthModalVisible(true)}>
+          <p style={styles.text}>Connect Wallet</p>
         </div>
         <Modal
           visible={isAuthModalVisible}
@@ -186,5 +195,6 @@ function Account() {
     </>
   );
 }
+
 
 export default Account;

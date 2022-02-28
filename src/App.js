@@ -2,11 +2,12 @@ import "./App.css";
 import React from "react";
 import { useEffect } from "react";
 import { useMoralis } from "react-moralis";
-import Navbar from "./components/Navbar";
+import Navbar from "./components/Navbar/Navbar";
 //import Governance from "./pages/Governance";
-import Homepage from "./pages/Homepage.js";
+import Homepage from "./pages/Homepage/Homepage";
 //import Marketplace from "./pages/Marketplace";
 //import TinyCardPage from "./pages/TinyCardPage";
+import NFTDisplay from "./pages/NFTDisplay/index";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "antd/dist/antd.css";
 import { MoralisProvider } from "react-moralis";
@@ -29,13 +30,14 @@ const App = () => {
 		<BrowserRouter>
 			<Navbar />
 			<Routes>
-				<Route strict path={"/"} element={<Homepage />}></Route>
-				{/* <Route path={"/modules"} element={<TinyCardPage />}></Route>
-					<Route
-						path={"/governance"}
-						element={initialized ? <Governance /> : <LoadingSpinner />}
-					></Route> */}
-				<Route path={"*"} element={<PageNotFound />}></Route>
+				<Route strict path={"/"} element={<Homepage />} />
+				{/* <Route path={"/modules"} element={<TinyCardPage />}/>
+				<Route
+					path={"/governance"}
+					element={initialized ? <Governace /> : <LoadingSpinner />}
+				/> */}
+				<Route path={"/NFTs"} element={<NFTDisplay />} />
+				<Route path={"*"} element={<PageNotFound />} />
 			</Routes>
 		</BrowserRouter>
 	);
