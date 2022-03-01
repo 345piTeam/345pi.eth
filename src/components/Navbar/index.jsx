@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./Navbar.module.css";
+import styles from "./index.module.css";
 import logoImg from "../../images/345piUsLogo_H.png";
 import { Link, NavLink } from "react-router-dom";
 import { Tooltip } from "antd";
@@ -23,7 +23,7 @@ const Navbar = () => {
 				<Tooltip title={<span>prompt text</span>}>
 					<NavbarButton name="Home" link="/" />
 				</Tooltip>
-				<NavbarButton name="NFTs" link="/NFTs" />
+				<NavbarButton name="Account Information" link="/Account" />
 				<NavbarButton name="Governance" link="/governance" />
 			</div>
 			<div id={styles.walletConnectButton}>

@@ -22,6 +22,7 @@
     "@web3auth/web3auth": "^0.3.2",
     "antd": "^4.18.3",
     "dotenv": "^16.0.0",
+    "logrocket": "^2.2.0",
     "mathjax3-react": "^1.0.12",
     "react": "^17.0.0",
     "react-blockies": "^1.4.1",
