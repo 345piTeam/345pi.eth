@@ -1,30 +1,43 @@
 // SPDX-License-Identifier: MIT
 pragma solidity >=0.5.11 <0.9.0;
 
+import "./DarkLord.sol";
+import "hardhat/console.sol";
+
 contract ProposalList {
     // ProposalList global data
     uint public propCount;
     mapping (uint => Proposal) proposals;
     Proposal[] public propList;
-    mapping (uint => address) proposalCreators; // What is the point of this mapping?
+    mapping(uint => mapping(uint => Option))  optionList;
+    DarkLord darkLord;
 
+    struct Option{
+        uint id;
+        string name;
+        uint voteCount;
+        address creator;
+        string summary;
+    }
     struct Proposal{
         uint id;
         string name;
         address creator;
         string summary;
-        Option[] optionList;
     }
 
     constructor() {
         propCount = 0;
         addProposal(0, "Game Types", msg.sender, "What type of game");
         addProposal(1, "Other Proposal", msg.sender, "What kind of game do you prefer");
+        addOption(0,0,0, "Click-Based", "Primarily Multiple Choice and Mouse Games");
+        //vote(0,0);
+        darkLord  = new DarkLord();  
+        //console.log(optionList[0][0].voteCount);
     }
 
-    function addProposal (uint _id, string memory _name, address _creator, string memory _summary) public {
-        Option[] memory temp;
-        propList.push(Proposal(_id, _name, _creator, _summary, temp));
+    function addProposal (uint _id, string memory _name, address _creator, string memory _summary) private {
+        propList.push(Proposal(_id, _name, _creator, _summary));
         propCount ++;
     }
 
@@ -43,53 +56,26 @@ contract ProposalList {
 
     // Option getters
     function getOptionName(uint propIndex, uint index) public view returns(string memory){
-        return propList[propIndex].optionList[index].getName();
+        return optionList[propIndex][index].name;
     }
 
     function getOptionVoteCount(uint propIndex, uint index) public view returns(uint) {
-        return propList[propIndex].optionList[index].getVoteCount();
+        return optionList[propIndex][index].voteCount;
     }
-
     function getOptionCreator(uint propIndex, uint index) public view returns(address) {
-        return propList[propIndex].optionList[index].getCreator();
+        return optionList[propIndex][index].creator;
     }
 
     function getOptionSummary(uint propIndex, uint index) public view returns(string memory) {
-        return propList[propIndex].optionList[index].getSummary();
+        return optionList[propIndex][index].summary;
     }
-}
-
-contract Option {
-    uint id;
-    string name;
-    uint voteCount;
-    address creator;
-    string summary;
-
-    mapping (uint => Option) options;
-    Option[] public optionDataArray;
-
-    constructor(uint _id, string memory _name, string memory _summary) {
-        id = _id;
-        name = _name;
-        voteCount = 0;
-        creator = msg.sender;
-        summary = _summary;
+    function addOption(uint propIndex, uint index, uint _id, string memory _name, string memory _summary) public{
+        optionList[propIndex][index] = Option(_id, _name, 0, msg.sender, _summary);
     }
-
-    function getName() public view returns(string memory) {
-        return name;
-    }
-
-    function getVoteCount() public view returns(uint) {
-        return voteCount;
-    }
-
-    function getCreator() public view returns(address) {
-        return creator;
-    }
-
-    function getSummary() public view returns(string memory) {
-        return summary;
+    function vote(uint propIndex, uint index, address voter) public{
+        darkLord = new DarkLord();
+        if(darkLord.isOwner(voter)){
+            optionList[propIndex][index].voteCount += 7;
+        }
     }
 }
