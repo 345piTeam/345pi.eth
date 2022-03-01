@@ -1,0 +1,42 @@
+name: Tests
+
+on:
+  push:
+    branches:
+    - "*"
+    - "!main"
+
+jobs:
+  contract-tests:
+    name: Contract Tests
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v2
+      with:
+        node-version: 16.x
+        cache: 'npm'
+    - name: Install Hardhat
+      run: npm i --save-dev hardhat
+    - name: Test Contracts
+      run: npx hardhat test
+
+
+  frontend-tests:
+    name: Frontend Tests
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v2
+      with:
+        node-version: 16.x
+        cache: 'npm'
+    - name: Install Dependencies
+      run: npm i
+    - name: Test Frontend
+      env: 
+        REACT_APP_MORALIS_APPLICATION_ID: ${{secrets.REACT_APP_MORALIS_APPLICATION_ID}}
+        REACT_APP_MORALIS_SERVER_URL: ${{secrets.REACT_APP_MORALIS_SERVER_URL}}
+      run: npm run test
