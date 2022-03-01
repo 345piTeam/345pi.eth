@@ -9,6 +9,7 @@ import {
 import { getExplorer } from "../utils/networks";
 import AddressInput from "../utils/AddressInput";
 import { useVerifyMetadata } from "../utils/hooks/useVerifyMetadata";
+import "./index.css";
 
 const { Meta } = Card;
 
@@ -68,11 +69,10 @@ function NFTBalance() {
   const handleChange = (e) => {
     setAmount(e.target.value);
   };
-
-  console.log("NFTBalances", NFTBalances);
   return (
     <div style={{ padding: "15px", maxWidth: "1030px", width: "100%" }}>
       <h1>🖼 NFT Balances</h1>
+      {NFTBalances?.total === 0 ? <div id="noNFTWarning">No NFTs detected in this wallet...</div> : null}
       <div style={styles.NFTs}>
         <Skeleton loading={!NFTBalances?.result}>
           {NFTBalances?.result &&

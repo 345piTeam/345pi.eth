@@ -48,12 +48,6 @@
     color: white;
 }
 
-a {
-    text-decoration: none;
-    height: 100%;
-    font-size: 2em;
-}
-
 #walletConnectButton {
     display: flex;
     flex-direction: row;

@@ -2,12 +2,12 @@ import "./App.css";
 import React from "react";
 import { useEffect } from "react";
 import { useMoralis } from "react-moralis";
-import Navbar from "./components/Navbar/Navbar";
+import Navbar from "./components/Navbar/index";
 //import Governance from "./pages/Governance";
 import Homepage from "./pages/Homepage/Homepage";
 //import Marketplace from "./pages/Marketplace";
 //import TinyCardPage from "./pages/TinyCardPage";
-import NFTDisplay from "./pages/NFTDisplay/index";
+import Account from "./pages/Account/index";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "antd/dist/antd.css";
 import { MoralisProvider } from "react-moralis";
@@ -36,7 +36,7 @@ const App = () => {
 					path={"/governance"}
 					element={initialized ? <Governace /> : <LoadingSpinner />}
 				/> */}
-				<Route path={"/NFTs"} element={<NFTDisplay />} />
+				<Route path={"/Account"} element={<Account />} />
 				<Route path={"*"} element={<PageNotFound />} />
 			</Routes>
 		</BrowserRouter>
