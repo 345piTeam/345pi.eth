@@ -1,13 +1,13 @@
-import styles from "./index.css";
+import "./index.css";
 import React from "react";
-import NFTs from "../../components/NFTs/index"
+import NFTs from "../../components/NFTBalance/index"
 import ERC20Transactions from "../../components/ERC20Transfers/"
 
 
 const NFTDisplay = () => (
 	<div className="wrapper">
-		<NFTs />
-		<ERC20Transactions />
+		<div className="card"><NFTs /></div>
+		<div className="card"><ERC20Transactions /></div>
 	</div>
 );
 
