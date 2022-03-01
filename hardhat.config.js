@@ -30,10 +30,6 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
 	}
 });
 
-task("wallet", "Prints the current wallet", async (taskArgs, hre) => {
-	console.log(PRIVATE_KEY);
-});
-
 // You need to export an object to set up your config
 // Go to https://hardhat.org/config/ to learn more
 
