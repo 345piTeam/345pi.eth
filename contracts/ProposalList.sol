@@ -31,9 +31,6 @@ contract ProposalList {
         addProposal(0, "Game Types", msg.sender, "What type of game");
         addProposal(1, "Other Proposal", msg.sender, "What kind of game do you prefer");
         addOption(0,0,0, "Click-Based", "Primarily Multiple Choice and Mouse Games");
-        //vote(0,0);
-        darkLord  = new DarkLord();  
-        //console.log(optionList[0][0].voteCount);
     }
 
     function addProposal (uint _id, string memory _name, address _creator, string memory _summary) private {
@@ -72,10 +69,18 @@ contract ProposalList {
     function addOption(uint propIndex, uint index, uint _id, string memory _name, string memory _summary) public{
         optionList[propIndex][index] = Option(_id, _name, 0, msg.sender, _summary);
     }
-    function vote(uint propIndex, uint index, address voter) public{
-        darkLord = new DarkLord();
-        if(darkLord.isOwner(voter)){
+    function vote(uint propIndex, uint index) public{
+        if(darkLord.isOwner(msg.sender)){
             optionList[propIndex][index].voteCount += 7;
         }
+    }
+
+    // TODO: Restrict who can call this function
+    function setDarkLordAddress(address a) public {
+        darkLord = DarkLord(a);
+    }
+
+    function getDarkLordAddress() public returns(address) {
+        return darkLord;
     }
 }

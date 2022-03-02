@@ -18,7 +18,6 @@ contract DarkLord is ERC721, ERC721URIStorage, Ownable {
     Counters.Counter private _tokenIdCounter;
 
     constructor() ERC721("Dark Lord", "DKL") {
-        safeMint(0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266, "");
     }
 
     function _baseURI() internal pure override returns (string memory) {
