@@ -79,8 +79,4 @@ contract ProposalList {
     function setDarkLordAddress(address a) public {
         darkLord = DarkLord(a);
     }
-
-    function getDarkLordAddress() public returns(address) {
-        return darkLord;
-    }
 }
