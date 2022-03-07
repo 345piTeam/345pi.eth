@@ -23,6 +23,7 @@
   * Can automatically blur data and scrub network transactions to prevent stealing information
 * Automatically checks for errors in sessions
 * Makes debugging easier
+* Can also be used to automatically track transaction values to help calculate expected treasury size
 * Free for 5000 sessions per month
 ### [Hardhat](https://hardhat.org/)
 * Test-focused solidity development platform
