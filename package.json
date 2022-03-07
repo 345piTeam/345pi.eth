@@ -24,7 +24,9 @@
     "dotenv": "^16.0.0",
     "express": "^4.17.3",
     "logrocket": "^2.2.0",
+    "logrocket-react": "^5.0.1",
     "mathjax3-react": "^1.0.12",
+    "nvm": "^0.0.4",
     "react": "^17.0.0",
     "react-blockies": "^1.4.1",
     "react-dom": "^17.0.0",
@@ -36,7 +38,8 @@
     "start": "node server.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "dev": "react-scripts start"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -53,7 +56,7 @@
       "last 1 safari version"
     ]
   },
-  "engines": { 
+  "engines": {
     "node": "16.x"
-  } 
+  }
 }
