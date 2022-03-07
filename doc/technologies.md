@@ -24,3 +24,8 @@
 * Automatically checks for errors in sessions
 * Makes debugging easier
 * Free for 5000 sessions per month
+### [Hardhat](https://hardhat.org/)
+* Test-focused solidity development platform
+* Simpler than truffle/ganache
+* Easy to deploy to testnet
+* Covered extensively by DappCampp course videos
