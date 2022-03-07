@@ -1,6 +1,8 @@
 import LogRocket from "logrocket";
 import setupLogRocketReact from "logrocket-react";
-LogRocket.init("nirrdk/345pi");
+if (window.XMLHttpRequest) {
+	LogRocket.init("nirrdk/345pi");
+}
 
 async function connectToLogRocket(address) {
 	// This is an example script - don't forget to change it!
