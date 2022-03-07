@@ -35,8 +35,8 @@ jobs:
     - name: Caching node modules
       uses: actions/cache@v2
       with:
-        path: "app/node_modules"
-        key: node-modules-${{ hashFiles('app/package.json') }}
+        path: "~/.npm"
+        key: ${{ runner.OS }}-npm-cache-${{ hashFiles('**/package-lock.json')}}
 
     - name: Install NPM dependencies
       run: npm install
