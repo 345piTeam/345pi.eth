@@ -40,8 +40,6 @@ jobs:
 
     - name: Install NPM dependencies
       run: npm install
-    - name: Install Dependencies
-      run: npm i
     - name: Test Frontend
       env: 
         REACT_APP_MORALIS_APPLICATION_ID: ${{secrets.REACT_APP_MORALIS_APPLICATION_ID}}
