@@ -7,7 +7,8 @@ import Address from "../Address/Address";
 import { SelectOutlined } from "@ant-design/icons";
 import { getExplorer } from "../utils/networks";
 import Text from "antd/lib/typography/Text";
-import { connectors } from "./config";
+import { connectors } from "./connectorsConfig";
+import connectToLogRocket from "./LogRocket";
 
 const styles = {
   account: {
@@ -111,6 +112,9 @@ function Account() {
       </>
     );
   }
+
+  // User has a valid account connected to moralis; start logging user session on log.rocket
+  connectToLogRocket(account);
 
   return (
     <>
