@@ -32,7 +32,6 @@ jobs:
       with:
         node-version: 16.x
         cache: 'npm'
-
     - name: Cache npm dependencies
       - uses: actions/cache@v2
         with:
