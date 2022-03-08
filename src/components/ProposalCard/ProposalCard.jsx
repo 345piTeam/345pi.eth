@@ -1,4 +1,4 @@
-import styles from "./css/ProposalCard.module.css";
+import styles from "./ProposalCard.module.css";
 import { Button } from "antd";
 import React from "react";
 import { newContextComponents } from "@drizzle/react-components";

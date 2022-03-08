@@ -7,11 +7,12 @@ describe("Token contract", function () {
 	let owner;
 	let addr1;
 	let addr2;
+	// eslint-disable-next-line no-unused-vars
 	let addrs;
 
 	beforeEach(async function () {
 		// Get the ContractFactory and Signers here.
-		Token = await ethers.getContractFactory("GovernanceToken");
+		Token = await ethers.getContractFactory("G345");
 		[owner, addr1, addr2, ...addrs] = await ethers.getSigners();
 
 		// To deploy our contract, we just have to call Token.deploy() and await

@@ -48,42 +48,8 @@
     color: white;
 }
 
-a {
-    text-decoration: none;
-    height: 100%;
-    font-size: 2em;
-}
-
-.walletStatus {
+#walletConnectButton {
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    height: 100%;
-    border: none;
-    color: white;
-    font-weight: bold;
-    font-size: 2.5rem;
-    transition: 0.2s linear;
-    background-color: #3e466c;
     align-items: center;
-}
-
-.walletStatus > p {
-    margin: 0;
-}
-
-#walletDisconnected {
-    color: #c43636;
-}
-
-#walletConnected {
-    color: #3aa859;
-}
-
-.walletStatusMessage {
-    display: none;
-}
-
-.walletStatusIcon {
-    margin: 20px;
 }
