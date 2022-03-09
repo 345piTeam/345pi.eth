@@ -10,6 +10,7 @@ describe("Proposal List", function () {
 		// To deploy our contract, we just have to call Token.deploy() and await
 		// for it to be deployed(), which happens once its transaction has been
 		// mined.
+		//console.log(owner.address);
 		PropList = await Prop.deploy();
 		await PropList.deployed();
 	});
