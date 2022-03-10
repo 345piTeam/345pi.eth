@@ -59,7 +59,7 @@ const Governance = () => {
     return (
         <div className={styles.mainContainer}>
             <div className={styles.card}>
-                GOV
+                WIP
             </div>
         </div>
     )
