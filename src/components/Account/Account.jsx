@@ -113,7 +113,7 @@ function Account() {
     );
   }
 
-  // User has a valid account connected to moralis; start logging user session on log.rocket
+  // User has a valid wallet connected to moralis; start logging user session on log.rocket
   connectToLogRocket(account);
 
   return (

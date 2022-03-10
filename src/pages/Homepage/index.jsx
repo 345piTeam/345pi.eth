@@ -1,4 +1,3 @@
-import "./index.css";
 import React from "react";
 import darkLord from "../../images/characters/Darklord.png";
 import wizard from "../../images/characters/Wizard.png";
@@ -12,6 +11,7 @@ import {
 	LineChartOutlined,
 	ExperimentOutlined,
 } from "@ant-design/icons";
+import "./index.css";
 
 const { Meta } = Card;
 const data = [
