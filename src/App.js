@@ -1,19 +1,17 @@
-import "./App.css";
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import { useEffect } from "react";
-import { useMoralis } from "react-moralis";
-import Navbar from "./components/Navbar/index";
-//import Governance from "./pages/Governance";
-import Homepage from "./pages/Homepage/Homepage";
-//import Marketplace from "./pages/Marketplace";
-//import TinyCardPage from "./pages/TinyCardPage";
-import Account from "./pages/Account/index";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { MoralisProvider, useMoralis } from "react-moralis";
 import "antd/dist/antd.css";
-import { MoralisProvider } from "react-moralis";
+import "./App.css";
 
 const APP_ID = process.env.REACT_APP_MORALIS_APPLICATION_ID;
 const SERVER_URL = process.env.REACT_APP_MORALIS_SERVER_URL;
+
+const Account = lazy(() => import("./pages/Account/index"));
+const Homepage = lazy(() => import("./pages/Homepage/index"));
+const Navbar = lazy(() => import("./components/Navbar/index"));
+const Governance = lazy(() => import("./pages/Governance/index"));
 
 const App = () => {
 	const { isWeb3Enabled, enableWeb3, isAuthenticated, isWeb3EnableLoading } =
@@ -28,17 +26,15 @@ const App = () => {
 
 	return (
 		<BrowserRouter>
-			<Navbar />
-			<Routes>
-				<Route strict path={"/"} element={<Homepage />} />
-				{/* <Route path={"/modules"} element={<TinyCardPage />}/>
-				<Route
-					path={"/governance"}
-					element={initialized ? <Governace /> : <LoadingSpinner />}
-				/> */}
-				<Route path={"/Account"} element={<Account />} />
-				<Route path={"*"} element={<PageNotFound />} />
-			</Routes>
+			<Suspense fallback={<div>loading... </div>}>
+				<Navbar />
+				<Routes>
+					<Route strict path={"/"} element={<Homepage />} />
+					<Route path={"/Governance"} element={<Governance />} />
+					<Route path={"/Account"} element={<Account />} />
+					<Route path={"*"} element={<PageNotFound />} />
+				</Routes>
+			</Suspense>
 		</BrowserRouter>
 	);
 };
