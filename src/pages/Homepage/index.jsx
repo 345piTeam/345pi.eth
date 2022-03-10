@@ -11,7 +11,7 @@ import {
 	LineChartOutlined,
 	ExperimentOutlined,
 } from "@ant-design/icons";
-import "./index.css";
+import styles from "./index.module.css";
 
 const { Meta } = Card;
 const data = [
@@ -48,10 +48,10 @@ const data = [
 ];
 
 const Homepage = () => (
-	<div className="mainContainer">
-		<div className="backgroundContainer">
-			<div className="titleButtonContainer">
-				<div className="titleButton">
+	<div className={styles.mainContainer}>
+		<div className={styles.backgroundContainer}>
+			<div className={styles.titleButtonContainer}>
+				<div className={styles.titleButton}>
 					<a
 						href={"https://discord.gg/3UwWPeqE3F"}
 						target="_blank"
@@ -60,7 +60,7 @@ const Homepage = () => (
 						<h1>Join Our Discord</h1>
 					</a>
 				</div>
-				<div className="titleButton">
+				<div className={styles.titleButton}>
 					<Link to="/modules">
 						<h1>Play Calculus Modules</h1>
 					</Link>
@@ -68,30 +68,30 @@ const Homepage = () => (
 			</div>
 		</div>
 
-		<div className="gameDescriptionContainer">
-			<Row className="gameDescriptionRow">
+		<div className={styles.gameDescriptionContainer}>
+			<Row className={styles.gameDescriptionRow}>
 				<Col span={8}>
-					<div className="gameDescriptionCell">
+					<div className={styles.gameDescriptionCell}>
 						<h2>Connect Your Digital Wallet</h2>
 						<WalletOutlined style={{ fontSize: "8em", color: "white" }} />
 					</div>
 				</Col>
 				<Col span={8}>
-					<div className="gameDescriptionCell">
+					<div className={styles.gameDescriptionCell}>
 						<h2>Play Calculus Modules</h2>
 						<LineChartOutlined style={{ fontSize: "8em", color: "white" }} />
 					</div>
 				</Col>
 				<Col span={8}>
-					<div className="gameDescriptionCell">
+					<div className={styles.gameDescriptionCell}>
 						<h2>Monetize Your Content</h2>
 						<ExperimentOutlined style={{ fontSize: "8em", color: "white" }} />
 					</div>
 				</Col>
 			</Row>
 		</div>
-		<div className="characterDescriptionContainer">
-			<div className="characterDescriptionTitleContainer">
+		<div className={styles.characterDescriptionContainer}>
+			<div className={styles.characterDescriptionTitleContainer}>
 				<h1>CHARACTER NFTS</h1>
 			</div>
 			<List

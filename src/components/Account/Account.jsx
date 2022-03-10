@@ -2,7 +2,7 @@ import { useMoralis } from "react-moralis";
 import { getEllipsisTxt } from "../utils/formatters";
 import Blockie from "../utils/Blockie.jsx";
 import { Button, Card, Modal } from "antd";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Address from "../Address/Address";
 import { SelectOutlined } from "@ant-design/icons";
 import { getExplorer } from "../utils/networks";
@@ -53,11 +53,33 @@ const styles = {
   }
 };
 
+const targetNetworkId = '0x3';
+
+const checkNetwork = async () => {
+  if (window.ethereum) {
+    const currentChainId = await window.ethereum.request({
+      method: 'eth_chainId',
+    });
+
+    // return true if network id is the same
+    if (currentChainId === targetNetworkId) return true;
+    // return false is network id is different
+    return false;
+  }
+};
+
 function Account() {
   const { authenticate, isAuthenticated, account, chainId, logout } =
     useMoralis();
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [isAuthModalVisible, setIsAuthModalVisible] = useState(false);
+
+  useEffect(() => {
+    if(isAuthenticated) {
+      // User has a valid wallet connected to moralis; start logging user session on log.rocket
+      connectToLogRocket(account);
+    }
+  }, [isAuthenticated, account])
 
   if (!isAuthenticated || !account) {
     return (
@@ -95,9 +117,18 @@ function Account() {
                 key={key}
                 onClick={async () => {
                   try {
-                    await authenticate({ provider: connectorId });
+                    await authenticate({ provider: connectorId, chainId: targetNetworkId });
                     window.localStorage.setItem("connectorId", connectorId);
                     setIsAuthModalVisible(false);
+                    console.log(await checkNetwork());
+                    if(!await checkNetwork()) {
+                      console.log("changing network...");
+                      await window.ethereum.request({
+                        method: 'wallet_switchEthereumChain',
+                        params: [{ chainId: targetNetworkId }],
+                      });
+                      console.log("network changed!");
+                    }
                   } catch (e) {
                     console.error(e);
                   }
@@ -113,12 +144,9 @@ function Account() {
     );
   }
 
-  // User has a valid wallet connected to moralis; start logging user session on log.rocket
-  connectToLogRocket(account);
-
   return (
     <>
-      {/* <button
+     {/* <button
         onClick={async () => {
           try {
             console.log("change")
@@ -133,7 +161,7 @@ function Account() {
         }}
       >
         Hi
-      </button> */}
+      </button>*/}
       <div style={styles.account} onClick={() => setIsModalVisible(true)}>
         <p style={{ marginRight: "5px", ...styles.text }}>
           {getEllipsisTxt(account, 6)}
