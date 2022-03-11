@@ -44,12 +44,13 @@ describe("Proposal List", function () {
 				});
 		});
 		it("Initializes the options with the correct values", async function () {
-            const optionName = await PropList.getOptionName(0, 0);
-            const optionSummary = await PropList.getOptionSummary(0, 0); 
-            expect(optionName).to.equal("Click-Based");
-            expect(optionSummary).to.equal("Primarily Multiple Choice and Mouse Games");
+			const optionName = await PropList.getOptionName(0, 0);
+			const optionSummary = await PropList.getOptionSummary(0, 0);
+			expect(optionName).to.equal("Click-Based");
+			expect(optionSummary).to.equal(
+				"Primarily Multiple Choice and Mouse Games"
+			);
 		});
-		
 	});
 
 	describe("Voting", function () {
@@ -66,9 +67,9 @@ describe("Proposal List", function () {
 			expect(voteCount).to.equal(7);
 		});
 		it("Cannot Cast vote if not Dark Lord", async function () {
-			await PropList.connect(addr1).vote(0, 0);
-			const voteCount = await PropList.getOptionVoteCount(0, 0);
-			expect(voteCount).to.equal(0);
+			await expect(PropList.connect(addr1).vote(0, 0)).to.be.revertedWith(
+				"You aren't authorized to vote"
+			);
 		});
 	});
 });
