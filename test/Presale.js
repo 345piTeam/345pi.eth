@@ -34,11 +34,5 @@ describe("Presale", function () {
             console.log(after);
 			expect(after-before).to.equal(0.005);
 		});
-		it("Added to contract balance", async function () {
-			const before = await Presale.balance;
-			await Presale.connect(addr2).invest(5);
-			const after = await PreSale.balance;
-			expect(after - before).to.equal(0.005);
-		});
 	});
 });
