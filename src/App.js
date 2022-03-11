@@ -8,6 +8,7 @@ import Homepage from "./pages/Homepage.js";
 //import TinyCardPage from "./pages/TinyCardPage";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "antd/dist/antd.css";
+import Marketplace from "./pages/Marketplace";
 
 const App = () => (
 	<React.StrictMode>
@@ -20,6 +21,7 @@ const App = () => (
 							path={"/governance"}
 							element={initialized ? <Governance /> : <LoadingSpinner />}
 						></Route> */}
+				{/*<Route path={"/marketplace"} element={<Marketplace />}></Route>*/}
 				<Route path={"*"} element={<PageNotFound />}></Route>
 			</Routes>
 		</BrowserRouter>

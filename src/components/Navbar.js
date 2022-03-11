@@ -60,6 +60,7 @@ const Navbar = () => {
 				</Tooltip>
 				<NavbarButton name="Calculus Modules" link="/modules" />
 				<NavbarButton name="Governance" link="/governance" />
+				<NavbarButton name="Marketplace" link="/marketplace" />
 			</div>
 			<div className={styles.walletStatusContainer}>
 				{initialized ? <WalletConnected /> : <WalletDisconnected />}
