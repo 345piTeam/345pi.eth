@@ -1,8 +1,9 @@
 pragma solidity ^0.8.0;
 
-import "./Wizard.sol";
+import "@openzeppelin/contracts/token/ERC721/IERC721.sol";
+import "@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol";
 
-contract Presale {
+contract Presale is IERC721Receiver {
     mapping(address => bool) public isInvestor;
     address public wizardNFT = 0x9A676e781A523b5d0C0e43731313A708CB607508;
     address public admin;
@@ -24,12 +25,21 @@ contract Presale {
         emit NewInvestment(msg.sender);
         (bool success,) = admin.call{value: msg.value}("");
         require(success, "Failed to send money");
-        IERC721(wizardNFT).transferFrom(address(this), msg.sender, tokenId);
+        IERC721(wizardNFT).safeTransferFrom(address(this), msg.sender, tokenId);
         tokenId += 1;
         isInvestor[msg.sender] = true;
     }
 
     function isInvested(address a) public view returns (bool) {
         return isInvestor[a];
+    }
+
+    function onERC721Received(
+        address operator,
+        address from,
+        uint256 tokenId,
+        bytes calldata data
+    ) external override returns (bytes4){
+        return IERC721Receiver.onERC721Received.selector;
     }
 }
