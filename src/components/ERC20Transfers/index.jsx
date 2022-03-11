@@ -2,9 +2,9 @@ import React from "react";
 import { useMoralis } from "react-moralis";
 import { getEllipsisTxt } from "../utils/formatters";
 import { getExplorer } from "../utils/networks";
-import "antd/dist/antd.css";
 import { Skeleton, Table } from "antd";
 import { useERC20Transfers } from "../utils/hooks/useERC20Transfers";
+import "antd/dist/antd.css";
 
 function ERC20Transfers() {
   const { ERC20Transfers, chainId } = useERC20Transfers();

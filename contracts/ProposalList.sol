@@ -69,10 +69,15 @@ contract ProposalList {
     function addOption(uint propIndex, uint index, uint _id, string memory _name, string memory _summary) public{
         optionList[propIndex][index] = Option(_id, _name, 0, msg.sender, _summary);
     }
+
     function vote(uint propIndex, uint index) public{
-        if(darkLord.isOwner(msg.sender)){
-            optionList[propIndex][index].voteCount += 7;
-        }
+        require(authorizedToVote(), "You aren't authorized to vote");
+        optionList[propIndex][index].voteCount += 7;
+    }
+
+    // Can be expanded for multiple NFTs
+    function authorizedToVote() private view returns(bool) {
+        return darkLord.isOwner(msg.sender);
     }
 
     // TODO: Restrict who can call this function
