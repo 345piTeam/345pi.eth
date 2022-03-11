@@ -56,6 +56,9 @@ const Governance = () => {
     }, [proposalList])
 
 
+    
+
+
     return (
         <div className={styles.mainContainer}>
             <div className={styles.card}>
