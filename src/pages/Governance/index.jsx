@@ -2,6 +2,8 @@ import styles from "./index.module.css";
 import React, {useState, useEffect} from "react";
 import axios from "axios"
 import {ethers} from "ethers";
+import ProposalCard from "../../components/ProposalCard";
+import { Pagination } from "antd"
 
 
 const data = {
@@ -15,8 +17,21 @@ const data = {
     }
 }
 
+
+const temp = [
+    {"title": "nolan",
+    "creator": "0x11111"},
+    {"title": "jon",
+    "creator": "0x11112"}
+]
+
 const Governance = () => {
+    // Will be moved to context provider
     const [proposalList, setProposalList] = useState();
+
+    const [currentPage, setCurrentPage] = useState(1);
+	const [proposalCount, setProposalCount] = useState(2);
+	const [displayCount, setDisplayCount] = useState(10);
 
     // Setup contract connection
     // TODO: setup storage for contract in context provider
@@ -47,8 +62,7 @@ const Governance = () => {
     useEffect(() => {
         (async () => {
             if(proposalList) {
-                console.log(await proposalList.propCount());
-                console.log(await proposalList.propList(0));
+                setProposalCount(await proposalList.propCount())
             }
         })().catch(err => {
             console.error(err);
@@ -56,14 +70,32 @@ const Governance = () => {
     }, [proposalList])
 
 
-    
+    const displayProposals = () => {
+		const minIndex = currentPage * displayCount - displayCount;
+		const maxIndex = currentPage * displayCount;
+
+		return temp?.map((d, index) =>
+			index < maxIndex && index >= minIndex ? (
+				<ProposalCard propData={d} key={index} />
+			) : null
+		);
+	};
 
 
     return (
         <div className={styles.mainContainer}>
-            <div className={styles.card}>
-                WIP
-            </div>
+            {displayProposals()}
+            <Pagination total={proposalCount}
+				onChange={(page) => {
+					setCurrentPage(page);
+				}}
+				onShowSizeChange={(current, size) => {
+					setCurrentPage(current);
+					setDisplayCount(size);
+				}}
+				defaultPageSize={6}
+				showSizeChanger={true}
+				pageSizeOptions={[6, 10, 15]} />
         </div>
     )
 }

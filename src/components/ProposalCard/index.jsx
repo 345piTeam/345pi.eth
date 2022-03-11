@@ -1,25 +1,12 @@
-import styles from "./ProposalCard.module.css";
+import styles from "./index.module.css";
 import { Button } from "antd";
 import React from "react";
-import { newContextComponents } from "@drizzle/react-components";
 
-const { ContractData } = newContextComponents;
-
-let globalDrizzle, globalDrizzleState;
-
-const ProposalCard = ({ drizzle, drizzleState, propsalIndex }) => {
-	globalDrizzle = drizzle;
-	globalDrizzleState = drizzleState;
+const ProposalCard = ({propData}) => {
 	return (
 		<div className={styles.proposalContainer}>
 			<div className={styles.title}>
-				<ContractData
-					drizzle={drizzle}
-					drizzleState={drizzleState}
-					contract="ProposalList"
-					method="getName"
-					methodArgs={[propsalIndex]}
-				/>
+				{propData.title}
 			</div>
 			<div className={styles.optionsContainer}>
 				<div className={styles.optionsRow + " " + styles.optionsRowHeader}>
@@ -53,13 +40,7 @@ const ProposalCard = ({ drizzle, drizzleState, propsalIndex }) => {
 			</div>
 			<div className={styles.creator}>
 				<p>CREATOR: </p>
-				<ContractData
-					drizzle={drizzle}
-					drizzleState={drizzleState}
-					contract="ProposalList"
-					method="getCreator"
-					methodArgs={[propsalIndex]}
-				/>
+				{propData.creator}
 			</div>
 			<div className={styles.inspect}>
 				<Button className={styles.inspectButton} ghost={true}>
@@ -69,7 +50,7 @@ const ProposalCard = ({ drizzle, drizzleState, propsalIndex }) => {
 		</div>
 	);
 };
-
+/*
 // eslint-disable-next-line
 const Options = ({ propIndex, optionIndex }) => (
 	<div className={styles.optionsRow}>
@@ -102,5 +83,6 @@ const Options = ({ propIndex, optionIndex }) => (
 		</div>
 	</div>
 );
+*/
 
 export default ProposalCard;
