@@ -2,6 +2,7 @@ pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/token/ERC721/IERC721.sol";
 import "@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol";
+import "hardhat/console.sol";
 
 contract Presale is IERC721Receiver {
     mapping(address => bool) public isInvestor;
@@ -10,7 +11,7 @@ contract Presale is IERC721Receiver {
     uint public wizardCost = 5;
     uint public end;
     bool public finalized;
-    uint public tokenId;
+    uint public tokenId = 0;
 
     event NewInvestment(address investor);
 
@@ -19,9 +20,9 @@ contract Presale is IERC721Receiver {
         end = block.timestamp + 7 days;
     }
     
-    function invest(uint amount) external payable {
+    function invest(uint amount) public payable {
         //require(block.timestamp < end, 'too late');
-        require(amount >= wizardCost/1000, "The investment minimum is 0.0005 eth");
+        require(amount >= wizardCost/1000, "The investment minimum is 0.005 eth");
         emit NewInvestment(msg.sender);
         (bool success,) = admin.call{value: msg.value}("");
         require(success, "Failed to send money");
@@ -41,5 +42,9 @@ contract Presale is IERC721Receiver {
         bytes calldata data
     ) external override returns (bytes4){
         return IERC721Receiver.onERC721Received.selector;
+    }
+
+    function contractBalance() public view returns(uint) {
+        return address(this).balance;
     }
 }
