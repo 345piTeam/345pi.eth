@@ -19,8 +19,8 @@ const Governance = () => {
     const [proposalList, setProposalList] = useState();
 
     // Setup contract connection
-    // TODO: setup storage in provider
-    // TODO: move to account component
+    // TODO: setup storage for contract in context provider
+    // TODO: move section to account component (fire when isAthenticated)
     useEffect(() => {
         (async () => {
             let response;
