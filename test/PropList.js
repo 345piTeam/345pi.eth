@@ -18,31 +18,22 @@ describe("Proposal List", function () {
 	describe("Deployment", function () {
 		// `it` is another Mocha function. This is the one you use to define your
 		// tests. It receives the test name, and a callback function.
-		it("Initializes with two proposals", function () {
-			return PropList.deployed()
-				.then(function (instance) {
-					return instance.propCount();
-				})
-				.then(function (count) {
-					expect(count).to.equal(2);
-				});
+		it("Initializes with two proposals", async function () {
+			expect(await PropList.propCount()).to.equal(2);
 		});
-		it("Initializes the proposals with the correct values", function () {
-			return PropList.deployed()
-				.then(function (instance) {
-					proposalInstance = instance;
-					return proposalInstance.propList(0);
-				})
-				.then(function (proposal) {
-					expect(proposal.id).to.equal(0);
-					expect(proposal.name).to.equal("Game Types");
-					return proposalInstance.propList(1);
-				})
-				.then(function (proposal) {
-					expect(proposal.id).to.equal(1);
-					expect(proposal.name).to.equal("Other Proposal");
-				});
+
+		it("Initializes the proposals with the correct values", async function () {
+			const response1 = await PropList.getProposalData(0);
+			expect(response1[0]).to.equal("Game Types");
+			expect(response1[1]).to.equal(owner.address);
+			expect(response1[2]).to.equal("What type of game");
+
+			const response2 = await PropList.getProposalData(1);
+			expect(response2[0]).to.equal("Other Proposal");
+			expect(response2[1]).to.equal(owner.address);
+			expect(response2[2]).to.equal("What kind of game do you prefer");
 		});
+
 		it("Initializes the options with the correct values", async function () {
 			const optionName = await PropList.getOptionName(0, 0);
 			const optionSummary = await PropList.getOptionSummary(0, 0);

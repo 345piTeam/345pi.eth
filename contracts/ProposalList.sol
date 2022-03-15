@@ -7,72 +7,61 @@ import "hardhat/console.sol";
 contract ProposalList {
     // ProposalList global data
     uint public propCount;
-    mapping (uint => Proposal) proposals;
-    Proposal[] public propList;
-    mapping(uint => mapping(uint => Option))  optionList;
-    DarkLord darkLord;
+    Proposal[] private propList;
+    mapping(uint => mapping(uint => Option)) optionMap;
+    DarkLord private darkLord;
 
     struct Option{
-        uint id;
+        uint256 id;
         string name;
-        uint voteCount;
+        uint256 voteCount;
         address creator;
         string summary;
     }
     struct Proposal{
-        uint id;
+        uint256 id;
         string name;
         address creator;
         string summary;
+        uint256 optionCount;
     }
 
     constructor() {
         propCount = 0;
-        addProposal(0, "Game Types", msg.sender, "What type of game");
-        addProposal(1, "Other Proposal", msg.sender, "What kind of game do you prefer");
-        addOption(0,0,0, "Click-Based", "Primarily Multiple Choice and Mouse Games");
+        addProposal("Game Types", "What type of game");
+        addProposal("Other Proposal", "What kind of game do you prefer");
+        addOption(0, "Click-Based", "Using the mouse");
+        addOption(0, "Keyboard-Based", "Using the keyboard");
     }
 
-    function addProposal (uint _id, string memory _name, address _creator, string memory _summary) private {
-        propList.push(Proposal(_id, _name, _creator, _summary));
+    function addProposal(string memory _name, string memory _summary) private {
+        propList.push(Proposal(propCount, _name, msg.sender, _summary, 0));
         propCount ++;
     }
 
-    // Proposal getters
-    function getName(uint propIndex) public view returns(string memory) {
-        return propList[propIndex].name;
+
+    // Proposal getter
+    function getProposalData(uint id) public view returns(string memory, address, string memory, uint256) {
+        return (propList[id].name, propList[id].creator, propList[id].summary, propList[id].optionCount);
     }
 
-    function getCreator(uint propIndex) public view returns(address) {
-        return propList[propIndex].creator;
+    function getOptions(uint propId) public view returns(Option[] memory) {
+        Option[] memory optionList;
+        for(uint i = 0; i < propList[propId].optionCount; i++) {
+            optionList[i] = optionMap[propId][i];
+        }
+        return optionList;
     }
 
-    function getSummary(uint propIndex) public view returns(string memory) {
-        return propList[propIndex].summary;
-    }
-
-    // Option getters
-    function getOptionName(uint propIndex, uint index) public view returns(string memory){
-        return optionList[propIndex][index].name;
-    }
-
-    function getOptionVoteCount(uint propIndex, uint index) public view returns(uint) {
-        return optionList[propIndex][index].voteCount;
-    }
-    function getOptionCreator(uint propIndex, uint index) public view returns(address) {
-        return optionList[propIndex][index].creator;
-    }
-
-    function getOptionSummary(uint propIndex, uint index) public view returns(string memory) {
-        return optionList[propIndex][index].summary;
-    }
-    function addOption(uint propIndex, uint index, uint _id, string memory _name, string memory _summary) public{
-        optionList[propIndex][index] = Option(_id, _name, 0, msg.sender, _summary);
+    function addOption(uint propId, string memory _name, string memory _summary) public {
+        uint newOptionIndex = propList[propId].optionCount;
+        optionMap[propId][newOptionIndex] = Option(newOptionIndex, _name, 0, msg.sender, _summary);
+        propList[propId].optionCount += 1;
     }
 
     function vote(uint propIndex, uint index) public{
         require(authorizedToVote(), "You aren't authorized to vote");
-        optionList[propIndex][index].voteCount += 7;
+        optionMap[propIndex][index].voteCount += 7;
     }
 
     // Can be expanded for multiple NFTs
