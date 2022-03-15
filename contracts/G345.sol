@@ -8,6 +8,7 @@ import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Votes.sol";
 
 /// @custom:security-contact nolan@345pi.com
 contract G345 is ERC20, Ownable, ERC20Permit, ERC20Votes {
+    uint256 supply = 1000000;
     constructor()
         ERC20("G345", "G")
         ERC20Permit("G345")
