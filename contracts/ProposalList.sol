@@ -28,10 +28,10 @@ contract ProposalList {
 
     constructor() {
         propCount = 0;
-        initialProposal();
+        _initialProposal();
     }
 
-    function initialProposal() private {
+    function _initialProposal() private {
         addProposal("Game Types", "What type of game");
         addProposal("Other Proposal", "What kind of game do you prefer");
         addOption(0, "Click-Based", "Using the mouse");
@@ -65,12 +65,12 @@ contract ProposalList {
     }
 
     function vote(uint propIndex, uint index) public{
-        require(authorizedToVote(), "You aren't authorized to vote");
+        require(_authorizedToVote(), "You aren't authorized to vote");
         optionMap[propIndex][index].voteCount += 7;
     }
 
     // Can be expanded for multiple NFTs
-    function authorizedToVote() private view returns(bool) {
+    function _authorizedToVote() private view returns(bool) {
         return darkLord.isOwner(msg.sender);
     }
 
