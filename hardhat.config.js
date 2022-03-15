@@ -38,6 +38,10 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
  */
 module.exports = {
 	solidity: "0.8.4",
+	optimizer: {
+		enabled: true,
+		runs: 1000000,
+	},
 	networks: {
 		ropsten: {
 			url: URL,

@@ -10,8 +10,8 @@ app.listen(port, () => console.log(`Listening on port ${port}`));
 app.use(express.static(path.resolve(__dirname, "./build")));
 
 // create a GET route
-app.get("/express_backend", (req, res) => {
-	res.send({ express: "YOUR EXPRESS BACKEND IS CONNECTED TO REACT" });
+app.get("/contract-data", (req, res) => {
+	res.sendFile(path.resolve(__dirname, "data", "contractData.json"));
 });
 
 app.get("*", (req, res) => {
