@@ -17,17 +17,29 @@ const data = {
     }
 }
 
-
-const temp = [
-    {"title": "nolan",
-    "creator": "0x11111"},
-    {"title": "jon",
-    "creator": "0x11112"}
-]
-
 const Governance = () => {
     // Will be moved to context provider
     const [proposalList, setProposalList] = useState();
+    const [proposalData, setProposalData] = useState([
+        {
+            "title": "nolan",
+            "creator": "0x11111",
+            "options": [
+                {
+
+                }
+            ]
+        },
+        {
+            "title": "jon",
+            "creator": "0x11112",
+            "options": [
+                {
+                    
+                }
+            ]
+        }
+    ]);
 
     const [currentPage, setCurrentPage] = useState(1);
 	const [proposalCount, setProposalCount] = useState(2);
@@ -74,7 +86,7 @@ const Governance = () => {
 		const minIndex = currentPage * displayCount - displayCount;
 		const maxIndex = currentPage * displayCount;
 
-		return temp?.map((d, index) =>
+		return proposalData?.map((d, index) =>
 			index < maxIndex && index >= minIndex ? (
 				<ProposalCard propData={d} key={index} />
 			) : null
