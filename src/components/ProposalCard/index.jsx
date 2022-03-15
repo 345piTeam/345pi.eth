@@ -1,5 +1,5 @@
 import styles from "./index.module.css";
-import { Button, Skeleton } from "antd";
+import { Skeleton } from "antd";
 import React from "react";
 
 const ProposalCard = ({propData}) => {
@@ -7,7 +7,7 @@ const ProposalCard = ({propData}) => {
 		<div className={styles.proposalContainer}>
 			<div className={styles.title}>
 				{propData.name}
-				<p>{propData.summary}</p>
+				<p style={{"fontSize": "16px"}}>{propData.summary}</p>
 			</div>
 			<div className={styles.optionsContainer}>
 				<div className={styles.optionsRow + " " + styles.optionsRowHeader}>
@@ -46,8 +46,7 @@ const ProposalCard = ({propData}) => {
 				*/}
 			</div>
 			<div className={styles.creator}>
-				<p>CREATOR: </p>
-				{propData.creator}
+				<p>CREATOR: {propData.creator}</p>
 			</div>
 			{/* <div className={styles.inspect}>
 				<Button className={styles.inspectButton} ghost={true}>
@@ -60,7 +59,6 @@ const ProposalCard = ({propData}) => {
 		</div>
 };
 
-// eslint-disable-next-line
 const Option = ({data}) => (
 	<div className={styles.optionsRow}>
 		<div className={styles.optionsCell}>
