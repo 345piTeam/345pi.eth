@@ -35,12 +35,11 @@ describe("Proposal List", function () {
 		});
 
 		it("Initializes the options with the correct values", async function () {
-			const optionName = await PropList.getOptionName(0, 0);
-			const optionSummary = await PropList.getOptionSummary(0, 0);
-			expect(optionName).to.equal("Click-Based");
-			expect(optionSummary).to.equal(
-				"Primarily Multiple Choice and Mouse Games"
-			);
+			const response1 = await PropList.getOptions(0);
+			const optionName1 = response1[0].name;
+			const optionSummary1 = response1[0].summary;
+			expect(optionName1).to.equal("Click-Based");
+			expect(optionSummary1).to.equal("Using the mouse");
 		});
 	});
 
@@ -54,9 +53,10 @@ describe("Proposal List", function () {
 		});
 		it("Dark Lord Casts Vote", async function () {
 			await PropList.vote(0, 0);
-			const voteCount = await PropList.getOptionVoteCount(0, 0);
-			expect(voteCount).to.equal(7);
+			const voteCount = await PropList.getOptions(0);
+			expect(voteCount[0].voteCount).to.equal(7);
 		});
+
 		it("Cannot Cast vote if not Dark Lord", async function () {
 			await expect(PropList.connect(addr1).vote(0, 0)).to.be.revertedWith(
 				"You aren't authorized to vote"

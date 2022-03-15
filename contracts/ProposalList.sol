@@ -28,6 +28,10 @@ contract ProposalList {
 
     constructor() {
         propCount = 0;
+        initialProposal();
+    }
+
+    function initialProposal() private {
         addProposal("Game Types", "What type of game");
         addProposal("Other Proposal", "What kind of game do you prefer");
         addOption(0, "Click-Based", "Using the mouse");
@@ -46,8 +50,9 @@ contract ProposalList {
     }
 
     function getOptions(uint propId) public view returns(Option[] memory) {
-        Option[] memory optionList;
-        for(uint i = 0; i < propList[propId].optionCount; i++) {
+        uint size = propList[propId].optionCount;
+        Option[] memory optionList = new Option[](size);
+        for(uint i = 0; i < size; i++) {
             optionList[i] = optionMap[propId][i];
         }
         return optionList;
