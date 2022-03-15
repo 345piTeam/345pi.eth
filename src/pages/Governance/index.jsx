@@ -2,6 +2,8 @@ import styles from "./index.module.css";
 import React, {useState, useEffect} from "react";
 import axios from "axios"
 import {ethers} from "ethers";
+import ProposalCard from "../../components/ProposalCard";
+import { Pagination } from "antd"
 
 
 const data = {
@@ -10,13 +12,19 @@ const data = {
         "address": "0x833ee817125Df6c8fda55D15a528ED4878f65B60"
     },
     "ProposalList": {
-        "abi": [{"inputs":[],"stateMutability":"nonpayable","type":"constructor"},{"inputs":[{"internalType":"uint256","name":"propIndex","type":"uint256"},{"internalType":"uint256","name":"index","type":"uint256"},{"internalType":"uint256","name":"_id","type":"uint256"},{"internalType":"string","name":"_name","type":"string"},{"internalType":"string","name":"_summary","type":"string"}],"name":"addOption","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"propIndex","type":"uint256"}],"name":"getCreator","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"propIndex","type":"uint256"}],"name":"getName","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"propIndex","type":"uint256"},{"internalType":"uint256","name":"index","type":"uint256"}],"name":"getOptionCreator","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"propIndex","type":"uint256"},{"internalType":"uint256","name":"index","type":"uint256"}],"name":"getOptionName","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"propIndex","type":"uint256"},{"internalType":"uint256","name":"index","type":"uint256"}],"name":"getOptionSummary","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"propIndex","type":"uint256"},{"internalType":"uint256","name":"index","type":"uint256"}],"name":"getOptionVoteCount","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"propIndex","type":"uint256"}],"name":"getSummary","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"propCount","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"propList","outputs":[{"internalType":"uint256","name":"id","type":"uint256"},{"internalType":"string","name":"name","type":"string"},{"internalType":"address","name":"creator","type":"address"},{"internalType":"string","name":"summary","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"a","type":"address"}],"name":"setDarkLordAddress","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"propIndex","type":"uint256"},{"internalType":"uint256","name":"index","type":"uint256"}],"name":"vote","outputs":[],"stateMutability":"nonpayable","type":"function"}],
-        "address": "0x649b3627eBA9831A652E242C4686d4fA0991EADf"
+        "abi": [{"inputs":[],"stateMutability":"nonpayable","type":"constructor"},{"inputs":[{"internalType":"uint256","name":"propId","type":"uint256"},{"internalType":"string","name":"_name","type":"string"},{"internalType":"string","name":"_summary","type":"string"}],"name":"addOption","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"propId","type":"uint256"}],"name":"getOptions","outputs":[{"components":[{"internalType":"uint256","name":"id","type":"uint256"},{"internalType":"string","name":"name","type":"string"},{"internalType":"uint256","name":"voteCount","type":"uint256"},{"internalType":"address","name":"creator","type":"address"},{"internalType":"string","name":"summary","type":"string"}],"internalType":"struct ProposalList.Option[]","name":"","type":"tuple[]"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"id","type":"uint256"}],"name":"getProposalData","outputs":[{"internalType":"string","name":"","type":"string"},{"internalType":"address","name":"","type":"address"},{"internalType":"string","name":"","type":"string"},{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"propCount","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"a","type":"address"}],"name":"setDarkLordAddress","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"propIndex","type":"uint256"},{"internalType":"uint256","name":"index","type":"uint256"}],"name":"vote","outputs":[],"stateMutability":"nonpayable","type":"function"}],
+        "address": "0xFf003fD78700483962617becA9430DfDCc0a6fC1"
     }
 }
 
 const Governance = () => {
+    // Will be moved to context provider
     const [proposalList, setProposalList] = useState();
+    const [proposalData, setProposalData] = useState(null);
+
+    const [currentPage, setCurrentPage] = useState(1);
+	const [proposalCount, setProposalCount] = useState(2);
+	const [displayCount, setDisplayCount] = useState(5);
 
     // Setup contract connection
     // TODO: setup storage for contract in context provider
@@ -43,12 +51,11 @@ const Governance = () => {
     }, [])
 
 
-    // Test print contract interactions
+    // Set number of total proposals
     useEffect(() => {
         (async () => {
             if(proposalList) {
-                console.log(await proposalList.propCount());
-                console.log(await proposalList.propList(0));
+                setProposalCount(await proposalList.propCount())
             }
         })().catch(err => {
             console.error(err);
@@ -56,11 +63,82 @@ const Governance = () => {
     }, [proposalList])
 
 
+    async function fetchProposals(minIndex, maxIndex) {
+        if(!proposalList) {
+            return null;
+        }
+        let ret = [];
+
+        for(let i = minIndex; i < maxIndex; i++) {
+            // Prevent reading proposal indecies that don't exist
+            // only a problem if proposalCount < displayCount
+            if(i >= proposalCount) {
+                break;
+            }
+
+            const propResponse = await proposalList.getProposalData(i);
+            if(!propResponse) {
+                continue;
+            }
+            const optionResponse= await proposalList.getOptions(i);
+            let prop = {};
+            prop.name = propResponse[0];
+            prop.id = i;
+            prop.creator = propResponse[1];
+            prop.summary = propResponse[2];
+            prop.optionCount = propResponse[3].toString();
+            let options = [];
+            for(let j = 0; j < prop.optionCount; j++) {
+                let tempOption = {};
+                tempOption.id = j;
+                tempOption.name = optionResponse[j].name;
+                tempOption.summary = optionResponse[j].summary;
+                tempOption.creator = optionResponse[j].creator;
+                tempOption.votes = optionResponse[j].voteCount.toString();
+
+                options.push(tempOption);
+            }
+            prop.options = options;
+            ret.push(prop);
+        }
+        console.log(ret);
+        setProposalData(ret);
+    }
+
+
+    const displayProposals = () => {
+		const minIndex = currentPage * displayCount - displayCount;
+		const maxIndex = currentPage * displayCount;
+        
+        fetchProposals(minIndex, maxIndex);
+
+        let ret = proposalData?.map((d, index) =>
+            index < maxIndex && index >= minIndex ? (
+                <ProposalCard propData={d} key={index} />
+            ) : null
+        )
+        if(ret === undefined) {
+            return Array.apply(null, Array(3)).map((_d, index) => {
+                return <ProposalCard propData={null} key={index}></ProposalCard>
+            })
+        }
+		return ret;
+	};
+
+
     return (
         <div className={styles.mainContainer}>
-            <div className={styles.card}>
-                WIP
-            </div>
+            {displayProposals()}
+            <Pagination total={proposalCount}
+				onChange={(page) => {
+					setCurrentPage(page);
+				}}
+				onShowSizeChange={(current, size) => {
+					setCurrentPage(current);
+					setDisplayCount(size);
+				}}
+				defaultPageSize={5}
+				showSizeChanger={true} />
         </div>
     )
 }
