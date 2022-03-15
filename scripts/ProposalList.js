@@ -4,9 +4,6 @@ const main = async () => {
 	console.log(`Address deploying the contract --> ${deployer.address}`);
 	const tokenFactory = await ethers.getContractFactory("ProposalList");
 	const contract = await tokenFactory.deploy();
-	await contract.setDarkLordAddress(
-		"0x833ee817125Df6c8fda55D15a528ED4878f65B60"
-	);
 
 	console.log(`Token Contract Address --> ${contract.address}`);
 };

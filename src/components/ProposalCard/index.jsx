@@ -7,6 +7,7 @@ const ProposalCard = ({propData}) => {
 		<div className={styles.proposalContainer}>
 			<div className={styles.title}>
 				{propData.name}
+				<p>{propData.summary}</p>
 			</div>
 			<div className={styles.optionsContainer}>
 				<div className={styles.optionsRow + " " + styles.optionsRowHeader}>
@@ -21,6 +22,12 @@ const ProposalCard = ({propData}) => {
 					</div>
 				</div>
 
+				{
+					propData.options?.map((d, index) => {
+						return <Option data={d} key={index} />
+					})
+				}
+				
 				{/*
 				<ContractData
 					drizzle={drizzle}
@@ -42,49 +49,31 @@ const ProposalCard = ({propData}) => {
 				<p>CREATOR: </p>
 				{propData.creator}
 			</div>
-			<div className={styles.inspect}>
+			{/* <div className={styles.inspect}>
 				<Button className={styles.inspectButton} ghost={true}>
 					Inspect
 				</Button>
-			</div>
+			</div> */}
 		</div>
 	) : <div className={styles.proposalContainer}>
 			<Skeleton />
 		</div>
 };
-/*
+
 // eslint-disable-next-line
-const Options = ({ propIndex, optionIndex }) => (
+const Option = ({data}) => (
 	<div className={styles.optionsRow}>
 		<div className={styles.optionsCell}>
-			<ContractData
-				drizzle={globalDrizzle}
-				drizzleState={globalDrizzleState}
-				contract="ProposalCard"
-				method="getOptionName"
-				methodArgs={[propIndex, optionIndex]}
-			/>
+			{data.name}
 		</div>
 		<div className={styles.optionsCell}>
-			<ContractData
-				drizzle={globalDrizzle}
-				drizzleState={globalDrizzleState}
-				contract="ProposalCard"
-				method="getOptionSummary"
-				methodArgs={[propIndex, optionIndex]}
-			/>
+			{data.summary}
 		</div>
 		<div className={styles.optionsCell}>
-			<ContractData
-				drizzle={globalDrizzle}
-				drizzleState={globalDrizzleState}
-				contract="ProposalCard"
-				method="getOptionVoteCount"
-				methodArgs={[propIndex, optionIndex]}
-			/>
+			{data.votes}
 		</div>
 	</div>
 );
-*/
+
 
 export default ProposalCard;
