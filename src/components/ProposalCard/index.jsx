@@ -1,12 +1,12 @@
 import styles from "./index.module.css";
-import { Button } from "antd";
+import { Button, Skeleton } from "antd";
 import React from "react";
 
 const ProposalCard = ({propData}) => {
-	return (
+	return propData ? (
 		<div className={styles.proposalContainer}>
 			<div className={styles.title}>
-				{propData.title}
+				{propData.name}
 			</div>
 			<div className={styles.optionsContainer}>
 				<div className={styles.optionsRow + " " + styles.optionsRowHeader}>
@@ -48,7 +48,9 @@ const ProposalCard = ({propData}) => {
 				</Button>
 			</div>
 		</div>
-	);
+	) : <div className={styles.proposalContainer}>
+			<Skeleton />
+		</div>
 };
 /*
 // eslint-disable-next-line

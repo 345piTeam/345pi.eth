@@ -20,30 +20,11 @@ const data = {
 const Governance = () => {
     // Will be moved to context provider
     const [proposalList, setProposalList] = useState();
-    const [proposalData, setProposalData] = useState([
-        {
-            "title": "nolan",
-            "creator": "0x11111",
-            "options": [
-                {
-
-                }
-            ]
-        },
-        {
-            "title": "jon",
-            "creator": "0x11112",
-            "options": [
-                {
-                    
-                }
-            ]
-        }
-    ]);
+    const [proposalData, setProposalData] = useState(null);
 
     const [currentPage, setCurrentPage] = useState(1);
 	const [proposalCount, setProposalCount] = useState(2);
-	const [displayCount, setDisplayCount] = useState(10);
+	const [displayCount, setDisplayCount] = useState(5);
 
     // Setup contract connection
     // TODO: setup storage for contract in context provider
@@ -70,7 +51,7 @@ const Governance = () => {
     }, [])
 
 
-    // Test print contract interactions
+    // Set number of total proposals
     useEffect(() => {
         (async () => {
             if(proposalList) {
@@ -82,15 +63,47 @@ const Governance = () => {
     }, [proposalList])
 
 
+    async function fetchProposals(minIndex, maxIndex) {
+        if(!proposalList) {
+            return null;
+        }
+        let ret = [];
+
+        for(let i = minIndex; i < maxIndex; i++) {
+            if(i >= proposalCount) {
+                // Prevent reading proposal indecies that don't exist
+                break;
+            }
+            const response = await proposalList.propList(i);
+            let prop = {};
+            prop.name = response.name;
+            prop.id = response.id;
+            prop.creator = response.creator;
+            prop.summary = response.summary;
+
+            ret.push(prop);
+        }
+        setProposalData(ret);
+    }
+
+
     const displayProposals = () => {
 		const minIndex = currentPage * displayCount - displayCount;
 		const maxIndex = currentPage * displayCount;
+        
+        fetchProposals(minIndex, maxIndex);
 
-		return proposalData?.map((d, index) =>
-			index < maxIndex && index >= minIndex ? (
-				<ProposalCard propData={d} key={index} />
-			) : null
-		);
+        let ret = proposalData?.map((d, index) =>
+            index < maxIndex && index >= minIndex ? (
+                <ProposalCard propData={d} key={index} />
+            ) : null
+        )
+        if(ret === undefined) {
+            return Array.apply(null, Array(3)).map(function () {
+                return <ProposalCard propData={null}></ProposalCard>
+            })
+        }
+		return ret;
 	};
 
 
@@ -105,9 +118,8 @@ const Governance = () => {
 					setCurrentPage(current);
 					setDisplayCount(size);
 				}}
-				defaultPageSize={6}
-				showSizeChanger={true}
-				pageSizeOptions={[6, 10, 15]} />
+				defaultPageSize={5}
+				showSizeChanger={true} />
         </div>
     )
 }
