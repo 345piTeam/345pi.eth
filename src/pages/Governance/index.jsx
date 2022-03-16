@@ -63,60 +63,64 @@ const Governance = () => {
     }, [proposalList])
 
 
-    async function fetchProposals(minIndex, maxIndex) {
-        if(!proposalList) {
-            return null;
-        }
-        let ret = [];
-
-        for(let i = minIndex; i < maxIndex; i++) {
-            // Prevent reading proposal indecies that don't exist
-            // only a problem if proposalCount < displayCount
-            if(i >= proposalCount) {
-                break;
+    // Set number of total proposals
+    useEffect(() => {
+        (async () => {
+            if(proposalList) {
+                const minIndex = currentPage * displayCount - displayCount;
+                const maxIndex = currentPage * displayCount;
+                let ret = [];
+        
+                for(let i = minIndex; i < maxIndex; i++) {
+                    // Prevent reading proposal indecies that don't exist
+                    // only a problem if proposalCount < displayCount
+                    if(i >= proposalCount) {
+                        break;
+                    }
+        
+                    const propResponse = await proposalList.getProposalData(i);
+                    if(!propResponse) {
+                        continue;
+                    }
+                    const optionResponse= await proposalList.getOptions(i);
+                    let prop = {};
+                    prop.name = propResponse[0];
+                    prop.id = i;
+                    prop.creator = propResponse[1];
+                    prop.summary = propResponse[2];
+                    prop.optionCount = propResponse[3].toString();
+                    let options = [];
+                    for(let j = 0; j < prop.optionCount; j++) {
+                        let tempOption = {};
+                        tempOption.id = j;
+                        tempOption.name = optionResponse[j].name;
+                        tempOption.summary = optionResponse[j].summary;
+                        tempOption.creator = optionResponse[j].creator;
+                        tempOption.votes = optionResponse[j].voteCount.toString();
+        
+                        options.push(tempOption);
+                    }
+                    prop.options = options;
+                    ret.push(prop);
+                }
+                setProposalData(ret);
             }
-
-            const propResponse = await proposalList.getProposalData(i);
-            if(!propResponse) {
-                continue;
-            }
-            const optionResponse= await proposalList.getOptions(i);
-            let prop = {};
-            prop.name = propResponse[0];
-            prop.id = i;
-            prop.creator = propResponse[1];
-            prop.summary = propResponse[2];
-            prop.optionCount = propResponse[3].toString();
-            let options = [];
-            for(let j = 0; j < prop.optionCount; j++) {
-                let tempOption = {};
-                tempOption.id = j;
-                tempOption.name = optionResponse[j].name;
-                tempOption.summary = optionResponse[j].summary;
-                tempOption.creator = optionResponse[j].creator;
-                tempOption.votes = optionResponse[j].voteCount.toString();
-
-                options.push(tempOption);
-            }
-            prop.options = options;
-            ret.push(prop);
-        }
-        console.log(ret);
-        setProposalData(ret);
-    }
-
+        })().catch(err => {
+            console.error(err);
+        });
+    }, [currentPage, displayCount, proposalCount, proposalList])
 
     const displayProposals = () => {
 		const minIndex = currentPage * displayCount - displayCount;
 		const maxIndex = currentPage * displayCount;
-        
-        fetchProposals(minIndex, maxIndex);
 
         let ret = proposalData?.map((d, index) =>
             index < maxIndex && index >= minIndex ? (
                 <ProposalCard propData={d} key={index} />
             ) : null
         )
+        
+        // Display loading proposals if data is not ready
         if(ret === undefined) {
             return Array.apply(null, Array(3)).map((_d, index) => {
                 return <ProposalCard propData={null} key={index}></ProposalCard>
