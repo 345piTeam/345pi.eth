@@ -6,7 +6,7 @@ const ProposalCard = ({propData}) => {
 	return propData ? (
 		<div className={styles.proposalContainer}>
 			<div className={styles.title}>
-				{propData.name}
+				{"[" + propData.id + "] " + propData.name}
 				<p style={{"fontSize": "16px"}}>{propData.summary}</p>
 			</div>
 			<div className={styles.optionsContainer}>

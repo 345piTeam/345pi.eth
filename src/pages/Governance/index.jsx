@@ -12,8 +12,8 @@ const data = {
         "address": "0x833ee817125Df6c8fda55D15a528ED4878f65B60"
     },
     "ProposalList": {
-        "abi": [{"inputs":[],"stateMutability":"nonpayable","type":"constructor"},{"inputs":[{"internalType":"uint256","name":"propId","type":"uint256"},{"internalType":"string","name":"_name","type":"string"},{"internalType":"string","name":"_summary","type":"string"}],"name":"addOption","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"propId","type":"uint256"}],"name":"getOptions","outputs":[{"components":[{"internalType":"uint256","name":"id","type":"uint256"},{"internalType":"string","name":"name","type":"string"},{"internalType":"uint256","name":"voteCount","type":"uint256"},{"internalType":"address","name":"creator","type":"address"},{"internalType":"string","name":"summary","type":"string"}],"internalType":"struct ProposalList.Option[]","name":"","type":"tuple[]"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"id","type":"uint256"}],"name":"getProposalData","outputs":[{"internalType":"string","name":"","type":"string"},{"internalType":"address","name":"","type":"address"},{"internalType":"string","name":"","type":"string"},{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"propCount","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"a","type":"address"}],"name":"setDarkLordAddress","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"propIndex","type":"uint256"},{"internalType":"uint256","name":"index","type":"uint256"}],"name":"vote","outputs":[],"stateMutability":"nonpayable","type":"function"}],
-        "address": "0xFf003fD78700483962617becA9430DfDCc0a6fC1"
+        "abi": [{"inputs":[],"stateMutability":"nonpayable","type":"constructor"},{"inputs":[{"internalType":"uint256","name":"propId","type":"uint256"},{"internalType":"string","name":"_name","type":"string"},{"internalType":"string","name":"_summary","type":"string"}],"name":"addOption","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"string","name":"_name","type":"string"},{"internalType":"string","name":"_summary","type":"string"}],"name":"addProposal","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"propId","type":"uint256"}],"name":"getOptions","outputs":[{"components":[{"internalType":"uint256","name":"id","type":"uint256"},{"internalType":"string","name":"name","type":"string"},{"internalType":"uint256","name":"voteCount","type":"uint256"},{"internalType":"address","name":"creator","type":"address"},{"internalType":"string","name":"summary","type":"string"}],"internalType":"struct ProposalList.Option[]","name":"","type":"tuple[]"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"propId","type":"uint256"}],"name":"getProposal","outputs":[{"components":[{"internalType":"uint256","name":"id","type":"uint256"},{"internalType":"string","name":"name","type":"string"},{"internalType":"address","name":"creator","type":"address"},{"internalType":"string","name":"summary","type":"string"},{"internalType":"uint256","name":"optionCount","type":"uint256"}],"internalType":"struct ProposalList.Proposal","name":"","type":"tuple"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"propCount","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"a","type":"address"}],"name":"setDarkLordAddress","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"propIndex","type":"uint256"},{"internalType":"uint256","name":"index","type":"uint256"}],"name":"vote","outputs":[],"stateMutability":"nonpayable","type":"function"}],
+        "address": "0x04E70D2F6F671Bd44A6138dCca1737112d554169"
     }
 }
 
@@ -23,8 +23,8 @@ const Governance = () => {
     const [proposalData, setProposalData] = useState(null);
 
     const [currentPage, setCurrentPage] = useState(1);
-	const [proposalCount, setProposalCount] = useState(2);
-	const [displayCount, setDisplayCount] = useState(5);
+	const [proposalCount, setProposalCount] = useState(0);
+	const [displayCount, setDisplayCount] = useState(10);
 
     // Setup contract connection
     // TODO: setup storage for contract in context provider
@@ -64,7 +64,7 @@ const Governance = () => {
 
 
     async function fetchProposals(minIndex, maxIndex) {
-        if(!proposalList) {
+        if(!proposalList || proposalCount <= 0) {
             return null;
         }
         let ret = [];
@@ -76,21 +76,21 @@ const Governance = () => {
                 break;
             }
 
-            const propResponse = await proposalList.getProposalData(i);
+            const propResponse = await proposalList.getProposal(i);
             if(!propResponse) {
                 continue;
             }
             const optionResponse= await proposalList.getOptions(i);
             let prop = {};
-            prop.name = propResponse[0];
-            prop.id = i;
-            prop.creator = propResponse[1];
-            prop.summary = propResponse[2];
-            prop.optionCount = propResponse[3].toString();
+            prop.name = propResponse.name;
+            prop.id = propResponse.id;
+            prop.creator = propResponse.creator;
+            prop.summary = propResponse.summary;
+            prop.optionCount = propResponse.optionCount.toString();
             let options = [];
             for(let j = 0; j < prop.optionCount; j++) {
                 let tempOption = {};
-                tempOption.id = j;
+                tempOption.id = optionResponse[j].id;
                 tempOption.name = optionResponse[j].name;
                 tempOption.summary = optionResponse[j].summary;
                 tempOption.creator = optionResponse[j].creator;
@@ -101,7 +101,6 @@ const Governance = () => {
             prop.options = options;
             ret.push(prop);
         }
-        console.log(ret);
         setProposalData(ret);
     }
 

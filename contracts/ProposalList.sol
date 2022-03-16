@@ -41,6 +41,25 @@ contract ProposalList {
         addOption(1, "Burger", "");
         addOption(1, "Taco", "");
         addOption(1, "Ice Cream", "");
+        addProposal("Should we liquidate? (1)", "Example liquidation vote");
+        addOption(2, "Yes", "");
+        addOption(2, "No", "");
+        addProposal("Should we liquidate? (2)", "Example liquidation vote");
+        addOption(3, "Yes", "");
+        addOption(3, "No", "");
+        addProposal("Should we liquidate? (3)", "Example liquidation vote");
+        addOption(4, "Yes", "");
+        addOption(4, "No", "");
+        addProposal("Favorite Food", "Please vote for your favorite type of food");
+        addOption(5, "Pizza", "");
+        addOption(5, "Burger", "");
+        addOption(5, "Taco", "");
+        addOption(5, "Ice Cream", "");
+        addProposal("Favorite Food", "Please vote for your favorite type of food");
+        addOption(6, "Pizza", "");
+        addOption(6, "Burger", "");
+        addOption(6, "Taco", "");
+        addOption(6, "Ice Cream", "");
     }
 
     function addProposal(string memory _name, string memory _summary) public {
