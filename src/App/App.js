@@ -8,10 +8,10 @@ import "./App.css";
 const APP_ID = process.env.REACT_APP_MORALIS_APPLICATION_ID;
 const SERVER_URL = process.env.REACT_APP_MORALIS_SERVER_URL;
 
-const Account = lazy(() => import("./pages/Account/index"));
-const Homepage = lazy(() => import("./pages/Homepage/index"));
-const Navbar = lazy(() => import("./components/Navbar/index"));
-const Governance = lazy(() => import("./pages/Governance/index"));
+const Account = lazy(() => import("../pages/Account/index"));
+const Homepage = lazy(() => import("../pages/Homepage/index"));
+const Navbar = lazy(() => import("../components/Navbar/index"));
+const Governance = lazy(() => import("../pages/Governance/index"));
 
 const App = () => {
 	const { isWeb3Enabled, enableWeb3, isAuthenticated, isWeb3EnableLoading } =
