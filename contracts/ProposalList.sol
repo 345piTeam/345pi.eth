@@ -8,8 +8,9 @@ contract ProposalList {
     // ProposalList global data
     uint public propCount;
     Proposal[] private propList;
-    mapping(uint => mapping(uint => Option)) optionMap;
     DarkLord private darkLord;
+    mapping(uint => mapping(uint => Option)) optionMap;
+    mapping(uint => mapping(address => bool)) voters;
 
     struct Option{
         uint256 id;
@@ -32,21 +33,26 @@ contract ProposalList {
     }
 
     function _initialProposal() private {
-        addProposal("Game Types", "What type of game");
-        addProposal("Other Proposal", "What kind of game do you prefer");
-        addOption(0, "Click-Based", "Using the mouse");
-        addOption(0, "Keyboard-Based", "Using the keyboard");
+        addProposal("Game Types", "Genre, style, or type of video game");
+        addOption(0, "FPS", "First person shooter");
+        addOption(0, "Horror", "Boo!");
+        addOption(0, "Platformer", "Super Mario, Smash Bros, Etc.");
+        addProposal("Favorite Food", "Please vote for your favorite type of food");
+        addOption(1, "Pizza", "");
+        addOption(1, "Burger", "");
+        addOption(1, "Taco", "");
+        addOption(1, "Ice Cream", "");
     }
 
-    function addProposal(string memory _name, string memory _summary) private {
+    function addProposal(string memory _name, string memory _summary) public {
         propList.push(Proposal(propCount, _name, msg.sender, _summary, 0));
         propCount ++;
     }
 
 
     // Proposal getter
-    function getProposalData(uint id) public view returns(string memory, address, string memory, uint256) {
-        return (propList[id].name, propList[id].creator, propList[id].summary, propList[id].optionCount);
+    function getProposal(uint propId) public view returns(Proposal memory) {
+        return propList[propId];
     }
 
     function getOptions(uint propId) public view returns(Option[] memory) {
@@ -65,8 +71,9 @@ contract ProposalList {
     }
 
     function vote(uint propIndex, uint index) public{
-        require(_authorizedToVote(), "You aren't authorized to vote");
-        optionMap[propIndex][index].voteCount += 7;
+        require(!voters[propIndex][msg.sender], "You already voted");
+        optionMap[propIndex][index].voteCount += 1;
+        voters[propIndex][msg.sender] = true;
     }
 
     // Can be expanded for multiple NFTs

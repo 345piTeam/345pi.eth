@@ -10,8 +10,10 @@ app.listen(port, () => console.log(`Listening on port ${port}`));
 app.use(express.static(path.resolve(__dirname, "./build")));
 
 // create a GET route
-app.get("/contract-data", (req, res) => {
-	res.sendFile(path.resolve(__dirname, "data", "contractData.json"));
+app.get("/contract-data/:network", (req, res) => {
+	res.sendFile(
+		path.resolve(__dirname, "data/contracts/" + req.params.network, "data.json")
+	);
 });
 
 app.get("*", (req, res) => {

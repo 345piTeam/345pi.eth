@@ -23,23 +23,25 @@ describe("Proposal List", function () {
 		});
 
 		it("Initializes the proposals with the correct values", async function () {
-			const response1 = await PropList.getProposalData(0);
-			expect(response1[0]).to.equal("Game Types");
-			expect(response1[1]).to.equal(owner.address);
-			expect(response1[2]).to.equal("What type of game");
+			const response1 = await PropList.getProposal(0);
+			expect(response1.name).to.equal("Game Types");
+			expect(response1.creator).to.equal(owner.address);
+			expect(response1.summary).to.equal("Genre, style, or type of video game");
 
-			const response2 = await PropList.getProposalData(1);
-			expect(response2[0]).to.equal("Other Proposal");
-			expect(response2[1]).to.equal(owner.address);
-			expect(response2[2]).to.equal("What kind of game do you prefer");
+			const response2 = await PropList.getProposal(1);
+			expect(response2.name).to.equal("Favorite Food");
+			expect(response2.creator).to.equal(owner.address);
+			expect(response2.summary).to.equal(
+				"Please vote for your favorite type of food"
+			);
 		});
 
 		it("Initializes the options with the correct values", async function () {
 			const response1 = await PropList.getOptions(0);
 			const optionName1 = response1[0].name;
 			const optionSummary1 = response1[0].summary;
-			expect(optionName1).to.equal("Click-Based");
-			expect(optionSummary1).to.equal("Using the mouse");
+			expect(optionName1).to.equal("FPS");
+			expect(optionSummary1).to.equal("First person shooter");
 		});
 	});
 
@@ -54,13 +56,20 @@ describe("Proposal List", function () {
 		it("Dark Lord Casts Vote", async function () {
 			await PropList.vote(0, 0);
 			const voteCount = await PropList.getOptions(0);
-			expect(voteCount[0].voteCount).to.equal(7);
+			expect(voteCount[0].voteCount).to.equal(1);
 		});
 
-		it("Cannot Cast vote if not Dark Lord", async function () {
-			await expect(PropList.connect(addr1).vote(0, 0)).to.be.revertedWith(
-				"You aren't authorized to vote"
-			);
+		it("Only allows wallets to vote once", async function () {
+			await PropList.vote(0, 0);
+			const voteCount = await PropList.getOptions(0);
+			expect(voteCount[0].voteCount).to.equal(1);
+			await expect(PropList.vote(0, 0)).to.be.revertedWith("You already voted");
 		});
+
+		// it("Cannot Cast vote if not Dark Lord", async function () {
+		// 	await expect(PropList.connect(addr1).vote(0, 0)).to.be.revertedWith(
+		// 		"You aren't authorized to vote"
+		// 	);
+		// });
 	});
 });
