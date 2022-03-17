@@ -56,13 +56,20 @@ describe("Proposal List", function () {
 		it("Dark Lord Casts Vote", async function () {
 			await PropList.vote(0, 0);
 			const voteCount = await PropList.getOptions(0);
-			expect(voteCount[0].voteCount).to.equal(7);
+			expect(voteCount[0].voteCount).to.equal(1);
 		});
 
-		it("Cannot Cast vote if not Dark Lord", async function () {
-			await expect(PropList.connect(addr1).vote(0, 0)).to.be.revertedWith(
-				"You aren't authorized to vote"
-			);
+		it("Only allows wallets to vote once", async function () {
+			await PropList.vote(0, 0);
+			const voteCount = await PropList.getOptions(0);
+			expect(voteCount[0].voteCount).to.equal(1);
+			await expect(PropList.vote(0, 0)).to.be.revertedWith("You already voted");
 		});
+
+		// it("Cannot Cast vote if not Dark Lord", async function () {
+		// 	await expect(PropList.connect(addr1).vote(0, 0)).to.be.revertedWith(
+		// 		"You aren't authorized to vote"
+		// 	);
+		// });
 	});
 });

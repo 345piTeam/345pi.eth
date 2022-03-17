@@ -10,6 +10,7 @@ contract ProposalList {
     Proposal[] private propList;
     DarkLord private darkLord;
     mapping(uint => mapping(uint => Option)) optionMap;
+    mapping(uint => mapping(address => bool)) voters;
 
     struct Option{
         uint256 id;
@@ -70,8 +71,9 @@ contract ProposalList {
     }
 
     function vote(uint propIndex, uint index) public{
-        require(_authorizedToVote(), "You aren't authorized to vote");
-        optionMap[propIndex][index].voteCount += 7;
+        require(!voters[propIndex][msg.sender], "You already voted");
+        optionMap[propIndex][index].voteCount += 1;
+        voters[propIndex][msg.sender] = true;
     }
 
     // Can be expanded for multiple NFTs
