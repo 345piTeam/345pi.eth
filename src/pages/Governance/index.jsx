@@ -25,7 +25,7 @@ const Governance = () => {
     }, [dispatch]);
 
     useEffect(() => {
-        if(contractData) {
+        if( window.ethereum && contractData) {
             const provider = new ethers.providers.Web3Provider(window.ethereum);
             setProposalList(new ethers.Contract(contractData.address, contractData.abi, provider));
         }

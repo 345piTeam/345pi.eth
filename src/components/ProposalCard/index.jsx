@@ -30,7 +30,7 @@ const ProposalCard = ({propData}) => {
 
 	const Option = ({data, propIndex}) => {
 		const vote = async (propId, optionId) => {
-			if(proposalList) {
+			if(window.ethereum && proposalList) {
 				const provider = new ethers.providers.Web3Provider(window.ethereum);
 				const gas = await provider.getGasPrice();
 				const overrides = {
