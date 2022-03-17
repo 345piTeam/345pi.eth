@@ -33,7 +33,7 @@ const Governance = () => {
         (async () => {
             let response;
             try {
-                response = await axios.get("/contract-data");
+                response = await axios.get("/contract-data/rinkeby");
                 response = response.data;
             }
             catch(e) {
@@ -78,21 +78,21 @@ const Governance = () => {
                         break;
                     }
         
-                    const propResponse = await proposalList.getProposalData(i);
+                    const propResponse = await proposalList.getProposal(i);
                     if(!propResponse) {
                         continue;
                     }
                     const optionResponse= await proposalList.getOptions(i);
                     let prop = {};
-                    prop.name = propResponse[0];
+                    prop.name = propResponse.name;
                     prop.id = i;
-                    prop.creator = propResponse[1];
-                    prop.summary = propResponse[2];
-                    prop.optionCount = propResponse[3].toString();
+                    prop.creator = propResponse.creator;
+                    prop.summary = propResponse.summary;
+                    prop.optionCount = propResponse.optionCount.toString();
                     let options = [];
                     for(let j = 0; j < prop.optionCount; j++) {
                         let tempOption = {};
-                        tempOption.id = j;
+                        tempOption.id = optionResponse[j].id;
                         tempOption.name = optionResponse[j].name;
                         tempOption.summary = optionResponse[j].summary;
                         tempOption.creator = optionResponse[j].creator;

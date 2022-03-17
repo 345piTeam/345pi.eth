@@ -12,7 +12,7 @@ app.use(express.static(path.resolve(__dirname, "./build")));
 // create a GET route
 app.get("/contract-data/:network", (req, res) => {
 	res.sendFile(
-		path.resolve(__dirname, "data/contracts" + req.params.network, "data.json")
+		path.resolve(__dirname, "data/contracts/" + req.params.network, "data.json")
 	);
 });
 
