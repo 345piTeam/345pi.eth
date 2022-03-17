@@ -1,8 +1,65 @@
 import styles from "./index.module.css";
-import { Skeleton } from "antd";
-import React from "react";
+import { Skeleton, Button } from "antd";
+import React, {useState, useEffect } from "react";
+import {ethers} from "ethers";
+import { useDispatch } from "react-redux";
+import { getContracts } from "../../redux/slices/contracts.js";
 
 const ProposalCard = ({propData}) => {
+	const dispatch = useDispatch();
+    const [contractData, setContractData] = useState();
+    const [proposalList, setProposalList] = useState();
+
+
+    // Fetch contract data on mount
+    useEffect(() => {
+        (async () => {
+            const data = await dispatch(getContracts());
+            setContractData(data.payload.ProposalList);
+        })().catch(console.error);
+    }, [dispatch]);
+
+    useEffect(() => {
+        if(contractData) {
+            const provider = new ethers.providers.Web3Provider(window.ethereum);
+			const signer = provider.getSigner();
+            setProposalList(new ethers.Contract(contractData.address, contractData.abi, signer));
+        }
+    }, [contractData])
+
+
+	const Option = ({data, propIndex}) => {
+		const vote = async (propId, optionId) => {
+			if(proposalList) {
+				const provider = new ethers.providers.Web3Provider(window.ethereum);
+				const gas = await provider.getGasPrice();
+				const overrides = {
+					gasPrice: gas,
+					gasLimit: 8000000
+				}
+				await proposalList.vote(propId, optionId, overrides);
+			}
+		}
+	
+		return (
+		<div className={styles.optionsRow}>
+			<div className={styles.optionsCell}>
+				{data.name}
+			</div>
+			<div className={styles.optionsCell}>
+				{data.summary}
+			</div>
+			<div className={styles.optionsCell}>
+				{data.votes}
+			</div>
+			<div className={styles.optionsCell}>
+				<Button onClick={() => {vote(propIndex, data.id.toNumber())}}>Vote</Button>
+			</div>
+		</div>
+	)};
+
+
+
 	return propData ? (
 		<div className={styles.proposalContainer}>
 			<div className={styles.title}>
@@ -20,58 +77,23 @@ const ProposalCard = ({propData}) => {
 					<div className={styles.optionsCellHeader + " " + styles.optionsCell}>
 						VOTES
 					</div>
+					<div className={styles.optionsCellHeader + " " + styles.optionsCell}></div>
 				</div>
 
 				{
 					propData.options?.map((d, index) => {
-						return <Option data={d} key={index} />
+						return <Option data={d} propIndex={propData.id} key={index} />
 					})
 				}
-				
-				{/*
-				<ContractData
-					drizzle={drizzle}
-					drizzleState={drizzleState}
-					contract="ProposalList"
-					method="optionCount"
-					render={(optionCount) => {
-						let ret = [];
-						for (let i = 0; i < optionCount; i++) {
-							ret.push(<Options optionIndex={i} propIndex={} />);
-						}
-						return ret;
-					}}
-				/>
-
-				*/}
 			</div>
 			<div className={styles.creator}>
 				<p>CREATOR: {propData.creator}</p>
 			</div>
-			{/* <div className={styles.inspect}>
-				<Button className={styles.inspectButton} ghost={true}>
-					Inspect
-				</Button>
-			</div> */}
 		</div>
 	) : <div className={styles.proposalContainer}>
 			<Skeleton />
 		</div>
 };
-
-const Option = ({data}) => (
-	<div className={styles.optionsRow}>
-		<div className={styles.optionsCell}>
-			{data.name}
-		</div>
-		<div className={styles.optionsCell}>
-			{data.summary}
-		</div>
-		<div className={styles.optionsCell}>
-			{data.votes}
-		</div>
-	</div>
-);
 
 
 export default ProposalCard;

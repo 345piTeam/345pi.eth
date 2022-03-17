@@ -1,17 +1,18 @@
-import React, { lazy, Suspense } from "react";
-import { useEffect } from "react";
+import React, { lazy, Suspense, useEffect } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { MoralisProvider, useMoralis } from "react-moralis";
+import { store } from "../redux/store.js";
+import { Provider } from "react-redux";
 import "antd/dist/antd.css";
 import "./App.css";
 
 const APP_ID = process.env.REACT_APP_MORALIS_APPLICATION_ID;
 const SERVER_URL = process.env.REACT_APP_MORALIS_SERVER_URL;
 
-const Account = lazy(() => import("./pages/Account/index"));
-const Homepage = lazy(() => import("./pages/Homepage/index"));
-const Navbar = lazy(() => import("./components/Navbar/index"));
-const Governance = lazy(() => import("./pages/Governance/index"));
+const Account = lazy(() => import("../pages/Account/index"));
+const Homepage = lazy(() => import("../pages/Homepage/index"));
+const Navbar = lazy(() => import("../components/Navbar/index"));
+const Governance = lazy(() => import("../pages/Governance/index"));
 
 const App = () => {
 	const { isWeb3Enabled, enableWeb3, isAuthenticated, isWeb3EnableLoading } =
@@ -47,7 +48,9 @@ const PageNotFound = () => (
 
 const AppContainer = () => (
 	<MoralisProvider appId={APP_ID} serverUrl={SERVER_URL}>
-		<App />
+		<Provider store={store}>
+			<App />
+		</Provider>
 	</MoralisProvider>
 );
 

@@ -53,33 +53,40 @@ const styles = {
   }
 };
 
-const targetNetworkId = '0x3';
-
-const checkNetwork = async () => {
-  if (window.ethereum) {
-    const currentChainId = await window.ethereum.request({
-      method: 'eth_chainId',
-    });
-
-    // return true if network id is the same
-    if (currentChainId === targetNetworkId) return true;
-    // return false is network id is different
-    return false;
-  }
-};
 
 function Account() {
+  const targetNetworkId = '0x4';
   const { authenticate, isAuthenticated, account, chainId, logout } =
     useMoralis();
+  const [logRocketSession, setLogRocketSession] = useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [isAuthModalVisible, setIsAuthModalVisible] = useState(false);
+  const [correctNetwork, setCorrectNetwork] = useState(true);
+  const [networkSwitching, setNetworkingSwitching] = useState(false);
+
+  // prompt to switch the network
+  const switchNetwork = async () => {
+    setNetworkingSwitching(true);
+    await window.ethereum.request({ method: 'wallet_switchEthereumChain', params:[{chainId: targetNetworkId}]});
+  }
+
 
   useEffect(() => {
     if(isAuthenticated) {
       // User has a valid wallet connected to moralis; start logging user session on log.rocket
-      connectToLogRocket(account);
+      if(!logRocketSession) {
+        connectToLogRocket(account);
+        setLogRocketSession(true);
+      }
+      
+      if(chainId === targetNetworkId) {
+        setCorrectNetwork(true);
+        setNetworkingSwitching(false);
+      } else {
+        setCorrectNetwork(false);
+      }
     }
-  }, [isAuthenticated, account])
+  }, [isAuthenticated, account, chainId, correctNetwork, logRocketSession])
 
   if (!isAuthenticated || !account) {
     return (
@@ -120,15 +127,6 @@ function Account() {
                     await authenticate({ provider: connectorId, chainId: targetNetworkId });
                     window.localStorage.setItem("connectorId", connectorId);
                     setIsAuthModalVisible(false);
-                    console.log(await checkNetwork());
-                    if(!await checkNetwork()) {
-                      console.log("changing network...");
-                      await window.ethereum.request({
-                        method: 'wallet_switchEthereumChain',
-                        params: [{ chainId: targetNetworkId }],
-                      });
-                      console.log("network changed!");
-                    }
                   } catch (e) {
                     console.error(e);
                   }
@@ -224,6 +222,20 @@ function Account() {
           Disconnect Wallet
         </Button>
       </Modal>
+      <Modal
+          visible={!correctNetwork}
+          onOk={() => {
+            switchNetwork().catch(console.error);
+          }}
+          confirmLoading={networkSwitching}
+          bodyStyle={{
+            padding: "15px",
+            fontSize: "17px",
+            fontWeight: "500",
+          }}
+          style={{ fontSize: "16px", fontWeight: "500" }}
+          width="340px"
+        >Please change your network to Rinkeby</Modal>
     </>
   );
 }
