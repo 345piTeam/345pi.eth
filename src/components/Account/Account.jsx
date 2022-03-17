@@ -58,14 +58,14 @@ function Account() {
   const targetNetworkId = '0x4';
   const { authenticate, isAuthenticated, account, chainId, logout } =
     useMoralis();
+  const [logRocketSession, setLogRocketSession] = useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [isAuthModalVisible, setIsAuthModalVisible] = useState(false);
   const [correctNetwork, setCorrectNetwork] = useState(true);
   const [networkSwitching, setNetworkingSwitching] = useState(false);
 
+  // prompt to switch the network
   const switchNetwork = async () => {
-    // prompt to switch the network
-    console.log("switching...");
     setNetworkingSwitching(true);
     await window.ethereum.request({ method: 'wallet_switchEthereumChain', params:[{chainId: targetNetworkId}]});
   }
@@ -74,7 +74,10 @@ function Account() {
   useEffect(() => {
     if(isAuthenticated) {
       // User has a valid wallet connected to moralis; start logging user session on log.rocket
-      connectToLogRocket(account);
+      if(!logRocketSession) {
+        connectToLogRocket(account);
+        setLogRocketSession(true);
+      }
       
       if(chainId === targetNetworkId) {
         setCorrectNetwork(true);
@@ -82,21 +85,8 @@ function Account() {
       } else {
         setCorrectNetwork(false);
       }
-      console.log(chainId, correctNetwork);
     }
-  }, [isAuthenticated, account, chainId])
-
-  // useEffect(() => {
-  //   // declare the data fetching function
-  //   const fetchData = async () => {
-  //     const data = await fetch('https://yourapi.com');
-  //   }
-  
-  //   // call the function
-  //   fetchData()
-  //     // make sure to catch any error
-  //     .catch(console.error);
-  // }, [])
+  }, [isAuthenticated, account, chainId, correctNetwork, logRocketSession])
 
   if (!isAuthenticated || !account) {
     return (

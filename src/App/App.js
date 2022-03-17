@@ -1,7 +1,8 @@
-import React, { lazy, Suspense } from "react";
-import { useEffect } from "react";
+import React, { lazy, Suspense, useEffect } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { MoralisProvider, useMoralis } from "react-moralis";
+import { store } from "../redux/store.js";
+import { Provider } from "react-redux";
 import "antd/dist/antd.css";
 import "./App.css";
 
@@ -47,7 +48,9 @@ const PageNotFound = () => (
 
 const AppContainer = () => (
 	<MoralisProvider appId={APP_ID} serverUrl={SERVER_URL}>
-		<App />
+		<Provider store={store}>
+			<App />
+		</Provider>
 	</MoralisProvider>
 );
 
