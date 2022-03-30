@@ -17,20 +17,35 @@
     "@babel/eslint-parser": "^7.0.0",
     "@openzeppelin/contracts": "^4.5.0",
     "@openzeppelin/contracts-upgradeable": "^4.5.1",
+    "@reduxjs/toolkit": "^1.8.0",
+    "@walletconnect/web3-provider": "^1.7.1",
+    "@web3auth/web3auth": "^0.3.2",
     "antd": "^4.18.3",
+    "axios": "^0.26.1",
+    "concurrently": "^7.0.0",
     "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "logrocket": "^2.2.0",
+    "logrocket-react": "^5.0.1",
+    "magic-sdk": "^7.0.0",
     "mathjax3-react": "^1.0.12",
+    "nvm": "^0.0.4",
     "react": "^17.0.0",
+    "react-blockies": "^1.4.1",
     "react-dom": "^17.0.0",
+    "react-moralis": "^1.3.1",
+    "react-redux": "^7.2.6",
     "react-router-dom": "^6.0.0",
     "solc": "^0.8.12"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "node backend/server.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "dev": "concurrently \"node backend/server.js\" \"react-scripts start\""
   },
+  "proxy": "http://localhost:5000",
   "eslintConfig": {
     "extends": "react-app"
   },
@@ -45,5 +60,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "engines": {
+    "node": "16.x"
   }
 }

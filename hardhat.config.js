@@ -6,14 +6,18 @@ require("dotenv").config();
 
 let PRIVATE_KEY =
 	"00abcdefabcdefabcdefabcdefabcdef00abcdefabcdefabcdefabcdefabcdef";
-let URL = "";
+let ROPSTEN_URL = "";
+let RINKEBY_URL = "";
 
 try {
 	if (process.env.PRIVATE_KEY !== undefined) {
 		PRIVATE_KEY = process.env.PRIVATE_KEY;
 	}
-	if (process.env.URL !== undefined) {
-		URL = process.env.URL;
+	if (process.env.RINKEBY_URL !== undefined) {
+		RINKEBY_URL = process.env.RINKEBY_URL;
+	}
+	if (process.env.ROPSTEN_URL !== undefined) {
+		ROPSTEN_URL = process.env.ROPSTEN_URL;
 	}
 } catch (e) {
 	// Unable to find environment wallet key
@@ -30,10 +34,6 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
 	}
 });
 
-task("wallet", "Prints the current wallet", async (taskArgs, hre) => {
-	console.log(PRIVATE_KEY);
-});
-
 // You need to export an object to set up your config
 // Go to https://hardhat.org/config/ to learn more
 
@@ -44,7 +44,11 @@ module.exports = {
 	solidity: "0.8.4",
 	networks: {
 		ropsten: {
-			url: URL,
+			url: ROPSTEN_URL,
+			accounts: [`0x${PRIVATE_KEY}`],
+		},
+		rinkeby: {
+			url: RINKEBY_URL,
 			accounts: [`0x${PRIVATE_KEY}`],
 		},
 	},
