@@ -5,14 +5,13 @@ import {ethers} from "ethers";
 import ProposalCard from "../../components/ProposalCard";
 import { Pagination } from "antd"
 
-
 const Governance = () => {
     const contractData = useSelector((state) => state.contracts.data.ProposalList);
     const [proposalData, setProposalData] = useState(); 
     const [proposalList, setProposalList] = useState();
     const [currentPage, setCurrentPage] = useState(1);
-	const [proposalCount, setProposalCount] = useState(2);
-	const [displayCount, setDisplayCount] = useState(5);
+	const [proposalCount, setProposalCount] = useState(0);
+	const [displayCount, setDisplayCount] = useState(10);
 
     useEffect(() => {
         if( window.ethereum && contractData) {
@@ -79,6 +78,7 @@ const Governance = () => {
             console.error(err);
         });
     }, [currentPage, displayCount, proposalCount, proposalList])
+
 
     const displayProposals = () => {
 		const minIndex = currentPage * displayCount - displayCount;
