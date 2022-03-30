@@ -1,23 +1,12 @@
 import styles from "./index.module.css";
-import { Skeleton, Button } from "antd";
 import React, {useState, useEffect } from "react";
 import {ethers} from "ethers";
-import { useDispatch } from "react-redux";
-import { getContracts } from "../../redux/slices/contracts.js";
+import {useSelector} from "react-redux";
+import { Skeleton, Button } from "antd";
 
 const ProposalCard = ({propData}) => {
-	const dispatch = useDispatch();
-    const [contractData, setContractData] = useState();
+    const contractData = useSelector((state) => state.contracts.ProposalList);
     const [proposalList, setProposalList] = useState();
-
-
-    // Fetch contract data on mount
-    useEffect(() => {
-        (async () => {
-            const data = await dispatch(getContracts());
-            setContractData(data.payload.ProposalList);
-        })().catch(console.error);
-    }, [dispatch]);
 
     useEffect(() => {
         if(contractData) {

@@ -22,6 +22,7 @@
     "@web3auth/web3auth": "^0.3.2",
     "antd": "^4.18.3",
     "axios": "^0.26.1",
+    "concurrently": "^7.0.0",
     "dotenv": "^16.0.0",
     "express": "^4.17.3",
     "logrocket": "^2.2.0",
@@ -38,12 +39,13 @@
     "solc": "^0.8.12"
   },
   "scripts": {
-    "start": "node server.js",
+    "start": "node backend/server.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "dev": "react-scripts start"
+    "dev": "concurrently \"node backend/server.js\" \"react-scripts start\""
   },
+  "proxy": "http://localhost:5000",
   "eslintConfig": {
     "extends": "react-app"
   },
