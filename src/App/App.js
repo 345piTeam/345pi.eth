@@ -32,7 +32,6 @@ const App = () => {
 		(async () => {
 			let response = await axios.get("contract-data/rinkeby");
 			response = response.data;
-			console.log(response);
 			dispatch(setState(response));
 		})().catch((err) => {
 			console.error(err);
