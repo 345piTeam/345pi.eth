@@ -28,6 +28,7 @@
 		"logrocket": "^3.0.0",
 		"logrocket-react": "^5.0.1",
 		"mathjax3-react": "^1.0.12",
+		"moralis": "^1.11.0",
 		"nvm": "^0.0.4",
 		"react": "^17.0.0",
 		"react-blockies": "^1.4.1",

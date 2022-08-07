@@ -14,10 +14,10 @@ jobs:
     - uses: actions/checkout@v2
     - uses: actions/setup-node@v2
       with:
-        node-version: 16.x
-        cache: 'npm'
+        node-version: 18.x
+        cache: 'yarn'
     - name: Install Hardhat
-      run: npm i --save-dev hardhat
+      run: yarn add --dev hardhat
     - name: Test Contracts
       run: npx hardhat test
 
@@ -28,9 +28,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - uses: bahmutov/npm-install@v1
+    - uses: borales/actions-yarn@v3.0.0
     - name: Test Frontend
       env: 
         REACT_APP_MORALIS_APPLICATION_ID: ${{secrets.REACT_APP_MORALIS_APPLICATION_ID}}
         REACT_APP_MORALIS_SERVER_URL: ${{secrets.REACT_APP_MORALIS_SERVER_URL}}
-      run: npm t
+      run: yarn test
