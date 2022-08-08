@@ -29,8 +29,8 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - uses: borales/actions-yarn@v3.0.0
+      env: 
+        REACT_APP_MORALIS_APPLICATION_ID: ${{secrets.REACT_APP_MORALIS_APPLICATION_ID}}
+        REACT_APP_MORALIS_SERVER_URL: ${{secrets.REACT_APP_MORALIS_SERVER_URL}}
       with: 
-        env: 
-          REACT_APP_MORALIS_APPLICATION_ID: ${{secrets.REACT_APP_MORALIS_APPLICATION_ID}}
-          REACT_APP_MORALIS_SERVER_URL: ${{secrets.REACT_APP_MORALIS_SERVER_URL}}
         cmd: test
