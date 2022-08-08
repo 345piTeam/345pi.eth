@@ -33,4 +33,6 @@ jobs:
         REACT_APP_MORALIS_APPLICATION_ID: ${{secrets.REACT_APP_MORALIS_APPLICATION_ID}}
         REACT_APP_MORALIS_SERVER_URL: ${{secrets.REACT_APP_MORALIS_SERVER_URL}}
       with: 
+        node-version: 18.x
+        cache: 'yarn'
         cmd: test
