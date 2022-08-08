@@ -1,31 +1,20 @@
 import styles from "./index.module.css";
 import React, {useState, useEffect } from "react";
+import {useSelector} from "react-redux";
 import {ethers} from "ethers";
 import ProposalCard from "../../components/ProposalCard";
 import { Pagination } from "antd"
-import { useDispatch } from "react-redux";
-import { getContracts } from "../../redux/slices/contracts.js";
-
 
 const Governance = () => {
-    const dispatch = useDispatch();
-    const [contractData, setContractData] = useState();
+    const contractData = useSelector((state) => state.contracts.data.ProposalList);
     const [proposalData, setProposalData] = useState(); 
     const [proposalList, setProposalList] = useState();
     const [currentPage, setCurrentPage] = useState(1);
-	const [proposalCount, setProposalCount] = useState(2);
-	const [displayCount, setDisplayCount] = useState(5);
-
-    // Fetch contract data on mount
-    useEffect(() => {
-        (async () => {
-            const data = await dispatch(getContracts());
-            setContractData(data.payload.ProposalList);
-        })().catch(console.error);
-    }, [dispatch]);
+	const [proposalCount, setProposalCount] = useState(0);
+	const [displayCount, setDisplayCount] = useState(10);
 
     useEffect(() => {
-        if(contractData) {
+        if( window.ethereum && contractData) {
             const provider = new ethers.providers.Web3Provider(window.ethereum);
             setProposalList(new ethers.Contract(contractData.address, contractData.abi, provider));
         }
@@ -89,6 +78,7 @@ const Governance = () => {
             console.error(err);
         });
     }, [currentPage, displayCount, proposalCount, proposalList])
+
 
     const displayProposals = () => {
 		const minIndex = currentPage * displayCount - displayCount;

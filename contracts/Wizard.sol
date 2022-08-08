@@ -10,17 +10,19 @@ import "@openzeppelin/contracts/utils/Counters.sol";
 import "hardhat/console.sol";
 
 /// @custom:security-contact nolan@345pi.com
-contract DarkLord is ERC721, ERC721URIStorage, Ownable {
+contract Wizard is ERC721, ERC721URIStorage, Ownable {
     using Counters for Counters.Counter;
 
     mapping(address => bool) private owners;
 
     Counters.Counter private _tokenIdCounter;
 
-    constructor() ERC721("Dark Lord", "DKL") {}
+    constructor() ERC721("Wizard", "WIZ") {
+        //safeMint(0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266, "");
+    }
 
     function _baseURI() internal pure override returns (string memory) {
-        return "ipfs://QmPgZVLmz3Gw21rwzrRnbb8LTLa9E4cLQPsutm4MREPnC3/metadata/";
+        return "ipfs://";
     }
 
     function safeMint(address to, string memory uri) public onlyOwner {

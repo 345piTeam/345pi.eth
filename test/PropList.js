@@ -10,6 +10,7 @@ describe("Proposal List", function () {
 		// To deploy our contract, we just have to call Token.deploy() and await
 		// for it to be deployed(), which happens once its transaction has been
 		// mined.
+		//console.log(owner.address);
 		PropList = await Prop.deploy();
 		await PropList.deployed();
 	});
@@ -18,8 +19,8 @@ describe("Proposal List", function () {
 	describe("Deployment", function () {
 		// `it` is another Mocha function. This is the one you use to define your
 		// tests. It receives the test name, and a callback function.
-		it("Initializes with two proposals", async function () {
-			expect(await PropList.propCount()).to.equal(2);
+		it("Initializes with correct number of proposals", async function () {
+			expect(await PropList.propCount()).to.equal(7);
 		});
 
 		it("Initializes the proposals with the correct values", async function () {
@@ -42,6 +43,7 @@ describe("Proposal List", function () {
 			const optionSummary1 = response1[0].summary;
 			expect(optionName1).to.equal("FPS");
 			expect(optionSummary1).to.equal("First person shooter");
+			expect(response1[0].voteCount).to.equal(0);
 		});
 	});
 
